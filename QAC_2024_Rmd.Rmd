@@ -177,6 +177,21 @@ subsetlogLOD <- subset(dat, (!is.na(dat$logLOD)))
 subsetcarbon <- subset(dat, (is.na(dat$matrix)))
 ```
 
+##delete cases without size
+
+```{r}
+# Find indices of rows with NA in dat$size
+na_indices <- which(is.na(dat$size))
+
+
+# Optionally, view the rows with NA in dat$size
+dat[na_indices, ]
+
+dat <- subset(dat, (!is.na(dat$size)))
+
+```
+
+
 ##clean up
 ```{r}
 #clean up
@@ -205,6 +220,13 @@ rm(dummy)
 table(dat$QAC)
 dim(table(dat$QAC))
 
+
+dim(table(dat$VirusName))
+
+summary(table(dat$`LOD/LOQ`))
+
+dim(table(dat$fam))
+
 ###### size 
 mean(dat$size, na.rm=TRUE)
 sd(dat$size, na.rm=TRUE)
@@ -212,6 +234,8 @@ mean(dat.e$size, na.rm=TRUE)
 sd(dat.e$size, na.rm=TRUE)
 mean(dat.n$size, na.rm=TRUE)
 sd(dat.n$size, na.rm=TRUE)
+
+
 
 ```
 #plots
@@ -957,7 +981,7 @@ d <-as.data.frame(d1)
 sums = array(d[,1])
 
 #create vector with famimilie names 
-cf$f <- c( "Adenoviridae" , "Alloherpesviridae", "Alphaherpesvirinae" ,     "Arteriviridae"     ,  "Asfarviridae"  ,     "Birnaviridae"   ,   "Caliciviridae" ,  "Circoviridae"     , "Coronaviridae"  ,   "Demerecviridae"    ,"Fiersviridae"      , "Flaviviridae" ,    "Hepadnaviridae"  ,      "Hepeviridae"  ,    "Herpesviridae"   ,    "Iridoviridae"   ,    "Microviridae"    ,    "Mimiviridae" ,       "Myoviridae"  ,  "Orthomyxoviridae", "Paramyxoviridae" ,     "Parvoviridae"   ,  "Picornaviridae"   ,   "Pneumoviridae"  ,    "polyomavirus"     ,  "Poxviridae",        "Poxviridae"     ,  "Reoviridae"    ,  "Retroviridae" ,     "Rhabdoviridae"  ,     "Siphoviridae"  ,      "Togaviridae" ,      "Virgaviridae" )
+cf$f <- c( "Adenoviridae" , "Alloherpesviridae", "Alphaherpesvirinae" ,     "Arteriviridae"     ,  "Asfarviridae"  ,     "Birnaviridae"   ,   "Caliciviridae" ,  "Circoviridae"     , "Coronaviridae"  , "Cystoviridae" , "Demerecviridae"    ,"Fiersviridae"      , "Flaviviridae" ,    "Hepadnaviridae"  ,      "Hepeviridae"  ,    "Herpesviridae"   ,    "Iridoviridae"   ,    "Microviridae"    ,    "Mimiviridae" ,       "Myoviridae"  ,  "Orthomyxoviridae", "Paramyxoviridae" ,     "Parvoviridae"   ,  "Picornaviridae"   ,   "Pneumoviridae"  ,    "polyomavirus"     ,  "Poxviridae ",     "Reoviridae"    ,  "Retroviridae" ,     "Rhabdoviridae"  ,     "Siphoviridae"  ,      "Togaviridae" ,      "Virgaviridae" )
            
 
 #bind vectors to dataframe 
@@ -976,7 +1000,7 @@ cfm <- melt(cf, id.vars=c("f"))
 
 #headmap in bw
 ggplot(cfm, aes(x=f, y=variable , fill = value))+
-  scale_x_discrete (limits = c( "Adenoviridae" , "Alloherpesviridae", "Alphaherpesvirinae" ,     "Arteriviridae"     ,  "Asfarviridae"  ,     "Birnaviridae"   ,   "Caliciviridae" ,  "Circoviridae"     , "Coronaviridae"  ,   "Demerecviridae"    ,"Fiersviridae"      , "Flaviviridae" ,    "Hepadnaviridae"  ,      "Hepeviridae"  ,    "Herpesviridae"   ,    "Iridoviridae"   ,    "Microviridae"    ,    "Mimiviridae" ,       "Myoviridae"  ,  "Orthomyxoviridae", "Paramyxoviridae" ,     "Parvoviridae"   ,  "Picornaviridae"   ,   "Pneumoviridae"  ,    "polyomavirus"     ,  "Poxviridae",        "Poxviridae" ,  "Reoviridae"    ,  "Retroviridae" ,     "Rhabdoviridae"  ,     "Siphoviridae"  ,      "Togaviridae" ,      "Virgaviridae" ) )+
+  scale_x_discrete (limits = c( "Adenoviridae" , "Alloherpesviridae", "Alphaherpesvirinae" ,     "Arteriviridae"     ,  "Asfarviridae"  ,     "Birnaviridae"   ,   "Caliciviridae" ,  "Circoviridae"     , "Coronaviridae"  , "Cystoviridae" , "Demerecviridae"    ,"Fiersviridae"      , "Flaviviridae" ,    "Hepadnaviridae"  ,      "Hepeviridae"  ,    "Herpesviridae"   ,    "Iridoviridae"   ,    "Microviridae"    ,    "Mimiviridae" ,       "Myoviridae"  ,  "Orthomyxoviridae", "Paramyxoviridae" ,     "Parvoviridae"   ,  "Picornaviridae"   ,   "Pneumoviridae"  ,    "polyomavirus"     ,  "Poxviridae ",     "Reoviridae"    ,  "Retroviridae" ,     "Rhabdoviridae"  ,     "Siphoviridae"  ,      "Togaviridae" ,      "Virgaviridae" ))+
   scale_y_discrete (limits = c("Data points", "Studies", "Strains"))+
   geom_tile(data = filter(cfm, variable == "Data points"), aes(x=f, y=variable, fill = value),
             color = "white",lwd =.5,linetype = 1) +
