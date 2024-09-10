@@ -1,0 +1,2387 @@
+PMID- 37143809
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+LR  - 20230507
+IS  - 2516-0230 (Electronic)
+IS  - 2516-0230 (Linking)
+VI  - 5
+IP  - 9
+DP  - 2023 May 2
+TI  - A novel long-acting antimicrobial nanomicelle spray.
+PG  - 2517-2529
+LID - 10.1039/d2na00950a [doi]
+AB  - Contaminated surfaces play a major role in disease transmission to humans. The 
+      vast majority of commercial disinfectants provide short-term protection of 
+      surfaces against microbial contamination. The Covid-19 pandemic has attracted 
+      attention to the importance of long-term disinfectants as they would reduce the 
+      need for staff and save time. In this study, nanoemulsions and nanomicelles 
+      containing a combination of benzalkonium chloride (BKC; a potent disinfectant and 
+      a surfactant) and benzoyl peroxide (BPO; a stable form of peroxide that is 
+      activated upon contact with lipid/membranous material) were formulated. The 
+      prepared nanoemulsion and nanomicelle formulas were of small sizes <80 nm and 
+      high positive charge >45 mV. They showed enhanced stability and prolonged 
+      antimicrobial efficacy. The antibacterial potency was evaluated in terms of 
+      long-term disinfection on surfaces as verified by repeated bacterial inoculums. 
+      Additionally, the efficacy of killing bacteria upon contact was also 
+      investigated. A nanomicelle formula (NM-3) consisting of 0.8% BPO in acetone and 
+      2% BKC plus 1% TX-100 in distilled water (1 : 5 volume ratio) demonstrated 
+      overall surface protection over a period of 7 weeks upon a single spray 
+      application. Furthermore, its antiviral activity was tested by the embryo chick 
+      development assay. The prepared NM-3 nanoformula spray showed strong 
+      antibacterial activities against Pseudomonas aeruginosa, Escherichia coli, and 
+      Staphylococcus aureus as well as antiviral activities against infectious 
+      bronchitis virus due to the dual effects of BKC and BPO. The prepared NM-3 spray 
+      shows great potential as an effective solution for prolonged surface protection 
+      against multiple pathogens.
+CI  - This journal is © The Royal Society of Chemistry.
+FAU - El-Sayed, Mousa
+AU  - El-Sayed M
+AUID- ORCID: 0000-0001-7708-7413
+AD  - Department of Chemistry, School of Sciences and Engineering, The American 
+      University in Cairo New Cairo Cairo 11835 Egypt hazzazy@aucegypt.edu 
+      wesamawad@aucegypt.edu.
+FAU - Al-Mofty, Saif El-Din
+AU  - Al-Mofty SE
+AD  - Department of Chemistry, School of Sciences and Engineering, The American 
+      University in Cairo New Cairo Cairo 11835 Egypt hazzazy@aucegypt.edu 
+      wesamawad@aucegypt.edu.
+FAU - Mahdy, Noha Khalil
+AU  - Mahdy NK
+AD  - Department of Chemistry, School of Sciences and Engineering, The American 
+      University in Cairo New Cairo Cairo 11835 Egypt hazzazy@aucegypt.edu 
+      wesamawad@aucegypt.edu.
+FAU - Sarhan, Wessam Awad
+AU  - Sarhan WA
+AD  - Department of Chemistry, School of Sciences and Engineering, The American 
+      University in Cairo New Cairo Cairo 11835 Egypt hazzazy@aucegypt.edu 
+      wesamawad@aucegypt.edu.
+FAU - Azzazy, Hassan Mohamed El-Said
+AU  - Azzazy HME
+AUID- ORCID: 0000-0003-2047-4222
+AD  - Department of Chemistry, School of Sciences and Engineering, The American 
+      University in Cairo New Cairo Cairo 11835 Egypt hazzazy@aucegypt.edu 
+      wesamawad@aucegypt.edu.
+AD  - Department of Nanobiophotonics, Leibniz Institute of Photonic Technology Jena 
+      07745 Germany.
+LA  - eng
+PT  - Journal Article
+DEP - 20230321
+PL  - England
+TA  - Nanoscale Adv
+JT  - Nanoscale advances
+JID - 101738708
+PMC - PMC10153481
+COIS- Authors are coinventors on a patent application describing the development of 
+      nanoparticle formulations containing antimicrobial agents as long acting 
+      antimicrobial surface coatings.
+EDAT- 2023/05/05 06:42
+MHDA- 2023/05/05 06:43
+PMCR- 2023/03/21
+CRDT- 2023/05/05 03:52
+PHST- 2022/12/26 00:00 [received]
+PHST- 2023/03/20 00:00 [accepted]
+PHST- 2023/05/05 06:43 [medline]
+PHST- 2023/05/05 06:42 [pubmed]
+PHST- 2023/05/05 03:52 [entrez]
+PHST- 2023/03/21 00:00 [pmc-release]
+AID - d2na00950a [pii]
+AID - 10.1039/d2na00950a [doi]
+PST - epublish
+SO  - Nanoscale Adv. 2023 Mar 21;5(9):2517-2529. doi: 10.1039/d2na00950a. eCollection 
+      2023 May 2.
+
+PMID- 36890133
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20231103
+LR  - 20231103
+IS  - 0191-2917 (Print)
+IS  - 0191-2917 (Linking)
+VI  - 107
+IP  - 10
+DP  - 2023 Oct
+TI  - A Systematic Review and Quantitative Synthesis of the Efficacy of Quaternary 
+      Ammonium Compounds in Disinfesting Nonfungal Plant Pathogens.
+PG  - 3176-3187
+LID - 10.1094/PDIS-12-21-2751-RE [doi]
+AB  - This quantitative review and systematic analysis of the effectiveness of 
+      quaternary ammonium compounds (QACs) in disinfesting nonfungal plant pathogens in 
+      agricultural and horticultural cropping systems is a complementary follow-up to a 
+      previous study that evaluated the efficacy of QACs against fungal plant 
+      pathogens. In the present study, a meta-analysis involving 67 studies was 
+      conducted to assess the overall efficacy of QACs against plant pathogenic 
+      bacteria, oomycetes, and viruses and to identify factors associated with observed 
+      differences in product efficacy. Across all studies, QACs resulted in a 
+      significant (P < 0.0001) reduction in either disease intensity or propagule 
+      viability with a mean Hedges' g ([Formula: see text]) of 1.75, indicating that 
+      overall QAC treatments were moderately effective against nonfungal pathogens. 
+      Significant differences in product efficacy were observed between organism types 
+      (P = 0.0001), with QAC interventions resulting in higher efficacy (P = 0.0002) 
+      against oomycetes ([Formula: see text] = 4.20) than against viruses ([Formula: 
+      see text] = 1.42) and bacteria ([Formula: see text] = 1.07), which were not 
+      different (P = 0.2689) from each other. As a result, bacterium and virus types 
+      were combined into a composite set (BacVir). QAC intervention against BacVir 
+      resulted in significant differences in efficacy within categorical moderator 
+      subgroups for genus (P = 0.0133), target material (P = 0.0001), and QAC product 
+      generation (P = 0.0281). QAC intervention against oomycetes resulted in 
+      significant differences in efficacy only for genus (P < 0.0001). For the BacVir 
+      composite, five random effect (RE) meta-regression models were significant (P = 
+      0.05), where models with dose and time, dose and genus, time and genus, dose and 
+      target, and time and target accounted for 62, 61, 52, 83, and 88%, respectively, 
+      of the variance in true effect sizes (R(2)) associated with [Formula: see text]. 
+      For oomycetes, three RE meta-regression models were significant (P = 0.05), where 
+      models with dose and time, dose and genus, and time and genus accounted for 64, 
+      86, and 90%, respectively, of R(2) associated with [Formula: see text]. These 
+      results show that while QACs are moderately effective against nonfungal plant 
+      pathogens, the observed variability in their efficacy due to dose of active 
+      ingredient and contact time of these products can be influenced by organism type, 
+      genus within organism type, the target being treated, and the generation of QAC 
+      products.
+FAU - Copes, Warren E
+AU  - Copes WE
+AUID- ORCID: 0000-0001-7360-7506
+AD  - United States Department of Agriculture, Agricultural Research Service, 
+      Poplarville, MS 39470.
+FAU - Ojiambo, Peter S
+AU  - Ojiambo PS
+AUID- ORCID: 0000-0002-0984-2760
+AD  - Center for Integrated Fungal Research, Department of Entomology and Plant 
+      Pathology, North Carolina State University, Raleigh, NC 27695.
+LA  - eng
+PT  - Journal Article
+PT  - Meta-Analysis
+PT  - Systematic Review
+DEP - 20231023
+PL  - United States
+TA  - Plant Dis
+JT  - Plant disease
+JID - 9882809
+RN  - 0 (Quaternary Ammonium Compounds)
+RN  - 0 (Disinfectants)
+SB  - IM
+MH  - *Quaternary Ammonium Compounds/pharmacology
+MH  - *Disinfectants
+MH  - Bacteria
+OTO - NOTNLM
+OT  - bacteria
+OT  - disinfectant
+OT  - oomycete
+OT  - plant pathogen
+OT  - quaternary ammonium compounds (QACs)
+OT  - quats
+OT  - sanitizer
+OT  - viruses and viroids
+COIS- The author(s) declare no conflict of interest.
+EDAT- 2023/03/09 06:00
+MHDA- 2023/11/03 06:44
+CRDT- 2023/03/08 23:02
+PHST- 2023/11/03 06:44 [medline]
+PHST- 2023/03/09 06:00 [pubmed]
+PHST- 2023/03/08 23:02 [entrez]
+AID - 10.1094/PDIS-12-21-2751-RE [doi]
+PST - ppublish
+SO  - Plant Dis. 2023 Oct;107(10):3176-3187. doi: 10.1094/PDIS-12-21-2751-RE. Epub 2023 
+      Oct 23.
+
+PMID- 37513703
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+LR  - 20230731
+IS  - 2076-0817 (Print)
+IS  - 2076-0817 (Electronic)
+IS  - 2076-0817 (Linking)
+VI  - 12
+IP  - 7
+DP  - 2023 Jun 21
+TI  - Evaluation of the Efficacy of Commercial Disinfectants against African Swine 
+      Fever Virus.
+LID - 10.3390/pathogens12070855 [doi]
+LID - 855
+AB  - African swine fever (ASF) is an economically important disease due to high 
+      morbidity and mortality rates and the ability to affect all ages and breeds of 
+      pigs. Biosecurity measures to prevent the spread of the causative agent, African 
+      swine fever virus (ASFV), include prescriptive cleaning and disinfection 
+      procedures. The aim of this study was to establish the biocidal effects of 
+      twenty-four commercially available disinfectants including oxidizing agents, 
+      acids, aldehydes, formic acids, phenol, and mixed-class chemistries against ASFV. 
+      The products were prepared according to the manufacturer's instructions and a 
+      suspension assay was performed with ASFV strain, BA71V using Vero cells (African 
+      green monkey cells) to test efficacy in reducing ASFV infection of cells. 
+      Generally, disinfectants containing formic acid and phenolic compounds, as well 
+      as oxidizing agents reduced viral titers of ASFV by over 4 log(10) at 
+      temperatures ranging from 4 °C to 20 °C. Hydrogen peroxide, aldehyde, and 
+      quaternary ammonium compounds containing disinfectants were cytotoxic, limiting 
+      the detection of viral infectivity reductions to less than 4 log(10). These 
+      preliminary results can be used to target research on disinfectants which contain 
+      active ingredients with known efficacy against ASFV under conditions recommended 
+      for the country where their use will be applied.
+FAU - Frost, Lorraine
+AU  - Frost L
+AUID- ORCID: 0000-0002-5762-3861
+AD  - The Pirbright Institute, Pirbright, Woking GU24 0NF, UK.
+FAU - Tully, Matthew
+AU  - Tully M
+AUID- ORCID: 0000-0002-1395-1775
+AD  - The Pirbright Institute, Pirbright, Woking GU24 0NF, UK.
+FAU - Dixon, Linda
+AU  - Dixon L
+AUID- ORCID: 0000-0003-3845-3016
+AD  - The Pirbright Institute, Pirbright, Woking GU24 0NF, UK.
+FAU - Hicks, Hayley M
+AU  - Hicks HM
+AD  - The Pirbright Institute, Pirbright, Woking GU24 0NF, UK.
+FAU - Bennett, Jessica
+AU  - Bennett J
+AD  - The Pirbright Institute, Pirbright, Woking GU24 0NF, UK.
+FAU - Stokes, Isobel
+AU  - Stokes I
+AD  - The Pirbright Institute, Pirbright, Woking GU24 0NF, UK.
+AD  - Department of Microbial Sciences, School of Biosciences, Faculty of Health and 
+      Medical Sciences, Stag Hill Campus, University of Surrey, Guildford GU2 7XH, UK.
+FAU - Marsella, Laura
+AU  - Marsella L
+AD  - The Pirbright Institute, Pirbright, Woking GU24 0NF, UK.
+AD  - Jealott's Hill International Research Centre, Syngenta, Bracknell RG42 6EY, UK.
+FAU - Gubbins, Simon
+AU  - Gubbins S
+AUID- ORCID: 0000-0003-0538-4173
+AD  - The Pirbright Institute, Pirbright, Woking GU24 0NF, UK.
+FAU - Batten, Carrie
+AU  - Batten C
+AUID- ORCID: 0000-0003-4274-7375
+AD  - The Pirbright Institute, Pirbright, Woking GU24 0NF, UK.
+LA  - eng
+GR  - BBS/E/1/00007307/BB_/Biotechnology and Biological Sciences Research 
+      Council/United Kingdom
+PT  - Journal Article
+DEP - 20230621
+PL  - Switzerland
+TA  - Pathogens
+JT  - Pathogens (Basel, Switzerland)
+JID - 101596317
+PMC - PMC10384970
+OTO - NOTNLM
+OT  - African swine fever virus
+OT  - control
+OT  - disinfectant
+OT  - inactivation
+COIS- The authors declare no conflict of interest.
+EDAT- 2023/07/29 11:43
+MHDA- 2023/07/29 11:44
+PMCR- 2023/06/21
+CRDT- 2023/07/29 01:37
+PHST- 2023/05/17 00:00 [received]
+PHST- 2023/06/15 00:00 [revised]
+PHST- 2023/06/19 00:00 [accepted]
+PHST- 2023/07/29 11:44 [medline]
+PHST- 2023/07/29 11:43 [pubmed]
+PHST- 2023/07/29 01:37 [entrez]
+PHST- 2023/06/21 00:00 [pmc-release]
+AID - pathogens12070855 [pii]
+AID - pathogens-12-00855 [pii]
+AID - 10.3390/pathogens12070855 [doi]
+PST - epublish
+SO  - Pathogens. 2023 Jun 21;12(7):855. doi: 10.3390/pathogens12070855.
+
+PMID- 37641064
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20230831
+LR  - 20231121
+IS  - 1743-422X (Electronic)
+IS  - 1743-422X (Linking)
+VI  - 20
+IP  - 1
+DP  - 2023 Aug 28
+TI  - Development and efficacy assessment of hand sanitizers and polylactic acid films 
+      incorporating caffeic acid and vanillin for enhanced antiviral properties against 
+      HCoV-229E.
+PG  - 194
+LID - 10.1186/s12985-023-02159-z [doi]
+LID - 194
+AB  - BACKGROUND: Although three years after the outbreak of SARS-CoV-2, the virus is 
+      still having a significant impact on human health and the global economy. 
+      Infection through respiratory droplets is the main transmission route, but the 
+      transmission of the virus by surface contact cannot be ignored. Hand sanitizers 
+      and antiviral films can be applied to control SARS-CoV-2, but sanitizers and 
+      films show drawbacks such as resistance of the virus against ethanol and 
+      environmental problems including the overuse of plastics. Therefore, this study 
+      suggested applying natural substrates to hand sanitizers and antiviral films made 
+      of biodegradable plastic (PLA). This approach is expected to provide advantages 
+      for the easy control of SARS-CoV-2 through the application of natural substances. 
+      METHODS: Antiviral disinfectants and films were manufactured by adding caffeic 
+      acid and vanillin to ethanol, isopropyl alcohol, benzalkonium chloride, and PLA. 
+      Antiviral efficacies were evaluated with slightly modified international standard 
+      testing methods EN 14,476 and ISO 21,702. RESULTS: In suspension, all the hand 
+      sanitizers evaluated in this study showed a reduction of more than 4 log within 
+      2 min against HCoV-229E. After natural substances were added to the hand 
+      sanitizers, the time needed to reach the detection limit of the viral titer was 
+      shortened both in suspension and porcine skin. However, no difference in the time 
+      needed to reach the detection limit of the viral titer was observed in 
+      benzalkonium chloride. In the case of antiviral films, those made using both PLA 
+      and natural substances showed a 1 log reduction of HCoV-229E compared to the neat 
+      PLA film for all treatment groups. Furthermore, the influence of the organic load 
+      was evaluated according to the number of contacts of the antiviral products with 
+      porcine skin. Ten rubs on the skin resulted in slightly higher antiviral activity 
+      than 50 rubs. CONCLUSION: This study revealed that caffeic acid and vanillin can 
+      be effectively used to control HCoV-229E for hand sanitizers and antiviral films. 
+      In addition, it is recommended to remove organic matter from the skin for 
+      maintaining the antiviral activity of hand sanitizer and antiviral film as the 
+      antiviral activity decreased as the organic load increased in this study.
+CI  - © 2023. BioMed Central Ltd., part of Springer Nature.
+FAU - Hyun, Seok-Woo
+AU  - Hyun SW
+AD  - Department of Food Science and Technology, Advanced Food Safety Research Group, 
+      Chung-Ang University, Anseong-si, Gyeonggi-do, 17546, Republic of Korea.
+FAU - Han, Sangha
+AU  - Han S
+AD  - Department of Food Science and Technology, Advanced Food Safety Research Group, 
+      Chung-Ang University, Anseong-si, Gyeonggi-do, 17546, Republic of Korea.
+FAU - Son, Jeong Won
+AU  - Son JW
+AD  - Department of Food Science and Technology, Advanced Food Safety Research Group, 
+      Chung-Ang University, Anseong-si, Gyeonggi-do, 17546, Republic of Korea.
+FAU - Song, Min Su
+AU  - Song MS
+AD  - Department of Food Science and Technology, Advanced Food Safety Research Group, 
+      Chung-Ang University, Anseong-si, Gyeonggi-do, 17546, Republic of Korea.
+FAU - Kim, Dan Ah
+AU  - Kim DA
+AD  - Department of Food Science and Technology, Advanced Food Safety Research Group, 
+      Chung-Ang University, Anseong-si, Gyeonggi-do, 17546, Republic of Korea.
+FAU - Ha, Sang-Do
+AU  - Ha SD
+AD  - Department of Food Science and Technology, Advanced Food Safety Research Group, 
+      Chung-Ang University, Anseong-si, Gyeonggi-do, 17546, Republic of Korea. 
+      sangdoha@cau.ac.kr.
+LA  - eng
+PT  - Journal Article
+PT  - Research Support, Non-U.S. Gov't
+DEP - 20230828
+PL  - England
+TA  - Virol J
+JT  - Virology journal
+JID - 101231645
+RN  - 0 (Hand Sanitizers)
+RN  - 459TN2L5F5 (poly(lactide))
+RN  - CHI530446X (vanillin)
+RN  - U2S3A33KVM (caffeic acid)
+RN  - 0 (Antiviral Agents)
+RN  - 0 (Benzalkonium Compounds)
+RN  - 0 (Polyesters)
+RN  - 3K9958V90M (Ethanol)
+SB  - IM
+MH  - Humans
+MH  - Swine
+MH  - Animals
+MH  - *Hand Sanitizers
+MH  - *Coronavirus 229E, Human
+MH  - Antiviral Agents/pharmacology
+MH  - Benzalkonium Compounds
+MH  - *COVID-19
+MH  - SARS-CoV-2
+MH  - Polyesters
+MH  - Ethanol
+PMC - PMC10463313
+OTO - NOTNLM
+OT  - Caffeic acid
+OT  - Hand sanitizers
+OT  - Poly lactic acid
+OT  - SARS-CoV-2
+OT  - Vanillin
+COIS- The authors declare no competing interests.
+EDAT- 2023/08/29 00:42
+MHDA- 2023/08/31 06:42
+PMCR- 2023/08/28
+CRDT- 2023/08/28 23:38
+PHST- 2023/04/30 00:00 [received]
+PHST- 2023/08/14 00:00 [accepted]
+PHST- 2023/08/31 06:42 [medline]
+PHST- 2023/08/29 00:42 [pubmed]
+PHST- 2023/08/28 23:38 [entrez]
+PHST- 2023/08/28 00:00 [pmc-release]
+AID - 10.1186/s12985-023-02159-z [pii]
+AID - 2159 [pii]
+AID - 10.1186/s12985-023-02159-z [doi]
+PST - epublish
+SO  - Virol J. 2023 Aug 28;20(1):194. doi: 10.1186/s12985-023-02159-z.
+
+PMID- 36183929
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20230117
+LR  - 20230124
+IS  - 1532-2939 (Electronic)
+IS  - 0195-6701 (Print)
+IS  - 0195-6701 (Linking)
+VI  - 131
+DP  - 2023 Jan
+TI  - Comparative efficacy evaluation of disinfectants against severe acute respiratory 
+      syndrome coronavirus-2.
+PG  - 12-22
+LID - S0195-6701(22)00306-1 [pii]
+LID - 10.1016/j.jhin.2022.09.011 [doi]
+AB  - BACKGROUND: Disinfection is one of the most effective ways to block the rapid 
+      transmission of severe acute respiratory syndrome coronavirus-2 (SARS-CoV-2). Due 
+      to the prolonged coronavirus disease 2019 (COVID-19) pandemic, disinfectants have 
+      become crucial to prevent person-to-person transmission and decontaminate hands, 
+      clothes, facilities and equipment. However, there is a lack of accurate 
+      information on the virucidal activity of commercial disinfectants. AIM: To 
+      evaluate the virucidal efficacy of 72 commercially available disinfectants 
+      constituting 16 types of ingredients against SARS-CoV-2. METHODS: SARS-CoV-2 was 
+      tested with various concentrations of disinfectants at indicated exposure time 
+      points as recommended by the manufacturers. The 50% tissue culture infectious 
+      dose assay was used to calculate virus titre, and trypan blue staining and CCK-8 
+      were used to assess cell viability after 3-5 days of SARS-CoV-2 infection. 
+      FINDINGS: This study found that disinfectants based on 83% ethanol, 60% 
+      propanol/ethanol, 0.00108-0.0011% sodium dichloroisocyanurate and 0.497% 
+      potassium peroxymonosulfate inactivated SARS-CoV-2 effectively and safely. 
+      Although disinfectants based on 0.05-0.4% benzalkonium chloride (BAC), 0.02-0.07% 
+      quaternary ammonium compound (QAC; 1:1), 0.4% BAC/didecyldimethylammonium 
+      chloride (DDAC), 0.28% benzethonium chloride concentrate/2-propanol, 0.0205-0.14% 
+      DDAC/polyhexamethylene biguanide hydrochloride (PHMB) and 0.5% hydrogen peroxide 
+      inactivated SARS-CoV-2 effectively, they exhibited cytotoxicity. Conversely, 
+      disinfectants based on 0.04-4% QAC (2:3), 0.00625% BAC/DDAC/PHMB, and 
+      0.0205-0.14% and 0.0173% peracetic acid showed approximately 50% virucidal 
+      efficacy with no cytotoxicity. Citric acid (0.4%) did not inactivate SARS-CoV-2. 
+      CONCLUSION: These results indicate that most commercially available disinfectants 
+      exert a disinfectant effect against SARS-CoV-2. However, re-evaluation of the 
+      effective concentration and exposure time of certain disinfectants is needed, 
+      especially citric acid and peracetic acid.
+CI  - Copyright © 2022 The Author(s). Published by Elsevier Ltd.. All rights reserved.
+FAU - Lee, G-H
+AU  - Lee GH
+AD  - Laboratory for Infectious Disease Prevention, Korea Zoonosis Research Institute, 
+      Jeonbuk National University, Iksan, Republic of Korea.
+FAU - Park, S-H
+AU  - Park SH
+AD  - Laboratory for Infectious Disease Prevention, Korea Zoonosis Research Institute, 
+      Jeonbuk National University, Iksan, Republic of Korea.
+FAU - Song, B-M
+AU  - Song BM
+AD  - Laboratory for Infectious Disease Prevention, Korea Zoonosis Research Institute, 
+      Jeonbuk National University, Iksan, Republic of Korea.
+FAU - Kim, D-M
+AU  - Kim DM
+AD  - Laboratory for Infectious Disease Prevention, Korea Zoonosis Research Institute, 
+      Jeonbuk National University, Iksan, Republic of Korea.
+FAU - Han, H-J
+AU  - Han HJ
+AD  - Laboratory for Infectious Disease Prevention, Korea Zoonosis Research Institute, 
+      Jeonbuk National University, Iksan, Republic of Korea.
+FAU - Park, J-Y
+AU  - Park JY
+AD  - Laboratory for Infectious Disease Prevention, Korea Zoonosis Research Institute, 
+      Jeonbuk National University, Iksan, Republic of Korea.
+FAU - Jo, Y-W
+AU  - Jo YW
+AD  - Division of Chemical Research, National Institute of Environmental Research, 
+      Incheon, Republic of Korea.
+FAU - Hwang, M-Y
+AU  - Hwang MY
+AD  - Division of Chemical Research, National Institute of Environmental Research, 
+      Incheon, Republic of Korea.
+FAU - Sim, K-T
+AU  - Sim KT
+AD  - Division of Chemical Research, National Institute of Environmental Research, 
+      Incheon, Republic of Korea.
+FAU - Kang, S-M
+AU  - Kang SM
+AD  - Laboratory for Infectious Disease Prevention, Korea Zoonosis Research Institute, 
+      Jeonbuk National University, Iksan, Republic of Korea. Electronic address: 
+      sangminkang@jbnu.ac.kr.
+FAU - Tark, D
+AU  - Tark D
+AD  - Laboratory for Infectious Disease Prevention, Korea Zoonosis Research Institute, 
+      Jeonbuk National University, Iksan, Republic of Korea. Electronic address: 
+      tarkds@jbnu.ac.kr.
+LA  - eng
+PT  - Journal Article
+DEP - 20220930
+PL  - England
+TA  - J Hosp Infect
+JT  - The Journal of hospital infection
+JID - 8007166
+RN  - 0 (Disinfectants)
+RN  - 32288-33-8 (N,N-dimethyl-N-hexadecyl-1-octadecylammonium)
+RN  - I6KPI2E1HD (Peracetic Acid)
+RN  - 0 (Benzalkonium Compounds)
+RN  - Z7F472XQPA (didecyldimethylammonium)
+RN  - 3K9958V90M (Ethanol)
+SB  - IM
+MH  - Humans
+MH  - *Disinfectants/pharmacology
+MH  - SARS-CoV-2
+MH  - *COVID-19/prevention & control
+MH  - Peracetic Acid
+MH  - Benzalkonium Compounds
+MH  - Ethanol
+PMC - PMC9639569
+OTO - NOTNLM
+OT  - Cytotoxicity
+OT  - Disinfectants
+OT  - SARS-CoV-2
+OT  - Virucidal efficacy
+EDAT- 2022/10/03 06:00
+MHDA- 2023/01/18 06:00
+PMCR- 2022/09/30
+CRDT- 2022/10/02 19:35
+PHST- 2022/08/10 00:00 [received]
+PHST- 2022/09/20 00:00 [revised]
+PHST- 2022/09/20 00:00 [accepted]
+PHST- 2022/10/03 06:00 [pubmed]
+PHST- 2023/01/18 06:00 [medline]
+PHST- 2022/10/02 19:35 [entrez]
+PHST- 2022/09/30 00:00 [pmc-release]
+AID - S0195-6701(22)00306-1 [pii]
+AID - 10.1016/j.jhin.2022.09.011 [doi]
+PST - ppublish
+SO  - J Hosp Infect. 2023 Jan;131:12-22. doi: 10.1016/j.jhin.2022.09.011. Epub 2022 Sep 
+      30.
+
+PMID- 38631625
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20240507
+LR  - 20240507
+IS  - 1879-1026 (Electronic)
+IS  - 0048-9697 (Linking)
+VI  - 929
+DP  - 2024 Jun 15
+TI  - Evaluation of inhalation risk during quarantine work with quaternary ammonium 
+      compounds-based disinfectant.
+PG  - 172488
+LID - S0048-9697(24)02634-2 [pii]
+LID - 10.1016/j.scitotenv.2024.172488 [doi]
+AB  - Quarantine work is widely recognized as an indispensable endeavor in curbing the 
+      propagation of the severe acute respiratory syndrome coronavirus-2 (SARS-CoV-2). 
+      Furthermore, the heavy workload places workers at a heightened risk of chemical 
+      exposure and respiratory damage. Consequently, it is paramount to systematically 
+      perform health risk assessments and meticulously oversee the work by wearing 
+      personal protective equipment to minimize these risks. To assess the inhalation 
+      exposure, this study examined data on disinfectant exposure from quarantine 
+      professional users who utilized disinfectants containing quaternary ammonium 
+      compounds. Through a survey of 6,199 cases conducted by 300 quarantine 
+      professional users who actively engaged in quarantine work, we assembled a 
+      database of exposure factors derived from their utilization of spray-type 
+      disinfectants for quarantine purposes. Based on these data, we formulated an 
+      inhalation exposure algorithm, which considers the time-weighted average (TWA) 
+      air concentrations. The test results demonstrated that the industrial-grade 
+      respirator mask could prevent a minimum of 68.3 % of particles, reducing 
+      respiratory exposure. Consequently, the hazard quotient (HQ) due to disinfectant 
+      exposure also decreased. This research is essential in safeguarding the safety 
+      and health of professional users engaged in quarantine-related tasks. By 
+      implementing strict measures like health risk assessments and personal protective 
+      equipment, individuals with quarantine experience can safely carry out their 
+      quarantine work. The results of this study are expected to serve as a framework 
+      for improving policies and regulations concerning quarantine work and 
+      safeguarding the health of professional users.
+CI  - Copyright © 2024 Elsevier B.V. All rights reserved.
+FAU - Kim, Minji
+AU  - Kim M
+AD  - Division of Chemical Research, National Institute of Environmental Research, 
+      Hwangyeong-ro 42, Seo-gu, Incheon 22689, South Korea. Electronic address: 
+      mjk129@korea.kr.
+FAU - Jeon, Sohyun
+AU  - Jeon S
+AD  - Division of Chemical Research, National Institute of Environmental Research, 
+      Hwangyeong-ro 42, Seo-gu, Incheon 22689, South Korea.
+FAU - Chung, In-Young
+AU  - Chung IY
+AD  - Division of Chemical Research, National Institute of Environmental Research, 
+      Hwangyeong-ro 42, Seo-gu, Incheon 22689, South Korea.
+FAU - Park, Kyunghwa
+AU  - Park K
+AD  - Division of Chemical Research, National Institute of Environmental Research, 
+      Hwangyeong-ro 42, Seo-gu, Incheon 22689, South Korea.
+FAU - Kim, Joo-Hyon
+AU  - Kim JH
+AD  - Division of Chemical Research, National Institute of Environmental Research, 
+      Hwangyeong-ro 42, Seo-gu, Incheon 22689, South Korea. Electronic address: 
+      jhkim0318@korea.kr.
+LA  - eng
+PT  - Journal Article
+DEP - 20240415
+PL  - Netherlands
+TA  - Sci Total Environ
+JT  - The Science of the total environment
+JID - 0330500
+RN  - 0 (Disinfectants)
+RN  - 0 (Quaternary Ammonium Compounds)
+SB  - IM
+MH  - *Disinfectants/analysis
+MH  - *Quaternary Ammonium Compounds
+MH  - Humans
+MH  - *Inhalation Exposure/statistics & numerical data
+MH  - *Occupational Exposure
+MH  - *COVID-19/prevention & control
+MH  - *Quarantine
+MH  - Risk Assessment
+MH  - SARS-CoV-2
+MH  - Personal Protective Equipment
+OTO - NOTNLM
+OT  - Exposure factor
+OT  - Hazard quotient
+OT  - Inhalation exposure assessment
+OT  - Personal protective equipment
+OT  - Time-weighted average
+COIS- Declaration of competing interest The authors declare that they have no known 
+      competing financial interests or personal relationships that could have appeared 
+      to influence the work reported in this paper.
+EDAT- 2024/04/18 00:45
+MHDA- 2024/05/07 06:42
+CRDT- 2024/04/17 19:25
+PHST- 2024/01/15 00:00 [received]
+PHST- 2024/04/01 00:00 [revised]
+PHST- 2024/04/12 00:00 [accepted]
+PHST- 2024/05/07 06:42 [medline]
+PHST- 2024/04/18 00:45 [pubmed]
+PHST- 2024/04/17 19:25 [entrez]
+AID - S0048-9697(24)02634-2 [pii]
+AID - 10.1016/j.scitotenv.2024.172488 [doi]
+PST - ppublish
+SO  - Sci Total Environ. 2024 Jun 15;929:172488. doi: 10.1016/j.scitotenv.2024.172488. 
+      Epub 2024 Apr 15.
+
+PMID- 37141959
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20230522
+LR  - 20230522
+IS  - 1095-9947 (Electronic)
+IS  - 1050-4648 (Linking)
+VI  - 137
+DP  - 2023 Jun
+TI  - Immune responses and histopathological analyses of giant river prawn 
+      (Macrobrachium rosenbergii, De Man 1879) challenged with a sub-lethal dose of 
+      decapod iridescent virus 1 (DIV1) and chemical control investigation.
+PG  - 108792
+LID - S1050-4648(23)00278-4 [pii]
+LID - 10.1016/j.fsi.2023.108792 [doi]
+AB  - Decapod iridescent virus 1 (DIV1) is a lethal virus that has a significant 
+      influence on the shrimp and prawn culture industries. The mechanism through which 
+      infected prawns respond to the DIV1 virus is currently unknown. Here, we examined 
+      in detail the clinical signs, histopathology, and humoral, cellular, and 
+      immune-related gene responses after a sub-lethal dose of DIV1 during the acute 
+      infection period of 0-120 h post infection (hpi). Interestingly, at the end of 
+      the experiment, DIV1-infected prawns had black lesions on several external 
+      regions. The DIV1-infected prawns also exhibited few karyopyknotic nuclei in the 
+      gills and intestine tissues and exhibited increasing immunological responses, as 
+      revealed by significant increases in all examined parameters, including total 
+      hemocytes, phagocytosis, lysozyme, and overall bactericidal activity, from 6 to 
+      48 hpi. In addition, between 72 and 120 hpi, all immune response activities of 
+      DIV1-infected prawn were impaired compared with those of normal prawns, 
+      indicating negative impacts on immunological parameters. A viral load analysis of 
+      various tissues by qPCR indicated that hemocytes were the dominant initial viral 
+      target tissues, followed by the gills and hepatopancreas. An expression analysis 
+      of crucial immune-related genes by qRT‒PCR revealed various expression patterns 
+      in response to DIV1 infection; in particular, fold changes in the relative 
+      expression of anti-lipopolysaccharide factors (ALFs), prophenoloxidase (proPO), 
+      lipopolysaccharide and β-1,3-glucan binding protein (LGBP) were observed. 
+      Additionally, five common chemicals, calcium hypochlorite [Ca(OCl)(2)] at 
+      16.25-130 ppm, hydrogen peroxide (H(2)O(2)) at 8.75-70 ppm, povidone iodine 
+      (PVP-I) at 3-24 ppm, benzalkonium chloride (BKC) at 20-160 ppm, and formalin at 
+      25-200 ppm, had a significant effect on the killing of DIV1 particles in vitro 
+      within 24 h after exposure. These data will be helpful for determining the health 
+      status and immune defense mechanisms of giant river prawns during DIV1 infection 
+      periods. The study performed the first application of very common disinfectants, 
+      and the obtained information will be useful for implementing effective strategies 
+      to prevent and control DIV1 infection in both hatchery and grow-out ponds.
+CI  - Copyright © 2023 Elsevier Ltd. All rights reserved.
+FAU - Keawthong, Chalinda
+AU  - Keawthong C
+AD  - Laboratory of Aquatic Animal Health Management, Department of Aquaculture, 
+      Faculty of Fisheries, Kasetsart University, 50 Paholayothin Road, Ladyao, 
+      Chatuchak, 10900, Bangkok, Thailand; Center of Excellence in Aquatic Animal 
+      Health Management, Faculty of Fisheries, Kasetsart University, 50 Paholayothin 
+      Road, Ladyao, Chatuchak, 10900, Bangkok, Thailand. Electronic address: 
+      chalinda7032@gmail.com.
+FAU - Bunnoy, Anurak
+AU  - Bunnoy A
+AD  - Laboratory of Aquatic Animal Health Management, Department of Aquaculture, 
+      Faculty of Fisheries, Kasetsart University, 50 Paholayothin Road, Ladyao, 
+      Chatuchak, 10900, Bangkok, Thailand; Center of Excellence in Aquatic Animal 
+      Health Management, Faculty of Fisheries, Kasetsart University, 50 Paholayothin 
+      Road, Ladyao, Chatuchak, 10900, Bangkok, Thailand. Electronic address: 
+      anurak.bunnoy@gmail.com.
+FAU - Chuchird, Niti
+AU  - Chuchird N
+AD  - Aquaculture Business Research Center, Faculty of Fisheries, Kasetsart University, 
+      Bangkok, Thailand. Electronic address: ffisntc@ku.ac.th.
+FAU - Srisapoome, Prapansak
+AU  - Srisapoome P
+AD  - Laboratory of Aquatic Animal Health Management, Department of Aquaculture, 
+      Faculty of Fisheries, Kasetsart University, 50 Paholayothin Road, Ladyao, 
+      Chatuchak, 10900, Bangkok, Thailand; Center of Excellence in Aquatic Animal 
+      Health Management, Faculty of Fisheries, Kasetsart University, 50 Paholayothin 
+      Road, Ladyao, Chatuchak, 10900, Bangkok, Thailand. Electronic address: 
+      ffispssp@ku.ac.th.
+LA  - eng
+PT  - Journal Article
+DEP - 20230502
+PL  - England
+TA  - Fish Shellfish Immunol
+JT  - Fish & shellfish immunology
+JID - 9505220
+RN  - BBX060AN9V (Hydrogen Peroxide)
+SB  - IM
+MH  - Animals
+MH  - *Palaemonidae
+MH  - Hydrogen Peroxide/pharmacology
+MH  - *Decapoda/genetics
+MH  - Polymerase Chain Reaction
+MH  - *Penaeidae/genetics
+OTO - NOTNLM
+OT  - Chemical application
+OT  - DIV1 controlling
+OT  - Decapod iridescent virus 1 (DIV1)
+OT  - Giant river prawn
+OT  - Immune responses
+OT  - Macrobrachium rosenbergii
+COIS- Conflicts of interest The authors report no conflicts of interest related to this 
+      work.
+EDAT- 2023/05/05 00:42
+MHDA- 2023/05/22 06:42
+CRDT- 2023/05/04 19:24
+PHST- 2023/03/02 00:00 [received]
+PHST- 2023/04/20 00:00 [revised]
+PHST- 2023/05/02 00:00 [accepted]
+PHST- 2023/05/22 06:42 [medline]
+PHST- 2023/05/05 00:42 [pubmed]
+PHST- 2023/05/04 19:24 [entrez]
+AID - S1050-4648(23)00278-4 [pii]
+AID - 10.1016/j.fsi.2023.108792 [doi]
+PST - ppublish
+SO  - Fish Shellfish Immunol. 2023 Jun;137:108792. doi: 10.1016/j.fsi.2023.108792. Epub 
+      2023 May 2.
+
+PMID- 36574999
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20230203
+LR  - 20230318
+IS  - 1347-7439 (Electronic)
+IS  - 0916-7250 (Print)
+IS  - 0916-7250 (Linking)
+VI  - 85
+IP  - 2
+DP  - 2023 Feb 1
+TI  - Isolation, molecular characterization, and disinfectants susceptibility of 
+      swine-carried mammalian orthoreoviruses in Japan in 2020-2022.
+PG  - 185-193
+LID - 10.1292/jvms.22-0476 [doi]
+AB  - Biosecurity enhancement contributes to the reduction of various microbial 
+      pathogens. Mammalian orthoreoviruses (MRVs) which are increasingly recognized as 
+      potentially serious problems on swine industry were used as indicators of 
+      biosecurity enhancement on two pig farms. Twelve MRVs were detected and isolated 
+      from fecal specimens of healthy pigs collected from one of the two farms in 
+      Japan. By sequencing based on the partial S1 gene, MRV isolates were classified 
+      as MRV1 and MRV2. Additionally, the virucidal activities of disinfectants toward 
+      the isolated MRV1 were evaluated using quaternary ammonium compound (QAC) diluted 
+      500 times with water (QAC-500), 0.17% food additive glade calcium hydroxide 
+      (FdCa(OH)(2)) solution, QAC diluted with 0.17% FdCa(OH)(2) solution (Mix-500), 
+      sodium hypochlorite at 100 or 1,000 parts per million (ppm) of total chlorine 
+      (NaClO-100 or NaClO-1000, respectively). To efficiently inactivate MRV1 (≥3 
+      log(10) reductions), 0.17% FdCa(OH)(2), Mix-500 and NaClO-1000 required 5 min, 
+      whereas it took 30 min for QAC-500. The number of MRV detections has decreased 
+      over time, after using Mix-500 for disinfection on the positive farm. These 
+      results suggest that different serotypes of MRVs are circulating among pigs, and 
+      that the occurrence of MRVs in the farms decreased consequent to more effective 
+      disinfection.
+FAU - Miyaoka, Yu
+AU  - Miyaoka Y
+AD  - Laboratory of Animal Health, Cooperative Division of Veterinary Sciences, 
+      Graduate School of Agriculture, Tokyo University of Agriculture and Technology, 
+      Tokyo, Japan.
+FAU - Kadota, Chisaki
+AU  - Kadota C
+AD  - Laboratory of Animal Health, Department of Veterinary Medicine, Faculty of 
+      Agriculture, Tokyo University of Agriculture and Technology, Tokyo, Japan.
+FAU - Kabir, Md Humayun
+AU  - Kabir MH
+AD  - Laboratory of Animal Health, Cooperative Division of Veterinary Sciences, 
+      Graduate School of Agriculture, Tokyo University of Agriculture and Technology, 
+      Tokyo, Japan.
+FAU - Hakim, Hakimullah
+AU  - Hakim H
+AD  - Laboratory of Animal Health, Cooperative Division of Veterinary Sciences, 
+      Graduate School of Agriculture, Tokyo University of Agriculture and Technology, 
+      Tokyo, Japan.
+FAU - Yamaguchi, Makiko
+AU  - Yamaguchi M
+AD  - Laboratory of Animal Health, Department of Veterinary Medicine, Faculty of 
+      Agriculture, Tokyo University of Agriculture and Technology, Tokyo, Japan.
+FAU - Hasan, Md Amirul
+AU  - Hasan MA
+AD  - Laboratory of Animal Health, Cooperative Division of Veterinary Sciences, 
+      Graduate School of Agriculture, Tokyo University of Agriculture and Technology, 
+      Tokyo, Japan.
+FAU - Shoham, Dany
+AU  - Shoham D
+AD  - Bar-Ilan University, Begin-Sadat Center for Strategic Studies, Ramat Gan, Israel.
+FAU - Murakami, Harumi
+AU  - Murakami H
+AD  - Laboratory of Animal Health, Cooperative Division of Veterinary Sciences, 
+      Graduate School of Agriculture, Tokyo University of Agriculture and Technology, 
+      Tokyo, Japan.
+AD  - Laboratory of Animal Health, Department of Veterinary Medicine, Faculty of 
+      Agriculture, Tokyo University of Agriculture and Technology, Tokyo, Japan.
+FAU - Kobayashi, Sota
+AU  - Kobayashi S
+AD  - Division of Zoonosis Research, National Institute of Animal Health, National 
+      Agriculture and Food Research Organization, Ibaraki, Japan.
+FAU - Takehara, Kazuaki
+AU  - Takehara K
+AD  - Laboratory of Animal Health, Cooperative Division of Veterinary Sciences, 
+      Graduate School of Agriculture, Tokyo University of Agriculture and Technology, 
+      Tokyo, Japan.
+AD  - Laboratory of Animal Health, Department of Veterinary Medicine, Faculty of 
+      Agriculture, Tokyo University of Agriculture and Technology, Tokyo, Japan.
+LA  - eng
+PT  - Journal Article
+DEP - 20221227
+PL  - Japan
+TA  - J Vet Med Sci
+JT  - The Journal of veterinary medical science
+JID - 9105360
+RN  - 0 (Disinfectants)
+RN  - DY38VHM5OD (Sodium Hypochlorite)
+RN  - PF5DZW74VN (Calcium Hydroxide)
+RN  - 0 (Quaternary Ammonium Compounds)
+SB  - IM
+MH  - Animals
+MH  - Swine
+MH  - *Disinfectants/pharmacology
+MH  - *Orthoreovirus, Mammalian/genetics
+MH  - Japan/epidemiology
+MH  - Sodium Hypochlorite
+MH  - Calcium Hydroxide
+MH  - Quaternary Ammonium Compounds
+MH  - Mammals
+PMC - PMC10017281
+OTO - NOTNLM
+OT  - biosecurity
+OT  - disinfectants susceptibility
+OT  - epidemiology of mammalian orthoreoviruses
+OT  - phylogenic analysis
+OT  - virus isolation
+EDAT- 2022/12/28 06:00
+MHDA- 2023/02/04 06:00
+PMCR- 2023/02/01
+CRDT- 2022/12/27 20:52
+PHST- 2022/12/28 06:00 [pubmed]
+PHST- 2023/02/04 06:00 [medline]
+PHST- 2022/12/27 20:52 [entrez]
+PHST- 2023/02/01 00:00 [pmc-release]
+AID - 22-0476 [pii]
+AID - 10.1292/jvms.22-0476 [doi]
+PST - ppublish
+SO  - J Vet Med Sci. 2023 Feb 1;85(2):185-193. doi: 10.1292/jvms.22-0476. Epub 2022 Dec 
+      27.
+
+PMID- 36988417
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20230518
+LR  - 20230518
+IS  - 2047-4849 (Electronic)
+IS  - 2047-4830 (Linking)
+VI  - 11
+IP  - 10
+DP  - 2023 May 16
+TI  - Antiviral functionalization of a polypropylene nonwoven textile structure as a 
+      self-decontaminating layer for respiratory masks.
+PG  - 3502-3511
+LID - 10.1039/d2bm01988d [doi]
+AB  - The aim of this work was to develop a filtering biocidal polypropylene (PP) 
+      nonwoven textile structure to block and inactivate airborne bacteria and viruses. 
+      PP filters were functionalized with a cyclodextrin (CD)-polycarboxylic 
+      acid-crosslinked polymer (PP-CD) through a pad/dry/curing process, and were then 
+      activated by padding in an alkyl dimethyl benzalkonium chloride (ADBAC) solution. 
+      The textile finishing process parameters were optimized with the perspective of 
+      mass production, considering the threshold temperature necessary for provoking 
+      crosslinking and the limitation of the low thermal stability of PP. The use of an 
+      aqueous solution containing hydroxypropyl-β-cyclodextrin (HPβCD), 
+      1,2,3,4-butanetetracarboxylic acid (BTCA), ammonium hypophosphite (AH), and a 
+      surfactant allowed immobilization of the optimal quantity of cyclodextrin polymer 
+      under curing for 5 minutes at 125 °C without affecting the nonwoven PP structure. 
+      The presence of CD drastically increased the sorption of ADBAC on the textiles. 
+      There was leaching of ADBAC at the first rinsing and then satisfactory fastness 
+      at the second and third rinsings, revealing adsorption mechanisms by weak 
+      physical interactions, ionic interactions, and inclusion of ADBAC inside the CD 
+      cavities. SEM revealed no clogging of the nonwoven pores, nor any increase in the 
+      air flow resistance, as evaluated by pressure drop measurements. The filtration 
+      efficiency of particulate matter PM(3.0) and PM(0.5) was moderately affected, in 
+      contrast to that of PM(0.3), which greatly decreased due to the loss of the 
+      electrostatic charge of the filter upon the functionalization process. 
+      Bactericidal tests resulted in a reduction of 3 log(10) against Staphylococcus 
+      aureus, and for virucidal tests on human coronavirus HCoV-229E, there was a 
+      reduction of 3.4 log(10), with both strains undergoing 20 minutes of contact. 
+      Finally, the filter we developed is manufacturable by a scalable process, and 
+      because of its filtration and biocidal performances, it is a choice material as a 
+      self-disinfecting layer in the fabrication of facepiece respirators.
+FAU - Maton, Mickael
+AU  - Maton M
+AD  - Univ. Lille, INSERM, CHU Lille, U1008 - Advanced Drug Delivery Systems, Lille, 
+      France. nicolas.blanchemain@univ-lille.fr.
+FAU - Gabut, Sarah
+AU  - Gabut S
+AD  - Univ. Lille, INSERM, CHU Lille, U1008 - Advanced Drug Delivery Systems, Lille, 
+      France. nicolas.blanchemain@univ-lille.fr.
+AD  - Univ. Lille, CNRS, INRAE, ENSCL UMR 8207, UMET - Unité Matériaux et 
+      Transformations, Lille, France. bernard.martel@univ-lille.fr.
+FAU - Neut, Christel
+AU  - Neut C
+AD  - Univ. Lille, INSERM, CHU Lille, U1286, Institute for Translational Research in 
+      Inflammation, Lille, France.
+FAU - Odou, Pascal
+AU  - Odou P
+AD  - Univ. Lille, CHU Lille, ULR 7365 - GRITA - Groupe de Recherche sur les formes 
+      Injectables et les Technologies Associées, F-59000 Lille, France.
+FAU - Sacareau, Camille
+AU  - Sacareau C
+AD  - Institut Pasteur de Lille, Unité de Sécurité Microbiologique, 1 rue du Professeur 
+      Calmette, Lille, France.
+FAU - Pinon, Anthony
+AU  - Pinon A
+AD  - Institut Pasteur de Lille, Unité de Sécurité Microbiologique, 1 rue du Professeur 
+      Calmette, Lille, France.
+FAU - Vialette, Michèle
+AU  - Vialette M
+AD  - Institut Pasteur de Lille, Unité de Sécurité Microbiologique, 1 rue du Professeur 
+      Calmette, Lille, France.
+FAU - Gerber, Gaétan
+AU  - Gerber G
+AD  - Bioserenity, 47 bd de l'Hôpital, Paris, France.
+FAU - Martel, Bernard
+AU  - Martel B
+AUID- ORCID: 0000-0001-5329-3028
+AD  - Univ. Lille, CNRS, INRAE, ENSCL UMR 8207, UMET - Unité Matériaux et 
+      Transformations, Lille, France. bernard.martel@univ-lille.fr.
+FAU - Blanchemain, Nicolas
+AU  - Blanchemain N
+AUID- ORCID: 0000-0002-1947-1705
+AD  - Univ. Lille, INSERM, CHU Lille, U1008 - Advanced Drug Delivery Systems, Lille, 
+      France. nicolas.blanchemain@univ-lille.fr.
+LA  - eng
+PT  - Journal Article
+DEP - 20230516
+PL  - England
+TA  - Biomater Sci
+JT  - Biomaterials science
+JID - 101593571
+RN  - 0 (Polypropylenes)
+RN  - 0 (Antiviral Agents)
+SB  - IM
+MH  - Humans
+MH  - *Polypropylenes/chemistry
+MH  - *Antiviral Agents
+MH  - Masks
+MH  - Filtration/methods
+MH  - Textiles
+EDAT- 2023/03/30 06:00
+MHDA- 2023/05/18 06:42
+CRDT- 2023/03/29 09:43
+PHST- 2023/05/18 06:42 [medline]
+PHST- 2023/03/30 06:00 [pubmed]
+PHST- 2023/03/29 09:43 [entrez]
+AID - 10.1039/d2bm01988d [doi]
+PST - epublish
+SO  - Biomater Sci. 2023 May 16;11(10):3502-3511. doi: 10.1039/d2bm01988d.
+
+PMID- 37204629
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20230829
+LR  - 20231101
+IS  - 1348-2246 (Electronic)
+IS  - 0910-6340 (Print)
+IS  - 0910-6340 (Linking)
+VI  - 39
+IP  - 9
+DP  - 2023 Sep
+TI  - Determination of 25 quaternary ammonium compounds in sludge by liquid 
+      chromatography-mass spectrometry.
+PG  - 1435-1444
+LID - 10.1007/s44211-023-00354-0 [doi]
+AB  - With the pandemic of COVID-19, the application of quaternary ammonium compounds 
+      (QACs), which can be used in SARS-CoV-2 disinfection products, has increased 
+      substantially. QACs cumulated in sewer system are ultimately deposited and 
+      enriched in sludge. QACs in the environment can adversely affect human health and 
+      the environment. In this study, a liquid chromatography-mass spectrometry method 
+      was established for the simultaneous determination of 25 QACs in sludge samples. 
+      Ultrasonic extraction and filtration of the samples was performed using a 50 mM 
+      hydrochloric acid-methanol solution. The samples were separated by liquid 
+      chromatography and detected in multiple reaction monitoring mode. The matrix 
+      effects of the sludge on the 25 QACs ranged from - 25.5% to 7.2%. All substances 
+      showed good linearity in the range of 0.5-100 ng/mL, with all determination 
+      coefficients (R(2)) greater than 0.999. The method detection limits (MDLs) were 
+      9.0 ng/g for alkyltrimethylammonium chloride (ATMAC), 3.0 ng/g for 
+      benzylalkyldimethylammonium chloride (BAC), and 3.0 ng/g for 
+      dialkyldimethylammonium chloride (DADMAC). The spiked recovery rates were in the 
+      range of 74-107%, while the relative standard deviations were in the range of 
+      0.8-20.6%. Considering its sensitivity, accuracy, and easy operation, the 
+      proposed method in this study was used to determine 22 sludge samples collected 
+      from a comprehensive wastewater treatment plant. The results showed that the 
+      concentrations of ΣATMACs, ΣBACs, and ΣDADMACs were 19.684, 3.199, and 
+      8.344 μg/g, respectively. The main components included ATMAC-C16, ATMAC-C18, 
+      ATMAC-C20, ATMAC-C22, BAC-C12, and DADMAC-C18:C18, with concentrations exceeding 
+      1.0 μg/g. The concentration relationships of different components in the 
+      congeners showed that some components were of similar origin.
+CI  - © 2023. The Author(s), under exclusive licence to The Japan Society for 
+      Analytical Chemistry.
+FAU - Shu, Mushui
+AU  - Shu M
+AD  - Institute of Urban Safety and Environmental Science, Beijing Academy of Science 
+      and Technology, Beijing, 100054, China.
+FAU - Ding, Ding
+AU  - Ding D
+AD  - Institute of Urban Safety and Environmental Science, Beijing Academy of Science 
+      and Technology, Beijing, 100054, China.
+FAU - Asihaer, Yeerlin
+AU  - Asihaer Y
+AD  - Department of Child, Adolescent Health and Maternal Care, School of Public 
+      Health, Capital Medical University, Beijing, 100069, China.
+FAU - Xu, Zhizhen
+AU  - Xu Z
+AD  - Institute of Urban Safety and Environmental Science, Beijing Academy of Science 
+      and Technology, Beijing, 100054, China.
+FAU - Dou, Yan
+AU  - Dou Y
+AD  - Institute of Urban Safety and Environmental Science, Beijing Academy of Science 
+      and Technology, Beijing, 100054, China.
+FAU - Guo, Ling
+AU  - Guo L
+AD  - Institute of Urban Safety and Environmental Science, Beijing Academy of Science 
+      and Technology, Beijing, 100054, China.
+FAU - Dan, Mo
+AU  - Dan M
+AD  - Institute of Urban Safety and Environmental Science, Beijing Academy of Science 
+      and Technology, Beijing, 100054, China.
+FAU - Wang, Yu
+AU  - Wang Y
+AD  - Institute of Urban Safety and Environmental Science, Beijing Academy of Science 
+      and Technology, Beijing, 100054, China. yuwang89@163.com.
+FAU - Hu, Yifei
+AU  - Hu Y
+AUID- ORCID: 0000-0002-4611-2206
+AD  - Department of Child, Adolescent Health and Maternal Care, School of Public 
+      Health, Capital Medical University, Beijing, 100069, China. huyifei@yahoo.com.
+LA  - eng
+GR  - 11000022T000000445296/Municipal Financial Research Project of Beijing Academy of 
+      Science and Technology/
+GR  - 72061137007/International Cooperation and Exchange Programme/
+PT  - Journal Article
+DEP - 20230519
+PL  - Switzerland
+TA  - Anal Sci
+JT  - Analytical sciences : the international journal of the Japan Society for 
+      Analytical Chemistry
+JID - 8511078
+RN  - 0 (Quaternary Ammonium Compounds)
+RN  - 0 (Sewage)
+RN  - 0 (Chlorides)
+SB  - IM
+MH  - Humans
+MH  - *Quaternary Ammonium Compounds/analysis
+MH  - Sewage/chemistry
+MH  - Chlorides
+MH  - *COVID-19
+MH  - SARS-CoV-2
+MH  - Chromatography, Liquid
+MH  - Mass Spectrometry
+MH  - Chromatography, High Pressure Liquid/methods
+MH  - Solid Phase Extraction
+PMC - PMC10197025
+OTO - NOTNLM
+OT  - ATMAC-C22
+OT  - COVID-19
+OT  - LC-MS/MS
+OT  - Quaternary ammonium compounds
+COIS- The authors declare no conflict of interest.
+EDAT- 2023/05/19 13:05
+MHDA- 2023/08/29 12:44
+PMCR- 2023/05/19
+CRDT- 2023/05/19 11:12
+PHST- 2023/02/01 00:00 [received]
+PHST- 2023/04/25 00:00 [accepted]
+PHST- 2023/08/29 12:44 [medline]
+PHST- 2023/05/19 13:05 [pubmed]
+PHST- 2023/05/19 11:12 [entrez]
+PHST- 2023/05/19 00:00 [pmc-release]
+AID - 10.1007/s44211-023-00354-0 [pii]
+AID - 354 [pii]
+AID - 10.1007/s44211-023-00354-0 [doi]
+PST - ppublish
+SO  - Anal Sci. 2023 Sep;39(9):1435-1444. doi: 10.1007/s44211-023-00354-0. Epub 2023 
+      May 19.
+
+PMID- 38239742
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+LR  - 20240121
+IS  - 2297-1769 (Print)
+IS  - 2297-1769 (Electronic)
+IS  - 2297-1769 (Linking)
+VI  - 10
+DP  - 2023
+TI  - In vitro virucidal activity of a commercial disinfectant against viruses of 
+      domestic animals and poultry.
+PG  - 1276031
+LID - 10.3389/fvets.2023.1276031 [doi]
+LID - 1276031
+AB  - Outbreaks of viral diseases in animals are a cause of concern for animal welfare 
+      and economics of animal production. One way to disrupt the cycle of infection is 
+      by combating viruses in the environment and prohibiting them from being 
+      transmitted to a new host. Viral contamination of the environment can be reduced 
+      using well-tested and efficacious disinfectants. Duplalim is a commercially 
+      available disinfectant consisting of 12% glutaraldehyde and 10% quaternary 
+      ammonium compounds. We evaluated this disinfectant for its efficacy against 
+      several viruses in poultry (n = 3), pigs (n = 5), dogs (n = 2), and cattle 
+      (n = 4). In suspension tests, 1:100 dilution of Duplalim was found to inactivate 
+      more than 99% of these 14 viruses in 15 min or less. The titers of a majority of 
+      these viruses decreased by ≥99.99% in <60 min of contact time. In conclusion, the 
+      ingredient combination in Duplalim is very effective in inactivating common 
+      viruses of domestic animals and poultry.
+CI  - Copyright © 2024 Sobhy, Quinonez-Munoz, Aboubakr, Youssef, Ojeda-Barría, 
+      Mendoza-Fernández and Goyal.
+FAU - Sobhy, Nader M
+AU  - Sobhy NM
+AD  - Department of Veterinary Population Medicine, University of Minnesota, Saint 
+      Paul, MN, United States.
+AD  - Department of Animal Medicine, Faculty of Veterinary Medicine, Zagazig 
+      University, Zagazig, Sharkia, Egypt.
+FAU - Quinonez-Munoz, Angie
+AU  - Quinonez-Munoz A
+AD  - Department of Veterinary Population Medicine, University of Minnesota, Saint 
+      Paul, MN, United States.
+FAU - Aboubakr, Hamada A
+AU  - Aboubakr HA
+AD  - Department of Veterinary Population Medicine, University of Minnesota, Saint 
+      Paul, MN, United States.
+FAU - Youssef, Christiana R B
+AU  - Youssef CRB
+AD  - Department of Veterinary Population Medicine, University of Minnesota, Saint 
+      Paul, MN, United States.
+AD  - Department of Microbiology and Immunology, Faculty of Pharmacy, Zagazig 
+      University, Zagazig, Egypt.
+FAU - Ojeda-Barría, Gonzalo
+AU  - Ojeda-Barría G
+AD  - Veterquimica S.A., Santiago, Chile.
+FAU - Mendoza-Fernández, Jonathan
+AU  - Mendoza-Fernández J
+AD  - Veterquimica S.A., Santiago, Chile.
+FAU - Goyal, Sagar M
+AU  - Goyal SM
+AD  - Department of Veterinary Population Medicine, University of Minnesota, Saint 
+      Paul, MN, United States.
+LA  - eng
+PT  - Journal Article
+DEP - 20240104
+PL  - Switzerland
+TA  - Front Vet Sci
+JT  - Frontiers in veterinary science
+JID - 101666658
+PMC - PMC10794601
+OTO - NOTNLM
+OT  - Duplalim
+OT  - disinfection
+OT  - inactivation
+OT  - suspension test
+OT  - virus
+COIS- SG laboratory was employed by the company Veterquimica S.A. The remaining authors 
+      declare that the research was conducted in the absence of any commercial or 
+      financial relationships that could be construed as a potential conflict of 
+      interest.
+EDAT- 2024/01/19 06:42
+MHDA- 2024/01/19 06:43
+PMCR- 2023/01/01
+CRDT- 2024/01/19 03:44
+PHST- 2023/08/11 00:00 [received]
+PHST- 2023/12/07 00:00 [accepted]
+PHST- 2024/01/19 06:43 [medline]
+PHST- 2024/01/19 06:42 [pubmed]
+PHST- 2024/01/19 03:44 [entrez]
+PHST- 2023/01/01 00:00 [pmc-release]
+AID - 10.3389/fvets.2023.1276031 [doi]
+PST - epublish
+SO  - Front Vet Sci. 2024 Jan 4;10:1276031. doi: 10.3389/fvets.2023.1276031. 
+      eCollection 2023.
+
+PMID- 37149193
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20230614
+LR  - 20230614
+IS  - 1879-1026 (Electronic)
+IS  - 0048-9697 (Print)
+IS  - 0048-9697 (Linking)
+VI  - 887
+DP  - 2023 Aug 20
+TI  - Low concentration quaternary ammonium compounds promoted antibiotic resistance 
+      gene transfer via plasmid conjugation.
+PG  - 163781
+LID - S0048-9697(23)02402-6 [pii]
+LID - 10.1016/j.scitotenv.2023.163781 [doi]
+AB  - During the pandemic of COVID-19, the amounts of quaternary ammonium compounds 
+      (QACs) used to inactivate the virus in public facilities, hospitals and 
+      households increased, which raised concerns about the evolution and transmission 
+      of antimicrobial resistance (AMR). Although QACs may play an important role in 
+      the propagation of antibiotic resistance gene (ARGs), the potential contribution 
+      and mechanism remains unclear. Here, the results showed that benzyl dodecyl 
+      dimethyl ammonium chloride (DDBAC) and didecyl dimethyl ammonium chloride (DDAC) 
+      significantly promoted plasmid RP4-mediated ARGs transfer within and across 
+      genera at environmental relevant concentrations (0.0004-0.4 mg/L). Low 
+      concentrations of QACs did not contribute to the permeability of the cell plasma 
+      membrane, but significantly increased the permeability of the cell outer membrane 
+      due to the decrease in content of lipopolysaccharides. QACs altered the 
+      composition and content of extracellular polymeric substances (EPS) and were 
+      positively correlated with the conjugation frequency. Furthermore, 
+      transcriptional expression levels of genes encode for mating pairing formation 
+      (trbB), DNA replication and translocation (trfA), and global regulators (korA, 
+      korB, trbA) are regulated by QACs. And we demonstrate for the first time that 
+      QACs decreased the concentration of extracellular AI-2 signals, which was 
+      verified to be involved in regulating conjugative transfer genes (trbB, trfA). 
+      Collectively, our findings underscore the risk of increased disinfectant 
+      concentrations of QACs on the ARGs transfer and provide new mechanisms of plasmid 
+      conjugation.
+CI  - Copyright © 2023 Elsevier B.V. All rights reserved.
+FAU - Liu, Congcong
+AU  - Liu C
+AD  - Department of Environmental Science, Zhejiang University, Hangzhou 310058, China; 
+      Zhejiang Provincial Key Laboratory of Organic Pollution Process and Control, 
+      Hangzhou 310058, China.
+FAU - Goh, Shin Giek
+AU  - Goh SG
+AD  - Department of Civil and Environmental Engineering, National University of 
+      Singapore, Singapore 117576, Singapore; NUS Environmental Research Institute, 
+      National University of Singapore, Singapore 117411, Singapore.
+FAU - You, Luhua
+AU  - You L
+AD  - Department of Civil and Environmental Engineering, National University of 
+      Singapore, Singapore 117576, Singapore; NUS Environmental Research Institute, 
+      National University of Singapore, Singapore 117411, Singapore.
+FAU - Yuan, Qiyi
+AU  - Yuan Q
+AD  - Department of Civil and Environmental Engineering, National University of 
+      Singapore, Singapore 117576, Singapore.
+FAU - Mohapatra, Sanjeeb
+AU  - Mohapatra S
+AD  - Department of Civil and Environmental Engineering, National University of 
+      Singapore, Singapore 117576, Singapore; NUS Environmental Research Institute, 
+      National University of Singapore, Singapore 117411, Singapore.
+FAU - Gin, Karina Yew-Hoong
+AU  - Gin KY
+AD  - Department of Civil and Environmental Engineering, National University of 
+      Singapore, Singapore 117576, Singapore; NUS Environmental Research Institute, 
+      National University of Singapore, Singapore 117411, Singapore. Electronic 
+      address: ceeginyh@nus.edu.sg.
+FAU - Chen, Baoliang
+AU  - Chen B
+AD  - Department of Environmental Science, Zhejiang University, Hangzhou 310058, China; 
+      Zhejiang Provincial Key Laboratory of Organic Pollution Process and Control, 
+      Hangzhou 310058, China. Electronic address: blchen@zju.edu.cn.
+LA  - eng
+PT  - Journal Article
+DEP - 20230504
+PL  - Netherlands
+TA  - Sci Total Environ
+JT  - The Science of the total environment
+JID - 0330500
+RN  - 0 (Quaternary Ammonium Compounds)
+RN  - 01Q9PC255D (Ammonium Chloride)
+RN  - 0 (Anti-Bacterial Agents)
+SB  - IM
+MH  - Humans
+MH  - *Quaternary Ammonium Compounds
+MH  - Ammonium Chloride
+MH  - *COVID-19
+MH  - Drug Resistance, Microbial/genetics
+MH  - Anti-Bacterial Agents/pharmacology
+MH  - Genes, Bacterial
+MH  - Plasmids
+PMC - PMC10158037
+OTO - NOTNLM
+OT  - AI-2 signals
+OT  - Antimicrobial resistance
+OT  - Cell outer membrane permeability
+OT  - Plasmid conjugation
+OT  - Quaternary ammonium compounds
+OT  - Quorum sensing
+COIS- Declaration of competing interest The authors declare that they have no known 
+      competing financial interests or personal relationships that could have appeared 
+      to influence the work reported in this paper.
+EDAT- 2023/05/07 00:42
+MHDA- 2023/06/14 06:42
+PMCR- 2023/05/04
+CRDT- 2023/05/06 19:30
+PHST- 2023/02/07 00:00 [received]
+PHST- 2023/04/22 00:00 [revised]
+PHST- 2023/04/23 00:00 [accepted]
+PHST- 2023/06/14 06:42 [medline]
+PHST- 2023/05/07 00:42 [pubmed]
+PHST- 2023/05/06 19:30 [entrez]
+PHST- 2023/05/04 00:00 [pmc-release]
+AID - S0048-9697(23)02402-6 [pii]
+AID - 163781 [pii]
+AID - 10.1016/j.scitotenv.2023.163781 [doi]
+PST - ppublish
+SO  - Sci Total Environ. 2023 Aug 20;887:163781. doi: 10.1016/j.scitotenv.2023.163781. 
+      Epub 2023 May 4.
+
+PMID- 37359396
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+LR  - 20230703
+IS  - 2590-0889 (Electronic)
+IS  - 2590-0889 (Linking)
+VI  - 5
+IP  - 3
+DP  - 2023 Sep
+TI  - Inactivation kinetics of benzalkonium chloride and ethanol-based hand sanitizers 
+      against a betacoronavirus and an alphacoronavirus.
+PG  - 100293
+LID - 10.1016/j.infpip.2023.100293 [doi]
+LID - 100293
+AB  - BACKGROUND: Hand hygiene is critical to lower the potential for the spread of 
+      SARS-CoV-2 and other infectious agents by direct contact. When running water and 
+      soap are not available for hand hygiene, ethanol-based hand sanitizers are 
+      currently the recommended standard of care [1-3]. Though recently published data 
+      showed comparable in vitro effectiveness of benzalkonium chloride (BAK)-based and 
+      ethanol-based hand sanitizers against SARS-CoV-2 virus, a paucity of 
+      peer-reviewed data on the effectiveness of these formulations against other types 
+      of infective coronaviruses remains. This work assessed human coronavirus 
+      HCoV-229E (genus Alphacoronavirus) concurrently with SARS-CoV-2, Isolate 
+      USA-WA1/2020 (genus Betacoronavirus) to fill this gap. METHODS: The test was 
+      conducted according to EN14476:2013-A2:2019 [EN14476] Quantitative Suspension 
+      Test for the Evaluation of Virucidal Activity in the Medical Area [4]. Two 
+      BAK-based hand sanitizers, five ethanol-based hand sanitizers, and an 80% ethanol 
+      reference formulation were tested for antiviral activity against SARS-CoV-2 and 
+      HCoV-229E at 15- and 30- second contact times. RESULTS: Both SARS-CoV-2 and 
+      HCoV-229E were reduced by greater than 4.00-log(10) within 15 seconds of contact. 
+      Virus decay constants (k) following first-order kinetics were similar for BAK and 
+      ethanol-based formulations against both test viruses. The SARS-CoV-2 results 
+      reported herein mirrored previous data reported by Herdt et al. (2021). 
+      CONCLUSION: BAK and ethanol hand sanitizer formulations inactivate SARS-CoV-2 and 
+      HCoV-229E at similar rates. This data supports previously published effectiveness 
+      data for both chemistries and indicates that additional coronavirus strains and 
+      variants would demonstrate similar inactivation trends.
+CI  - © 2023 The Authors.
+FAU - Herdt, Brandon L
+AU  - Herdt BL
+AD  - Ecolab Inc., Eagan, MN, USA.
+FAU - Ikner, Luisa A
+AU  - Ikner LA
+AD  - Department of Environmental Science, University of Arizona, Tucson, AZ, USA.
+LA  - eng
+PT  - Journal Article
+DEP - 20230615
+PL  - England
+TA  - Infect Prev Pract
+JT  - Infection prevention in practice
+JID - 101777928
+PMC - PMC10266983
+OTO - NOTNLM
+OT  - Benzalkonium chloride [BAK]
+OT  - Ethanol
+OT  - HCoV-229E
+OT  - Hand hygiene
+OT  - SARS-CoV-2
+OT  - Sanitizer
+EDAT- 2023/06/26 19:07
+MHDA- 2023/06/26 19:08
+PMCR- 2023/06/15
+CRDT- 2023/06/26 12:23
+PHST- 2023/03/01 00:00 [received]
+PHST- 2023/06/10 00:00 [accepted]
+PHST- 2023/06/26 19:08 [medline]
+PHST- 2023/06/26 19:07 [pubmed]
+PHST- 2023/06/26 12:23 [entrez]
+PHST- 2023/06/15 00:00 [pmc-release]
+AID - S2590-0889(23)00026-4 [pii]
+AID - 100293 [pii]
+AID - 10.1016/j.infpip.2023.100293 [doi]
+PST - ppublish
+SO  - Infect Prev Pract. 2023 Sep;5(3):100293. doi: 10.1016/j.infpip.2023.100293. Epub 
+      2023 Jun 15.
+
+PMID- 37841391
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+LR  - 20231020
+IS  - 2641-6549 (Electronic)
+IS  - 2641-6530 (Print)
+IS  - 2641-6530 (Linking)
+VI  - 4
+IP  - 3
+DP  - 2023 Sep 1
+TI  - Producing Tailocins from Phages Using Osmotic Shock and Benzalkonium Chloride.
+PG  - 136-140
+LID - 10.1089/phage.2023.0014 [doi]
+AB  - In the light of the worldwide antimicrobial resistance crisis, new substitutes to 
+      antibiotics are urgently needed. Tailocins or phage tail-like bacteriocin 
+      particles, produced by bacteria for environmental competition, are a potential 
+      antimicrobial alternative to antibiotic treatment. Yet, the availability of 
+      characterized Tailocins is limited. We explored the possibility to produce new 
+      Tailocins from phage particles, using osmotic shock or chemical treatment by the 
+      ammonium quaternary compound benzalkonium chloride on Ackermannviridae phage S117 
+      and using Straboviridae phage T4 as control. We report that phage S117 was 
+      resistant to such treatment, while successful production of Tailocins by osmotic 
+      shock was achieved for phage T4. Finally, chemical treatment with benzalkonium 
+      chloride was inefficient on phage S117 but successfully inactivated phage T4 
+      without production of Tailocins. Further studies are needed to implement such 
+      treatments of phages for producing Tailocins with killing activity.
+CI  - Copyright 2023, Mary Ann Liebert, Inc., publishers.
+FAU - Woudstra, Cedric
+AU  - Woudstra C
+AUID- ORCID: 0000-0002-3673-6082
+AD  - Department of Veterinary and Animal Sciences, University of Copenhagen, 
+      Frederiksberg C, Denmark.
+FAU - Brøndsted, Lone
+AU  - Brøndsted L
+AD  - Department of Veterinary and Animal Sciences, University of Copenhagen, 
+      Frederiksberg C, Denmark.
+LA  - eng
+PT  - Journal Article
+DEP - 20230920
+PL  - United States
+TA  - Phage (New Rochelle)
+JT  - PHAGE (New Rochelle, N.Y.)
+JID - 101768955
+PMC - PMC10574523
+OTO - NOTNLM
+OT  - Bacteriophage
+OT  - Tailocin
+OT  - antimicrobial
+OT  - head-less phage
+OT  - osmotic shock
+OT  - phage tail-like particle
+OT  - quaternary compound
+COIS- No potential conflict of interest was reported by the authors.
+EDAT- 2023/10/16 06:48
+MHDA- 2023/10/16 06:49
+PMCR- 2023/09/20
+CRDT- 2023/10/16 04:32
+PHST- 2023/10/16 06:49 [medline]
+PHST- 2023/10/16 06:48 [pubmed]
+PHST- 2023/10/16 04:32 [entrez]
+PHST- 2023/09/20 00:00 [pmc-release]
+AID - 10.1089/phage.2023.0014 [pii]
+AID - 10.1089/phage.2023.0014 [doi]
+PST - ppublish
+SO  - Phage (New Rochelle). 2023 Sep 1;4(3):136-140. doi: 10.1089/phage.2023.0014. Epub 
+      2023 Sep 20.
+
+PMID- 37952705
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20240516
+LR  - 20240528
+IS  - 1769-7123 (Electronic)
+IS  - 0923-2508 (Linking)
+VI  - 175
+IP  - 4
+DP  - 2024 May-Jun
+TI  - Transcriptomic signature of bacteria exposed to benzalkonium chloride.
+PG  - 104151
+LID - S0923-2508(23)00126-2 [pii]
+LID - 10.1016/j.resmic.2023.104151 [doi]
+AB  - The COVID-19 pandemic has highlighted our reliance on biocides, the increasing 
+      prevalence of resistance to biocides is a risk to public health. Bacterial 
+      exposure to the biocide, benzalkonium chloride (BAC), resulted in a unique 
+      transcriptomic profile, characterised by both a short and long-term response. 
+      Differential gene expression was observed in four main areas: motility, membrane 
+      composition, proteostasis, and the stress response. A metabolism shift to protect 
+      the proteome and the stress response were prioritised suggesting these are main 
+      resistance mechanisms. Whereas "well-established" mechanisms, such as biofilm 
+      formation, were not found to be differentially expressed after exposure to BAC.
+CI  - Copyright © 2023 Institut Pasteur. Published by Elsevier Masson SAS. All rights 
+      reserved.
+FAU - McCarlie, Samantha J
+AU  - McCarlie SJ
+AD  - Department of Microbiology and Biochemistry, University of the Free State, South 
+      Africa.
+FAU - du Preez, Louis L
+AU  - du Preez LL
+AD  - Research & HPC: ICT Services, University of the Free State, South Africa.
+FAU - Hernandez, Julio Castillo
+AU  - Hernandez JC
+AD  - Department of Microbiology and Biochemistry, University of the Free State, South 
+      Africa.
+FAU - Boucher, Charlotte E
+AU  - Boucher CE
+AD  - Department of Microbiology and Biochemistry, University of the Free State, South 
+      Africa.
+FAU - Bragg, Robert R
+AU  - Bragg RR
+AD  - Department of Microbiology and Biochemistry, University of the Free State, South 
+      Africa. Electronic address: braggrr@ufs.ac.za.
+LA  - eng
+PT  - Journal Article
+PT  - Review
+DEP - 20231110
+PL  - France
+TA  - Res Microbiol
+JT  - Research in microbiology
+JID - 8907468
+SB  - IM
+MH  - *Benzalkonium Compounds/pharmacology
+MH  - *Transcriptome/drug effects
+MH  - *Bacteria/genetics/drug effects/metabolism
+MH  - Gene Expression Regulation, Bacterial/drug effects
+MH  - Gene Expression Profiling
+MH  - Biofilms/drug effects/growth & development
+MH  - COVID-19
+MH  - Disinfectants/pharmacology
+MH  - SARS-CoV-2/genetics/drug effects
+MH  - Humans
+MH  - Bacterial Proteins/genetics/metabolism
+OTO - NOTNLM
+OT  - Antimicrobial resistance
+OT  - Gene expression
+OT  - Multidrug efflux pumps
+OT  - Quaternary ammonium compounds
+OT  - RNA-Seq
+OT  - Stress response
+COIS- Declaration of competing interest The authors have no conflict of interest to 
+      disclose.
+EDAT- 2023/11/13 00:42
+MHDA- 2024/05/17 00:43
+CRDT- 2023/11/12 19:15
+PHST- 2023/06/08 00:00 [received]
+PHST- 2023/10/30 00:00 [revised]
+PHST- 2023/11/01 00:00 [accepted]
+PHST- 2024/05/17 00:43 [medline]
+PHST- 2023/11/13 00:42 [pubmed]
+PHST- 2023/11/12 19:15 [entrez]
+AID - S0923-2508(23)00126-2 [pii]
+AID - 10.1016/j.resmic.2023.104151 [doi]
+PST - ppublish
+SO  - Res Microbiol. 2024 May-Jun;175(4):104151. doi: 10.1016/j.resmic.2023.104151. 
+      Epub 2023 Nov 10.
+
+PMID- 36840603
+OWN - NLM
+STAT- Publisher
+LR  - 20240216
+IS  - 2165-0497 (Electronic)
+IS  - 2165-0497 (Linking)
+VI  - 11
+IP  - 2
+DP  - 2023 Feb 22
+TI  - Evaluation of Environmental Stability and Disinfectant Effectiveness for Human 
+      Coronavirus OC43 on Human Skin Surface.
+PG  - e0238122
+LID - 10.1128/spectrum.02381-22 [doi]
+LID - e02381-22
+AB  - The environmental stability of human coronavirus OC43 (HCoV-OC43) on the surface 
+      of human skin and the effectiveness of disinfectant against HCoV-OC43, which are 
+      important to prevent contact transmission, have not been clarified in previous 
+      studies. Using previously generated models, we evaluated HCoV-OC43 stability and 
+      disinfection effectiveness. Then we compared the results with those for severe 
+      acute respiratory syndrome coronavirus 2 (SARS-CoV-2). The median survival time 
+      of HCoV-OC43 on the surface of human skin was 24.6 h (95% confidence interval, 
+      19.7 to 29.6 h), which was higher than that of SARS-CoV-2 (10.8 h). Although the 
+      in vitro disinfectant effectiveness evaluation showed that HCoV-OC43 has a higher 
+      ethanol resistance than SARS-CoV-2, HCoV-OC43 on the skin surface was completely 
+      inactivated by a minimum of 50% ethanol within 5 s (the log reduction values were 
+      >4.0). Moreover, 1.0% chlorhexidine gluconate and 0.2% benzalkonium chloride 
+      showed relatively high disinfectant effectiveness, and the log reduction values 
+      when these disinfectants were applied for 15 s were >3.0. HCoV-OC43 is highly 
+      stable on the skin surface, which may increase the risk of contact transmission. 
+      Although HCoV-OC43 has relatively high ethanol resistance, appropriate hand 
+      hygiene practices with current alcohol-based disinfectants sufficiently reduce 
+      the risk of contact transmission. IMPORTANCE This study revealed the 
+      environmental stability of HCoV-OC43 and disinfectant effectiveness against 
+      HCoV-OC43, which had not been demonstrated in previous studies. HCoV-OC43 is 
+      highly stable on the surface of human skin, with a survival time of approximately 
+      25 h. High stability of HCoV-OC43 may increase the risk of contact transmission. 
+      Furthermore, the in vitro disinfectant effectiveness evaluation showed that 
+      HCoV-OC43, which is classified as an envelope virus, has a relatively high 
+      ethanol resistance. This finding suggests that disinfectant effectiveness may 
+      vary greatly depending on the virus and that each virus targeted for infection 
+      control should be evaluated individually. HCoV-OC43 on the skin surface was 
+      rapidly inactivated by 50% ethanol, which suggests that appropriate hand hygiene 
+      practices with current alcohol-based disinfectants can sufficiently reduce the 
+      risk of HCoV-OC43 contact transmission.
+FAU - Watanabe, Naoto
+AU  - Watanabe N
+AD  - Molecular Gastroenterology and Hepatology, Graduate School of Medical Science, 
+      Kyoto Prefectural University of Medicine, Kyoto, Japan.
+FAU - Hirose, Ryohei
+AU  - Hirose R
+AUID- ORCID: 0000-0003-0418-1390
+AD  - Molecular Gastroenterology and Hepatology, Graduate School of Medical Science, 
+      Kyoto Prefectural University of Medicine, Kyoto, Japan.
+AD  - Department of Infectious Diseases, Graduate School of Medical Science, Kyoto 
+      Prefectural University of Medicine, Kyoto, Japan.
+FAU - Yamauchi, Katsuma
+AU  - Yamauchi K
+AD  - Molecular Gastroenterology and Hepatology, Graduate School of Medical Science, 
+      Kyoto Prefectural University of Medicine, Kyoto, Japan.
+FAU - Miyazaki, Hajime
+AU  - Miyazaki H
+AD  - Molecular Gastroenterology and Hepatology, Graduate School of Medical Science, 
+      Kyoto Prefectural University of Medicine, Kyoto, Japan.
+FAU - Bandou, Risa
+AU  - Bandou R
+AD  - Department of Infectious Diseases, Graduate School of Medical Science, Kyoto 
+      Prefectural University of Medicine, Kyoto, Japan.
+AD  - Department of Forensics Medicine, Graduate School of Medical Science, Kyoto 
+      Prefectural University of Medicine, Kyoto, Japan.
+FAU - Yoshida, Takuma
+AU  - Yoshida T
+AD  - Molecular Gastroenterology and Hepatology, Graduate School of Medical Science, 
+      Kyoto Prefectural University of Medicine, Kyoto, Japan.
+FAU - Doi, Toshifumi
+AU  - Doi T
+AD  - Molecular Gastroenterology and Hepatology, Graduate School of Medical Science, 
+      Kyoto Prefectural University of Medicine, Kyoto, Japan.
+FAU - Inoue, Ken
+AU  - Inoue K
+AD  - Molecular Gastroenterology and Hepatology, Graduate School of Medical Science, 
+      Kyoto Prefectural University of Medicine, Kyoto, Japan.
+FAU - Dohi, Osamu
+AU  - Dohi O
+AD  - Molecular Gastroenterology and Hepatology, Graduate School of Medical Science, 
+      Kyoto Prefectural University of Medicine, Kyoto, Japan.
+FAU - Yoshida, Naohisa
+AU  - Yoshida N
+AD  - Molecular Gastroenterology and Hepatology, Graduate School of Medical Science, 
+      Kyoto Prefectural University of Medicine, Kyoto, Japan.
+FAU - Uchiyama, Kazuhiko
+AU  - Uchiyama K
+AD  - Molecular Gastroenterology and Hepatology, Graduate School of Medical Science, 
+      Kyoto Prefectural University of Medicine, Kyoto, Japan.
+FAU - Ishikawa, Takeshi
+AU  - Ishikawa T
+AD  - Molecular Gastroenterology and Hepatology, Graduate School of Medical Science, 
+      Kyoto Prefectural University of Medicine, Kyoto, Japan.
+FAU - Takagi, Tomohisa
+AU  - Takagi T
+AD  - Molecular Gastroenterology and Hepatology, Graduate School of Medical Science, 
+      Kyoto Prefectural University of Medicine, Kyoto, Japan.
+FAU - Konishi, Hideyuki
+AU  - Konishi H
+AD  - Molecular Gastroenterology and Hepatology, Graduate School of Medical Science, 
+      Kyoto Prefectural University of Medicine, Kyoto, Japan.
+FAU - Ikegaya, Hiroshi
+AU  - Ikegaya H
+AD  - Department of Forensics Medicine, Graduate School of Medical Science, Kyoto 
+      Prefectural University of Medicine, Kyoto, Japan.
+FAU - Nakaya, Takaaki
+AU  - Nakaya T
+AD  - Department of Infectious Diseases, Graduate School of Medical Science, Kyoto 
+      Prefectural University of Medicine, Kyoto, Japan.
+FAU - Itoh, Yoshito
+AU  - Itoh Y
+AD  - Molecular Gastroenterology and Hepatology, Graduate School of Medical Science, 
+      Kyoto Prefectural University of Medicine, Kyoto, Japan.
+LA  - eng
+PT  - Journal Article
+DEP - 20230222
+PL  - United States
+TA  - Microbiol Spectr
+JT  - Microbiology spectrum
+JID - 101634614
+SB  - IM
+PMC - PMC10100891
+OTO - NOTNLM
+OT  - HCoV-OC43
+OT  - disinfection effectiveness
+OT  - environmental stability
+OT  - virus survival
+COIS- The authors declare no conflict of interest.
+EDAT- 2023/02/26 06:00
+MHDA- 2023/02/26 06:00
+PMCR- 2023/02/22
+CRDT- 2023/02/25 06:47
+PHST- 2023/02/25 06:47 [entrez]
+PHST- 2023/02/26 06:00 [pubmed]
+PHST- 2023/02/26 06:00 [medline]
+PHST- 2023/02/22 00:00 [pmc-release]
+AID - 02381-22 [pii]
+AID - spectrum.02381-22 [pii]
+AID - 10.1128/spectrum.02381-22 [doi]
+PST - aheadofprint
+SO  - Microbiol Spectr. 2023 Feb 22;11(2):e0238122. doi: 10.1128/spectrum.02381-22.
+
+PMID- 37163142
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20230512
+LR  - 20230526
+IS  - 1178-2013 (Electronic)
+IS  - 1176-9114 (Print)
+IS  - 1176-9114 (Linking)
+VI  - 18
+DP  - 2023
+TI  - Mitigation of SARS-CoV-2 by Using Transition Metal Nanozeolites and Quaternary 
+      Ammonium Compounds as Antiviral Agents in Suspensions and Soft Fabric Materials.
+PG  - 2307-2324
+LID - 10.2147/IJN.S396669 [doi]
+AB  - INTRODUCTION: The coronavirus disease 2019 (COVID-19) pandemic has demonstrated 
+      the need for novel, affordable, and efficient reagents to help reduce viral 
+      transmission, especially in high-risk environments including medical treatment 
+      facilities, close quarters, and austere settings. We examined transition-metal 
+      nanozeolite suspensions and quaternary ammonium compounds as an antiviral surface 
+      coating for various textile materials. METHODS: Zeolites are crystalline porous 
+      aluminosilicate materials, with the ability of ion-exchanging different cations. 
+      Nanozeolites (30 nm) were synthesized and then ion-exchanged with silver, zinc 
+      and copper ions. Benzalkonium nitrate (BZN) was examined as the quaternary 
+      ammonium ion (quat). Suspensions of these materials were tested for antiviral 
+      activity towards SARS-CoV-2 using plaque assay and immunostaining. Suspensions of 
+      the nanozeolite and quat were deposited on polyester and cotton fabrics and the 
+      ability of these textiles towards neutralizing SARS-CoV-2 was examined. RESULTS: 
+      We hypothesized that transition metal ion containing zeolites, particularly 
+      silver and zinc (AM30) and silver and copper (AV30), would be effective in 
+      reducing the infectivity of severe acute respiratory syndrome coronavirus 2 
+      (SARS-CoV-2). Additionally, AM30 and AV30 antiviral potency was tested when 
+      combined with a quaternary ammonium carrier, BZN. Our results indicate that 
+      exposure of SARS-CoV-2 to AM30 and/or AV30 suspensions reduced viral loads with 
+      time and exhibited dose-dependence. Antiviral activities of the combination of 
+      zeolite and BZN compositions were significantly enhanced. When used in textiles, 
+      AM30 and AV30-coated cotton and polyester fabrics alone or in combination with 
+      BZN exhibited significant antiviral properties, which were maintained even after 
+      various stress tests, including washes, SARS-CoV-2-repeated exposures, or 
+      treatments with soil-like materials. CONCLUSION: This study shows the efficacy of 
+      transition metal nanozeolite formulations as novel antiviral agents and 
+      establishes that nanozeolite with silver and zinc ions (AM30) and nanozeolite 
+      with silver and copper ions (AV30) when combined with benzalkonium nitrate (BZN) 
+      quickly and continuously inactivate SARS-CoV-2 in suspension and on fabric 
+      materials.
+CI  - © 2023 Guerrero-Arguero et al.
+FAU - Guerrero-Arguero, Israel
+AU  - Guerrero-Arguero I
+AUID- ORCID: 0000-0002-1197-8077
+AD  - Disease Intervention & Prevention and Population Health Programs, Texas 
+      Biomedical Research Institute, San Antonio, TX, USA.
+FAU - Khan, Siddiqur Rahman
+AU  - Khan SR
+AD  - Disease Intervention & Prevention and Population Health Programs, Texas 
+      Biomedical Research Institute, San Antonio, TX, USA.
+FAU - Henry, Brandon M
+AU  - Henry BM
+AD  - Disease Intervention & Prevention and Population Health Programs, Texas 
+      Biomedical Research Institute, San Antonio, TX, USA.
+FAU - Garcia-Vilanova, Andreu
+AU  - Garcia-Vilanova A
+AD  - Disease Intervention & Prevention and Population Health Programs, Texas 
+      Biomedical Research Institute, San Antonio, TX, USA.
+FAU - Chiem, Kevin
+AU  - Chiem K
+AD  - Disease Intervention & Prevention and Population Health Programs, Texas 
+      Biomedical Research Institute, San Antonio, TX, USA.
+FAU - Ye, Chengjin
+AU  - Ye C
+AD  - Disease Intervention & Prevention and Population Health Programs, Texas 
+      Biomedical Research Institute, San Antonio, TX, USA.
+FAU - Shrestha, Sweta
+AU  - Shrestha S
+AD  - ZeoVation Inc., Columbus, OH, USA.
+FAU - Knight, Deborah
+AU  - Knight D
+AD  - Department of Pathology, The Ohio State University, Columbus, OH, USA.
+FAU - Cristner, Mark
+AU  - Cristner M
+AD  - Chief Scientist's Office of Science and Technology, 59th Medical Wing, Joint Base 
+      San Antonio-Lackland, San Antonio, TX, USA.
+FAU - Hill, Shauna
+AU  - Hill S
+AD  - Chief Scientist's Office of Science and Technology, 59th Medical Wing, Joint Base 
+      San Antonio-Lackland, San Antonio, TX, USA.
+FAU - Waldman, W James
+AU  - Waldman WJ
+AD  - Department of Pathology, The Ohio State University, Columbus, OH, USA.
+FAU - Dutta, Prabir K
+AU  - Dutta PK
+AD  - ZeoVation Inc., Columbus, OH, USA.
+AD  - Department of Chemistry, The Ohio State University, Columbus, OH, USA.
+FAU - Torrelles, Jordi B
+AU  - Torrelles JB
+AD  - Disease Intervention & Prevention and Population Health Programs, Texas 
+      Biomedical Research Institute, San Antonio, TX, USA.
+FAU - Martinez-Sobrido, Luis
+AU  - Martinez-Sobrido L
+AD  - Disease Intervention & Prevention and Population Health Programs, Texas 
+      Biomedical Research Institute, San Antonio, TX, USA.
+FAU - Nagy, Amber M
+AU  - Nagy AM
+AD  - Disease Intervention & Prevention and Population Health Programs, Texas 
+      Biomedical Research Institute, San Antonio, TX, USA.
+AD  - Chief Scientist's Office of Science and Technology, 59th Medical Wing, Joint Base 
+      San Antonio-Lackland, San Antonio, TX, USA.
+LA  - eng
+PT  - Journal Article
+DEP - 20230503
+PL  - New Zealand
+TA  - Int J Nanomedicine
+JT  - International journal of nanomedicine
+JID - 101263847
+RN  - 0 (Antiviral Agents)
+RN  - 3M4G523W1G (Silver)
+RN  - 789U1901C5 (Copper)
+RN  - 0 (Quaternary Ammonium Compounds)
+RN  - 0 (Benzalkonium Compounds)
+RN  - 0 (Suspensions)
+RN  - 1318-02-1 (Zeolites)
+RN  - 0 (Nitrates)
+RN  - J41CSQ7QDS (Zinc)
+RN  - 0 (Polyesters)
+SB  - IM
+MH  - Humans
+MH  - SARS-CoV-2
+MH  - *COVID-19/prevention & control
+MH  - Antiviral Agents/pharmacology/therapeutic use
+MH  - Silver/chemistry
+MH  - Copper
+MH  - Quaternary Ammonium Compounds
+MH  - Benzalkonium Compounds
+MH  - Suspensions
+MH  - *Zeolites
+MH  - Nitrates
+MH  - Textiles
+MH  - Zinc
+MH  - Polyesters
+PMC - PMC10164392
+OTO - NOTNLM
+OT  - SARS-CoV-2
+OT  - coated fabrics
+OT  - disinfection
+OT  - quats
+OT  - transition metals
+OT  - zeolites
+COIS- ZeoVation is a startup company that grew out of the research at The Ohio State 
+      University (OSU), and the authors from OSU are involved with the company. Prabir 
+      K. Dutta and Sweta Shrestha are financially supported by ZeoVation, Inc. Prabir 
+      K. Dutta, W. James Waldman and D. Knight have financial investments in ZeoVation. 
+      The authors report no other conflicts of interest in this work.
+EDAT- 2023/05/10 12:42
+MHDA- 2023/05/12 07:06
+PMCR- 2023/05/03
+CRDT- 2023/05/10 11:24
+PHST- 2023/01/14 00:00 [received]
+PHST- 2023/04/05 00:00 [accepted]
+PHST- 2023/05/12 07:06 [medline]
+PHST- 2023/05/10 12:42 [pubmed]
+PHST- 2023/05/10 11:24 [entrez]
+PHST- 2023/05/03 00:00 [pmc-release]
+AID - 396669 [pii]
+AID - 10.2147/IJN.S396669 [doi]
+PST - epublish
+SO  - Int J Nanomedicine. 2023 May 3;18:2307-2324. doi: 10.2147/IJN.S396669. 
+      eCollection 2023.
+
+PMID- 37828623
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20240108
+LR  - 20240108
+IS  - 1521-4184 (Electronic)
+IS  - 0365-6233 (Linking)
+VI  - 357
+IP  - 1
+DP  - 2024 Jan
+TI  - Evaluation of in vitro SARS-CoV-2 inactivation by a new quaternary ammonium 
+      compound: Bromiphen bromide.
+PG  - e2300424
+LID - 10.1002/ardp.202300424 [doi]
+AB  - The pneumonia (COVID-19) outbreak caused by the novel coronavirus named severe 
+      acute respiratory syndrome coronavirus 2 (SARS-CoV-2), which unpredictably 
+      exploded in late December of 2019 has stressed the importance of being able to 
+      control potential pathogens with the aim of limiting their spread. 
+      Although vaccines are well known as a powerful tool for ensuring public health 
+      and controlling the pandemic, disinfection and hygiene habits remain crucial to 
+      prevent infection from spreading and maintain the barrier, especially when the 
+      microorganism can persist and survive on textiles, surfaces, and medical devices. 
+      During the coronavirus disease pandemic, around half of the disinfectants 
+      authorized by the US Environmental Protection Agency contained quaternary 
+      ammonium compounds (QACs); their effectiveness had not been proven. Herein, the 
+      in vitro SARS-CoV-2 inactivation by p-bromodomiphen bromide, namely bromiphen 
+      (BRO), a new, potent, and fast-acting QAC is reported. This study demonstrates 
+      that BRO, with a dose as low as 0.02%, can completely inhibit SARS-CoV-2 
+      replication in just 30 s. Its virucidal activity was 10- and 100-fold more robust 
+      compared to other commercially available QACs, namely domiphen bromide and 
+      benzalkonium chloride. The critical micellar concentration and the molecular 
+      lipophilicity potential surface area support the relevance of the lipophilic 
+      nature of these molecules for their activity.
+CI  - © 2023 The Authors. Archiv der Pharmazie published by Wiley-VCH GmbH on behalf of 
+      Deutsche Pharmazeutische Gesellschaft.
+FAU - Strizzi, Sergio
+AU  - Strizzi S
+AUID- ORCID: 0000-0003-3203-4523
+AD  - Department of Biomedical and Clinical Sciences, University of Milan, Milan, 
+      Italy.
+FAU - Cappelletti, G
+AU  - Cappelletti G
+AD  - Department of Biomedical and Clinical Sciences, University of Milan, Milan, 
+      Italy.
+FAU - Biasin, M
+AU  - Biasin M
+AD  - Department of Biomedical and Clinical Sciences, University of Milan, Milan, 
+      Italy.
+FAU - Artasensi, Angelica
+AU  - Artasensi A
+AUID- ORCID: 0000-0002-9121-3217
+AD  - Department of Pharmaceutical Sciences, University of Milan, Milan, Italy.
+FAU - Fumagalli, Laura
+AU  - Fumagalli L
+AUID- ORCID: 0000-0003-1917-3000
+AD  - Department of Pharmaceutical Sciences, University of Milan, Milan, Italy.
+FAU - Casiraghi, Antonella
+AU  - Casiraghi A
+AUID- ORCID: 0000-0003-3683-8510
+AD  - Department of Pharmaceutical Sciences, University of Milan, Milan, Italy.
+LA  - eng
+GR  - Università degli Studi di Milano/
+GR  - University of Milan, Seed for Innovation Patent-SEED4IP-WANTED Project/
+PT  - Journal Article
+DEP - 20231012
+PL  - Germany
+TA  - Arch Pharm (Weinheim)
+JT  - Archiv der Pharmazie
+JID - 0330167
+RN  - 0 (Quaternary Ammonium Compounds)
+RN  - 0 (Bromides)
+SB  - IM
+MH  - United States
+MH  - Humans
+MH  - *SARS-CoV-2
+MH  - *COVID-19
+MH  - Quaternary Ammonium Compounds/pharmacology
+MH  - Bromides
+MH  - Structure-Activity Relationship
+OTO - NOTNLM
+OT  - COVID-19
+OT  - critical micellar concentration
+OT  - disinfectants
+OT  - sanitizer
+OT  - virucidal activity
+EDAT- 2023/10/13 00:43
+MHDA- 2024/01/08 06:43
+CRDT- 2023/10/12 23:54
+PHST- 2023/09/26 00:00 [revised]
+PHST- 2023/08/02 00:00 [received]
+PHST- 2023/09/27 00:00 [accepted]
+PHST- 2024/01/08 06:43 [medline]
+PHST- 2023/10/13 00:43 [pubmed]
+PHST- 2023/10/12 23:54 [entrez]
+AID - 10.1002/ardp.202300424 [doi]
+PST - ppublish
+SO  - Arch Pharm (Weinheim). 2024 Jan;357(1):e2300424. doi: 10.1002/ardp.202300424. 
+      Epub 2023 Oct 12.
+
+PMID- 37778795
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20231031
+LR  - 20231031
+IS  - 1001-0742 (Print)
+IS  - 1001-0742 (Linking)
+VI  - 135
+DP  - 2024 Jan
+TI  - Toxicity of the disinfectant benzalkonium chloride (C(14)) towards cyanobacterium 
+      Microcystis results from its impact on the photosynthetic apparatus and cell 
+      metabolism.
+PG  - 198-209
+LID - S1001-0742(22)00559-9 [pii]
+LID - 10.1016/j.jes.2022.11.007 [doi]
+AB  - Quaternary ammonium compounds (QACs) are commonly used in a variety of consumer 
+      and commercial products, typically as a component of disinfectants. During the 
+      COVID-19 pandemic, QACs became one of the primary agents utilized to inactivate 
+      the SARS-CoV-2 virus on surfaces. However, the ecotoxicological effects of QACs 
+      upon aquatic organisms have not been fully assessed. In this study, we examined 
+      the effects of a widely used QAC (benzalkonium chloride-C(14), BAC-14) on two 
+      toxigenic Microcystis strains and one non-toxigenic freshwater Microcystis strain 
+      and carried out an analysis focused on primary, adaptive and compensatory stress 
+      responses at apical (growth and photosynthesis) and metabolic levels. This 
+      analysis revealed that the two toxic Microcystis strains were more tolerant than 
+      the non-toxic strain, with 96 hr-EC(50) values of 0.70, 0.76, and 0.38 mg/L 
+      BAC-14 for toxigenic M. aeruginosa FACHB-905, toxigenic M. aeruginosa FACHB-469, 
+      and non-toxigenic M. wesenbergii FACHB-908, respectively. The photosynthetic 
+      activities of the Microcystis, assessed via F(v)/F(m) values, were significantly 
+      suppressed under 0.4 mg/L BAC-14. Furthermore, this analysis revealed that BAC-14 
+      altered 14, 12, and 8 metabolic pathways in M. aeruginosa FACHB-905, M. 
+      aeruginosa FACHB-469, and M. wesenbergii FACHB-908, respectively. It is 
+      noteworthy that BAC-14 enhanced the level of extracellular microcystin production 
+      in the toxigenic Microcystis strains, although cell growth was not significantly 
+      affected. Collectively, these data show that BAC-14 disrupted the physiological 
+      and metabolic status of Microcystis cells and stimulated the production and 
+      release of microcystin, which could result in damage to aquatic systems.
+CI  - Copyright © 2022. Published by Elsevier B.V.
+FAU - Jia, Yunlu
+AU  - Jia Y
+AD  - Institute of Hydrobiology, Chinese Academy of Sciences, Wuhan 430072, China. 
+      Electronic address: jiayunlu@ihb.ac.cn.
+FAU - Huang, Yi
+AU  - Huang Y
+AD  - School of Environmental Studies, China University of Geosciences, Wuhan 430074, 
+      China.
+FAU - Ma, Jin
+AU  - Ma J
+AD  - School of Environmental Studies, China University of Geosciences, Wuhan 430074, 
+      China.
+FAU - Zhang, Shangwei
+AU  - Zhang S
+AD  - Advanced Interdisciplinary Institute of Environment and Ecology, Beijing Normal 
+      University, Zhuhai 519087, China.
+FAU - Liu, Jin
+AU  - Liu J
+AD  - Institute of Hydrobiology, Chinese Academy of Sciences, Wuhan 430072, China.
+FAU - Li, Tianli
+AU  - Li T
+AD  - Institute of Hydrobiology, Chinese Academy of Sciences, Wuhan 430072, China.
+FAU - Song, Lirong
+AU  - Song L
+AD  - Institute of Hydrobiology, Chinese Academy of Sciences, Wuhan 430072, China. 
+      Electronic address: lrsong@ihb.ac.cn.
+LA  - eng
+PT  - Journal Article
+DEP - 20221117
+PL  - Netherlands
+TA  - J Environ Sci (China)
+JT  - Journal of environmental sciences (China)
+JID - 100967627
+RN  - 0 (Benzalkonium Compounds)
+RN  - 0 (Microcystins)
+SB  - IM
+MH  - Humans
+MH  - *Microcystis/metabolism
+MH  - Benzalkonium Compounds/toxicity/metabolism
+MH  - Microcystins
+MH  - Pandemics
+MH  - *Cyanobacteria
+MH  - Photosynthesis
+OTO - NOTNLM
+OT  - Chlorophyll fluorescence
+OT  - Cyanotoxin
+OT  - Disinfectants
+OT  - Metabolomics
+OT  - Microcystis
+OT  - Quaternary ammonium compounds
+COIS- Declaration of Competing Interest The authors declare that they have no known 
+      competing financial interests or personal relationships that could have appeared 
+      to influence the work reported in this paper.
+EDAT- 2023/10/02 00:41
+MHDA- 2023/10/31 06:42
+CRDT- 2023/10/01 20:58
+PHST- 2022/09/28 00:00 [received]
+PHST- 2022/11/07 00:00 [revised]
+PHST- 2022/11/07 00:00 [accepted]
+PHST- 2023/10/31 06:42 [medline]
+PHST- 2023/10/02 00:41 [pubmed]
+PHST- 2023/10/01 20:58 [entrez]
+AID - S1001-0742(22)00559-9 [pii]
+AID - 10.1016/j.jes.2022.11.007 [doi]
+PST - ppublish
+SO  - J Environ Sci (China). 2024 Jan;135:198-209. doi: 10.1016/j.jes.2022.11.007. Epub 
+      2022 Nov 17.
+
+PMID- 37394081
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20230913
+LR  - 20230913
+IS  - 1872-7077 (Electronic)
+IS  - 1382-6689 (Linking)
+VI  - 102
+DP  - 2023 Sep
+TI  - A fish perspective on SARS-CoV-2: Toxicity of benzalkonium chloride on Danio 
+      rerio.
+PG  - 104200
+LID - S1382-6689(23)00142-4 [pii]
+LID - 10.1016/j.etap.2023.104200 [doi]
+AB  - SARS-CoV-2 outbreak led to an increased marketing of disinfectants, creating a 
+      potential environmental problem. For instance, pre-pandemic environmental levels 
+      of the disinfectant benzalkonium chloride (BAC) ranging from 0.5 to 5 mgL(-1) in 
+      effluents were expected to further increase threatening aquatic life. Our aim was 
+      to characterize potential adverse effects after an acute exposure of zebrafish to 
+      different concentrations of BAC. An increase in the overall swimming activity, 
+      thigmotaxis behavior, and erratic movements were observed. An increase in CYP1A1 
+      and catalase activities, but inhibitions of CY1A2, GSTs and GPx activities were 
+      also noticed. BAC is metabolized by CYP1A1, increasing the production of 
+      H(2)O(2), thereby activating the antioxidant enzyme CAT. Data also showed an 
+      increase of AChE activity. Our study highlights adverse embryonic, behavioral, 
+      and metabolic effects of noteworthy environmental significance, especially 
+      considering that the use and release of BAC is most likely to increase in a near 
+      future.
+CI  - Copyright © 2023 Elsevier B.V. All rights reserved.
+FAU - Sousa, Beatriz
+AU  - Sousa B
+AD  - Centro de Estudos do Ambiente e do Mar (CESAM), Universidade De Aveiro, Campus 
+      Universitário de Santiago, 3810-193 Aveiro, Portugal; Departamento De Biologia, 
+      Universidade De Aveiro, Campus Universitário de Santiago, 3810-193 Aveiro, 
+      Portugal.
+FAU - Domingues, Inês
+AU  - Domingues I
+AD  - Centro de Estudos do Ambiente e do Mar (CESAM), Universidade De Aveiro, Campus 
+      Universitário de Santiago, 3810-193 Aveiro, Portugal; Departamento De Biologia, 
+      Universidade De Aveiro, Campus Universitário de Santiago, 3810-193 Aveiro, 
+      Portugal.
+FAU - Nunes, Bruno
+AU  - Nunes B
+AD  - Centro de Estudos do Ambiente e do Mar (CESAM), Universidade De Aveiro, Campus 
+      Universitário de Santiago, 3810-193 Aveiro, Portugal; Departamento De Biologia, 
+      Universidade De Aveiro, Campus Universitário de Santiago, 3810-193 Aveiro, 
+      Portugal. Electronic address: nunes.b@ua.pt.
+LA  - eng
+PT  - Journal Article
+DEP - 20230630
+PL  - Netherlands
+TA  - Environ Toxicol Pharmacol
+JT  - Environmental toxicology and pharmacology
+JID - 9612020
+RN  - 0 (Benzalkonium Compounds)
+RN  - BBX060AN9V (Hydrogen Peroxide)
+RN  - EC 1.14.14.1 (Cytochrome P-450 CYP1A1)
+RN  - 0 (Disinfectants)
+RN  - 0 (Water Pollutants, Chemical)
+SB  - IM
+MH  - Animals
+MH  - Benzalkonium Compounds/toxicity/metabolism
+MH  - Zebrafish/metabolism
+MH  - SARS-CoV-2
+MH  - Hydrogen Peroxide/metabolism
+MH  - Cytochrome P-450 CYP1A1/metabolism
+MH  - *COVID-19
+MH  - *Disinfectants/toxicity
+MH  - *Water Pollutants, Chemical/toxicity/metabolism
+OTO - NOTNLM
+OT  - Antioxidant defense
+OT  - BAC
+OT  - Covid-19
+OT  - FET
+OT  - Locomotion
+COIS- Declaration of Competing Interest The authors declare that they have no known 
+      competing financial interests or personal relationships that could have appeared 
+      to influence the work reported in this paper.
+EDAT- 2023/07/03 00:41
+MHDA- 2023/09/13 06:41
+CRDT- 2023/07/02 19:26
+PHST- 2023/03/27 00:00 [received]
+PHST- 2023/06/16 00:00 [revised]
+PHST- 2023/06/26 00:00 [accepted]
+PHST- 2023/09/13 06:41 [medline]
+PHST- 2023/07/03 00:41 [pubmed]
+PHST- 2023/07/02 19:26 [entrez]
+AID - S1382-6689(23)00142-4 [pii]
+AID - 10.1016/j.etap.2023.104200 [doi]
+PST - ppublish
+SO  - Environ Toxicol Pharmacol. 2023 Sep;102:104200. doi: 10.1016/j.etap.2023.104200. 
+      Epub 2023 Jun 30.
+
+PMID- 38945924
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20240630
+LR  - 20240630
+IS  - 1347-3352 (Electronic)
+IS  - 1345-8957 (Linking)
+VI  - 73
+IP  - 7
+DP  - 2024
+TI  - Persistence of the Antibacterial and Antiviral Effects after Skin Cleansing ~A 
+      New Approach to Suppress the Contact Infection~.
+PG  - 953-961
+LID - 10.5650/jos.ess23266 [doi]
+AB  - Handwashing represents an important personal hygiene measure for preventing 
+      infection. Herein, we report the persistence of antibacterial and antiviral 
+      effects after handwashing with fatty acid salt-based hand soap. To this end, we 
+      developed a new in vitro test method to measure persistence, utilizing 
+      coacervation formed by anionic surfactants and cationic polymers to retain highly 
+      effective soap components against each bacterium and virus on the skin. 
+      Coacervation with fatty acid salts and poly diallyldimethylammonium chloride 
+      (PDADMAC) as a cationic polymer allowed the persistence of antibacterial and 
+      antiviral effects against E. coli, S. aureus, and influenza virus even 4 h after 
+      handwashing. Furthermore, we confirmed an increase in the number of residual 
+      components effective against each bacterium and virus on the skin. In summary, 
+      the current findings describe an effective approach for enhancing the protective 
+      effects of handwashing.
+FAU - Tachikawa, Masashi
+AU  - Tachikawa M
+AUID- ORCID: 0009-0005-6683-503X
+AD  - Research and Development Headquarters, Lion Corporation.
+AD  - Graduate School of Environment and Information Sciences, Yokohama National 
+      University.
+FAU - Miyachi, Arata
+AU  - Miyachi A
+AD  - Research and Development Headquarters, Lion Corporation.
+FAU - Inoue, Ryo
+AU  - Inoue R
+AD  - Research and Development Headquarters, Lion Corporation.
+FAU - Kaneda, Sumi
+AU  - Kaneda S
+AD  - Research and Development Headquarters, Lion Corporation.
+FAU - Naito, Atsushi
+AU  - Naito A
+AD  - Research and Development Headquarters, Lion Corporation.
+FAU - Aramaki, Kenji
+AU  - Aramaki K
+AD  - Graduate School of Environment and Information Sciences, Yokohama National 
+      University.
+FAU - Oya, Masaru
+AU  - Oya M
+AUID- ORCID: 0000-0001-8647-3914
+AD  - Graduate School of Environment and Information Sciences, Yokohama National 
+      University.
+LA  - eng
+PT  - Journal Article
+PL  - Japan
+TA  - J Oleo Sci
+JT  - Journal of oleo science
+JID - 101175339
+RN  - 0 (Soaps)
+RN  - 0 (Quaternary Ammonium Compounds)
+RN  - 0 (Anti-Bacterial Agents)
+RN  - 0 (Antiviral Agents)
+RN  - 0 (Polyethylenes)
+RN  - 0 (Surface-Active Agents)
+RN  - 26062-79-3 (poly-N,N-dimethyl-N,N-diallylammonium chloride)
+RN  - 0 (Fatty Acids)
+SB  - IM
+MH  - *Soaps/pharmacology
+MH  - *Escherichia coli/drug effects
+MH  - *Hand Disinfection/methods
+MH  - *Quaternary Ammonium Compounds/pharmacology
+MH  - *Anti-Bacterial Agents/pharmacology
+MH  - *Staphylococcus aureus/drug effects
+MH  - *Antiviral Agents/pharmacology
+MH  - *Polyethylenes
+MH  - *Skin/drug effects/microbiology
+MH  - *Surface-Active Agents/pharmacology
+MH  - Humans
+MH  - Fatty Acids/pharmacology/analysis
+MH  - Time Factors
+MH  - Orthomyxoviridae/drug effects
+OTO - NOTNLM
+OT  - antibacterial
+OT  - coacervation
+OT  - contact infections
+OT  - handwashing
+OT  - persistence
+EDAT- 2024/07/01 00:42
+MHDA- 2024/07/01 00:43
+CRDT- 2024/06/30 22:44
+PHST- 2024/07/01 00:43 [medline]
+PHST- 2024/07/01 00:42 [pubmed]
+PHST- 2024/06/30 22:44 [entrez]
+AID - 10.5650/jos.ess23266 [doi]
+PST - ppublish
+SO  - J Oleo Sci. 2024;73(7):953-961. doi: 10.5650/jos.ess23266.
+
+PMID- 36764616
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20230228
+LR  - 20230228
+IS  - 1879-1298 (Electronic)
+IS  - 0045-6535 (Linking)
+VI  - 320
+DP  - 2023 Apr
+TI  - Metagenomic insights into the effects of benzyl dodecyl dimethyl ammonium bromide 
+      (BDAB) shock on bacteria-driven nitrogen removal in a moving-bed biofilm reactor 
+      (MBBR).
+PG  - 138098
+LID - S0045-6535(23)00365-X [pii]
+LID - 10.1016/j.chemosphere.2023.138098 [doi]
+AB  - The use of disinfectants made from quaternary ammonium compounds (QACs) has 
+      greatly increased since the outbreak of SARS-CoV-2. However, the effect of QACs 
+      on wastewater treatment performance is still unclear. In this study, a commonly 
+      used QAC, i.e., benzyl dodecyl dimethyl ammonium bromide (BDAB), was added to a 
+      moving-bed biofilm reactor (MBBR) to investigate BDAB's effect on nutrient 
+      removal. When the BDAB concentration was increased to 50 mg L(-1), the ammonia 
+      removal efficiency (ARE) greatly decreased, as did the nitrate production rate 
+      constants (NPR). This inhibition was partly recovered by decreasing the BDAB 
+      concentration to 30 mg L(-1). Metagenomic sequencing revealed the functional 
+      genera present during different stages of the control (Rc) and BDAB-added 
+      reactors (Re). The enriched genera (Rudaea, Nitrosospira, Sphingomonas, and 
+      Rhodanobacter) in Rc mainly related to the nitrogen metabolism, while the 
+      enriched genera in Re was BDAB-concentration dependent. Functional genes analysis 
+      suggested that a lack of ammonia oxidase-encoding genes (amoABC) may have caused 
+      a decrease in ARE in Re, while the efflux pump-encoding genes emrE, mdfA, and 
+      oprM and a gene encoding BAC oxygenase (oxyBAC) were responsible for BDAB 
+      resistance. The increase in the total abundance of antibiotic resistance genes 
+      (ARGs) in Re revealed a potential risk arising from BDAB. Overall, this study 
+      revealed the potential effect and ecological risks of BDAB introduction in WWTPs.
+CI  - Copyright © 2023 Elsevier Ltd. All rights reserved.
+FAU - Wang, Jing
+AU  - Wang J
+AD  - Key Laboratory of Industrial Ecology and Environmental Engineering (Ministry of 
+      Education), School of Ocean Science and Technology, Panjin Campus, Dalian 
+      University of Technology, China.
+FAU - Li, Ling
+AU  - Li L
+AD  - Key Laboratory of Industrial Ecology and Environmental Engineering (Ministry of 
+      Education), School of Ocean Science and Technology, Panjin Campus, Dalian 
+      University of Technology, China.
+FAU - Chi, Baihui
+AU  - Chi B
+AD  - Key Laboratory of Industrial Ecology and Environmental Engineering (Ministry of 
+      Education), School of Ocean Science and Technology, Panjin Campus, Dalian 
+      University of Technology, China.
+FAU - Shan, Jiajia
+AU  - Shan J
+AD  - Key Laboratory of Industrial Ecology and Environmental Engineering (Ministry of 
+      Education), School of Ocean Science and Technology, Panjin Campus, Dalian 
+      University of Technology, China.
+FAU - Yi, Xianliang
+AU  - Yi X
+AD  - Key Laboratory of Industrial Ecology and Environmental Engineering (Ministry of 
+      Education), School of Ocean Science and Technology, Panjin Campus, Dalian 
+      University of Technology, China.
+FAU - Liu, Yang
+AU  - Liu Y
+AD  - Key Laboratory of Industrial Ecology and Environmental Engineering (Ministry of 
+      Education), School of Ocean Science and Technology, Panjin Campus, Dalian 
+      University of Technology, China.
+FAU - Zhou, Hao
+AU  - Zhou H
+AD  - Key Laboratory of Industrial Ecology and Environmental Engineering (Ministry of 
+      Education), School of Ocean Science and Technology, Panjin Campus, Dalian 
+      University of Technology, China. Electronic address: zhouhao@dlut.edu.cn.
+LA  - eng
+PT  - Journal Article
+DEP - 20230208
+PL  - England
+TA  - Chemosphere
+JT  - Chemosphere
+JID - 0320657
+RN  - 7664-41-7 (Ammonia)
+RN  - R0JB3224WS (ammonium bromide)
+RN  - N762921K75 (Nitrogen)
+RN  - 0 (Quaternary Ammonium Compounds)
+SB  - IM
+MH  - Humans
+MH  - Ammonia/analysis
+MH  - Bacteria
+MH  - Biofilms
+MH  - Bioreactors
+MH  - *COVID-19
+MH  - Denitrification
+MH  - Nitrogen/analysis
+MH  - *Quaternary Ammonium Compounds
+MH  - SARS-CoV-2
+MH  - Genomics
+OTO - NOTNLM
+OT  - Benzalkonium bromides
+OT  - MBBR
+OT  - Metagenomics
+OT  - Nitrogen removal
+OT  - Quaternary ammonium compounds
+COIS- Declaration of competing interest The authors declare that they have no known 
+      competing financial interests or personal relationships that could have appeared 
+      to influence the work reported in this paper.
+EDAT- 2023/02/11 06:00
+MHDA- 2023/03/03 06:00
+CRDT- 2023/02/10 19:29
+PHST- 2022/10/06 00:00 [received]
+PHST- 2023/01/14 00:00 [revised]
+PHST- 2023/02/07 00:00 [accepted]
+PHST- 2023/02/11 06:00 [pubmed]
+PHST- 2023/03/03 06:00 [medline]
+PHST- 2023/02/10 19:29 [entrez]
+AID - S0045-6535(23)00365-X [pii]
+AID - 10.1016/j.chemosphere.2023.138098 [doi]
+PST - ppublish
+SO  - Chemosphere. 2023 Apr;320:138098. doi: 10.1016/j.chemosphere.2023.138098. Epub 
+      2023 Feb 8.

@@ -1,0 +1,716 @@
+---
+title: "Untitled"
+author: "Anne Vescovi"
+date: "2024-09-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+#Load packages
+```{r load packages ,echo=FALSE}}
+if (!require(readxl)) install.packages("readxl")
+library (readxl)
+
+if (!require(tidyverse)) install.packages("tidyverse")
+library(tidyverse)
+if (!require(reshape2)) install.packages("reshape2")
+library(reshape2)
+if (!require(ggplot2)) install.packages("ggplot2")
+library(ggplot2)
+if (!require(hrbrthemes)) install.packages("hrbrthemes")
+library(hrbrthemes)
+
+#if (!require(plyr)) install.packages('plyr')
+#library(plyr)
+if (!require(tidyr)) install.packages('tidyr')
+
+#if (!require(scales)) install.packages("scales")   
+library(scales)
+library(ggrepel)
+library(gridExtra)
+```
+
+#get data 
+```{r}
+dat <- read_excel("18072023_AV_dataset_QAC_deactivation.xlsx",sheet = "Data Points")
+viruses <- read_excel("18072023_AV_dataset_QAC_deactivation.xlsx",sheet = "virus properties")
+```
+
+#manioulate data
+
+##setting fixed values
+```{r}
+dat$Temp[dat$Temp=="RT"] = 22
+dat$CT = dat$`C (mg/L)`* dat$`time (min)`
+
+#####logll Setting 0 and negative LRV Values to 0.1 to be able to calculate with them 
+logll = as.numeric(dat$log)
+logll[ is.na( dat$log ) ] = as.numeric(dat$`LOD/LOQ`[ is.na(dat$log)])
+logll [logll == 0] = 0.1
+logll [logll < 0] = 0.1
+
+
+
+dat.log <- as.numeric(dat$log[! is.na( dat$log ) ])
+dat.logLOD <- as.numeric(dat$`LOD/LOQ`[! is.na( dat$`LOD/LOQ`)])
+```
+
+##connecting datasets
+```{r}
+#######connect Virus names with size
+sizefordat = array(NA,dim(dat)[1])
+for(i in 1:dim(viruses)[1]){
+  sizeTMP = viruses$`Size`[i]
+  StrainTMP = viruses$`VirusName`[i]
+  if( !is.na(StrainTMP)){
+    whc1 = dat$`VirusName` == StrainTMP
+    sizefordat[whc1] = sizeTMP
+  }
+}
+#whc1 = dat$nick == nickTMP is a vector that has the same length as dat$nick with true or false
+# if it is true write size 
+
+
+#######connect names with geom size
+Gsizefordat = array(NA,dim(dat)[1])
+for(i in 1:dim(viruses)[1]){
+  GsizeTMP = viruses$Gsize[i]
+  nickTMP = viruses$`VirusName`[i]
+  if( !is.na(nickTMP)){
+    whc1 = dat$`VirusName` == nickTMP
+    Gsizefordat[whc1] = GsizeTMP
+  }
+}
+
+#######connect nucleid acid
+DNAfordat = array(NA,dim(dat)[1])
+for(i in 1:dim(viruses)[1]){
+  dnaTMP = viruses$`Nacid`[i]
+  nickTMP = viruses$`VirusName`[i]
+  if( !is.na(nickTMP)){
+    whc1 = dat$`VirusName` == nickTMP
+    DNAfordat[whc1] = dnaTMP
+  }
+}
+
+#######connect family names with data point
+famfordat = array(NA,dim(dat)[1])
+for(i in 1:dim(viruses)[1]){
+  famTMP = viruses$Family[i]
+  nickTMP = viruses$`VirusName`[i]
+  if( !is.na(nickTMP)){
+    whc1 = dat$`VirusName` == nickTMP
+    famfordat[whc1] = famTMP
+  }
+}
+
+```
+
+##connect strings to dat
+```{r}
+# add new variables to the data frame
+dat$size <- c(sizefordat)
+dat$size10 <- 0.01 * c(sizefordat)
+dat$nacid <- c(DNAfordat)
+dat$logll <- c(logll)
+dat$Gsize <- c(Gsizefordat)
+dat$fam <- c(famfordat)
+```
+
+##create binary data for regression analysis
+```{r}
+#make measurement method and carbon load binary
+dat$measurement <-ifelse(dat$measurement == "c", 1,0)
+dat$Surface <-ifelse(dat$Surface == "e", 1,0)
+
+#create one binary colom for each QAC
+idx <- sort(unique(dat$QAC))
+dummy <- matrix(NA, nrow= nrow(dat), ncol =length(idx))
+colnames(dummy) <- c(idx)
+
+for (j in 1:length(idx)) { 
+  dummy[,j] <- as.integer(dat$QAC == idx[j])
+}
+
+dat <- cbind(dat,dummy)
+
+
+
+#create binary colom for each nacid type
+idx <- sort(unique(dat$nacid))
+dummy <- matrix(NA, nrow= nrow(dat), ncol =length(idx))
+colnames(dummy) <- c(idx)
+
+for (j in 1:length(idx)) { 
+  dummy[,j] <- as.integer(dat$nacid == idx[j])
+}
+
+dat <- cbind(dat,dummy)
+
+```
+
+##create LOD binary vector
+```{r}
+make_limit <- function(LOD ){
+  dplyr::case_when(LOD > -10 ~ "LOD",
+                     TRUE ~ "NO LOD")
+}
+
+dat <- dat %>%
+  dplyr::mutate(LOD = make_limit( `LOD/LOQ`
+                                       ))
+```
+
+
+##create subsets
+```{r}
+dat.e <- dat[dat$Surface == "1",]
+dat.n <- dat[dat$Surface == "0",] 
+subsetlog <- subset(dat, (!is.na(dat$log)))
+subsetlogLOD <- subset(dat, (!is.na(dat$logLOD)))
+subsetcarbon <- subset(dat, (is.na(dat$matrix)))
+```
+
+##clean up
+```{r}
+#clean up
+rm(dnaTMP)
+rm (i)
+rm (nickTMP)
+rm(sizeTMP)
+rm(whc1)
+rm(famTMP)
+rm(GsizeTMP)
+rm(DNAfordat)
+rm(famfordat)
+rm(Gsizefordat)
+rm(dat.log)
+rm(dat.logLOD)
+rm(logll)
+rm(sizefordat)
+rm(tablenick)
+rm(idx)
+rm(j, StrainTMP)
+rm(dummy)
+```
+#distributions
+```{r}
+#different QACs
+table(dat$QAC)
+dim(table(dat$QAC))
+
+###### size 
+mean(dat$size, na.rm=TRUE)
+sd(dat$size, na.rm=TRUE)
+mean(dat.e$size, na.rm=TRUE)
+sd(dat.e$size, na.rm=TRUE)
+mean(dat.n$size, na.rm=TRUE)
+sd(dat.n$size, na.rm=TRUE)
+
+```
+#plots
+##Viruses over LOG
+
+###data manipulation 
+
+```{r}
+my_subset <- subset(dat, select = c("Abbreviation", "logll","LOD","Surface"))
+my_subset$Surface <- as.character(my_subset$Surface)
+
+#my_subset2 <- subset(dat, select = c("VirusName", "logll"))
+
+
+# Calculate median of logll column for each Abbreviation class
+#median_logll <- aggregate(dat$logll, by=list(dat$Abbreviation), FUN=median)
+# Rename the columns in the result
+#colnames(median_logll) <- c("Abbreviation", "MedianLogll")
+# Sort the result by median logll values in descending order
+#sorted_median_logll <- median_logll[order(-median_logll$MedianLogll), ]
+# Print the sorted result
+#print(sorted_median_logll)
+
+
+
+sorted_median_logll <- with(my_subset, reorder(Abbreviation, logll, median))
+
+# Reorder Abbreviation levels based on sorted median logll values
+my_subset$Abbreviation <- factor(my_subset$Abbreviation, levels = levels(sorted_median_logll))
+
+
+ggplot(my_subset, aes(x = Abbreviation, y = logll)) + 
+  geom_point(size = 2) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+
+```
+
+###plot geom_point
+```{r}
+
+ggplot(my_subset, aes(x = Abbreviation, y = logll, colour= Surface, shape =LOD)) + 
+  geom_point(size = 2) +
+  # theme_ipsum(axis= TRUE,
+  #           grid = FALSE, axis_text_size = 11, 
+  #          axis_title_size = 11,
+  #         axis_col = "black"
+  #        )+ 
+  # theme(
+  #  legend.position = "none",
+  # legend.title=element_blank(),
+  #panel.grid.major = element_blank(),
+  #panel.grid.minor = element_blank(),
+  #axis.text.x = element_text(angle = 90, hjust = 1)
+theme_bw() + 
+  theme(
+    axis.text.x = element_text(angle = 90, size = 11 ),
+    axis.title.x = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  )+
+  scale_shape_manual(
+    values = c(1, 20),
+    labels = c( " LOD ", "no LOD")
+  ) +
+  scale_color_manual(
+    labels = c( " nonenveloped ", "enveloped"),
+    values =  c('blue', 'black' )
+  ) ->F1
+F1
+
+ggsave("VirusesOverLog.jpeg", plot = F1,
+       scale = 1, width = 40, height = 20, units = "cm", dpi = 1200)
+
+```
+```{r}
+ggplot(my_subset, aes(x = Abbreviation, y = logll, colour= LOD, shape =LOD)) + 
+  geom_point(size = 2) +
+  # theme_ipsum(axis= TRUE,
+   #           grid = FALSE, axis_text_size = 11, 
+    #          axis_title_size = 11,
+     #         axis_col = "black"
+      #        )+ 
+   # theme(
+    #  legend.position = "none",
+    # legend.title=element_blank(),
+    #panel.grid.major = element_blank(),
+    #panel.grid.minor = element_blank(),
+    #axis.text.x = element_text(angle = 90, hjust = 1)
+  theme_bw() + 
+  theme(
+    axis.text.x = element_text(angle = 90, size = 11 ),
+    axis.title.x = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+        )+
+   scale_shape_manual(
+    values = c(1, 20),
+    labels = c( " LOD ", "no LOD")
+  ) +
+ scale_color_manual(
+   labels = c( " LOD ", "no LOD"),
+     values =  c('darkviolet', 'black' )
+     )  ->F2
+
+F2
+```
+
+
+
+
+###plot boxplot
+```{r}
+
+ggplot(my_subset, aes(x = Abbreviation, y = logll, fill=Surface)) + 
+  geom_boxplot( alpha = 0.4) +
+  geom_point(aes(shape=LOD), position = position_jitterdodge(jitter.width = 0.2), size = 2, alpha=0.7) +
+  # theme_ipsum(axis= TRUE,
+  #           grid = FALSE, axis_text_size = 11, 
+  #          axis_title_size = 11,
+  #         axis_col = "black"
+  #        )+ 
+  # theme(
+  #  legend.position = "none",
+  # legend.title=element_blank(),
+  #panel.grid.major = element_blank(),
+  #panel.grid.minor = element_blank(),
+  #axis.text.x = element_text(angle = 90, hjust = 1)
+theme_bw() + 
+  theme(
+    axis.text.x = element_text(angle = 90, size = 11 ),
+    axis.title.x = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  )+
+  scale_shape_manual(
+    values = c(1, 20),
+    labels = c( " LOD ", "no LOD")
+  ) +
+  scale_fill_manual(
+    labels = c( " nonenveloped ", "enveloped"),
+    values =  c('blue', 'black' )
+  )  -> F3
+F3
+
+
+ggsave("VirusesOverLog_boxplotM1.jpeg", plot = F3,
+       scale = 1, width = 40, height = 20, units = "cm", dpi = 1200)
+
+```
+
+###plot subgroups log over ct
+
+
+```{r}
+
+subset_with_more_than_3 <- dat %>%
+  group_by(Abbreviation) %>%
+  filter(n() > 3) %>%
+  ungroup()
+
+subset_with_more_than_3$Abbreviation2 <- subset_with_more_than_3$Abbreviation
+
+
+
+sorted_median_logll <- with(subset_with_more_than_3, reorder(Abbreviation, logll, median))
+# Reorder Abbreviation levels based on sorted median logll values
+subset_with_more_than_3$Abbreviation <- factor(subset_with_more_than_3$Abbreviation, levels = levels(sorted_median_logll))
+
+
+
+p <- (ggplot(subset_with_more_than_3, aes(x=CT, y=logll, group=Abbreviation2)) +
+        geom_point(size=0.9, alpha=0.8,
+                  data=subset_with_more_than_3[, c("CT", "logll", "Abbreviation2")], color="grey") +
+        geom_point(aes (color=Title) ,size=1.1) +
+        ylab("") +
+        theme_bw() +
+        scale_x_log10()+
+        theme(panel.border=element_blank()) +
+        theme(strip.background=element_blank()) +
+        facet_wrap(~ Abbreviation))
+p
+
+
+ggsave("logANDct_temp.jpeg", plot = p,
+       scale = 1, width = 40, height = 40, units = "cm", dpi = 1200)
+
+```
+
+
+
+
+###plot log over CT subset coloured by name 
+```{r}
+
+
+table(dat$nacid)
+
+subset_with_more_than <- dat %>%
+  group_by(Abbreviation) %>%
+  filter(n() > 8) %>%
+  ungroup()
+
+subsetNaciddsRNA <- subset_with_more_than[subset_with_more_than$nacid == "dsRNA",]
+
+ggplot(subsetNaciddsRNA, aes(x = CT, y = logll, fill=Abbreviation)) + 
+  #geom_boxplot( alpha = 0.4) +
+  geom_point(aes(colour=Abbreviation, shape=LOD), position = position_jitterdodge(jitter.width = 0.2), size = 2, alpha=0.7) +
+  scale_x_log10()+
+  # theme_ipsum(axis= TRUE,
+  #           grid = FALSE, axis_text_size = 11, 
+  #          axis_title_size = 11,
+  #         axis_col = "black"
+  #        )+ 
+  # theme(
+  #  legend.position = "none",
+  # legend.title=element_blank(),
+  #panel.grid.major = element_blank(),
+  #panel.grid.minor = element_blank(),
+  #axis.text.x = element_text(angle = 90, hjust = 1)
+theme_bw() + 
+  theme(
+    axis.text.x = element_text(angle = 90, size = 11 ),
+    axis.title.x = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  )  -> Fx
+
+
+subsetNacidssRNA1 <- subset_with_more_than[subset_with_more_than$nacid == "ssRNA(+)",]
+
+
+ggplot(subsetNacidssRNA1, aes(x = CT, y = logll, fill=Abbreviation)) + 
+  #geom_boxplot( alpha = 0.4) +
+  geom_point(aes(colour=Abbreviation, shape=LOD), position = position_jitterdodge(jitter.width = 0.2), size = 2, alpha=0.7) +
+  scale_x_log10()+
+  # theme_ipsum(axis= TRUE,
+  #           grid = FALSE, axis_text_size = 11, 
+  #          axis_title_size = 11,
+  #         axis_col = "black"
+  #        )+ 
+  # theme(
+  #  legend.position = "none",
+  # legend.title=element_blank(),
+  #panel.grid.major = element_blank(),
+  #panel.grid.minor = element_blank(),
+  #axis.text.x = element_text(angle = 90, hjust = 1)
+theme_bw() + 
+  theme(
+    axis.text.x = element_text(angle = 90, size = 11 ),
+    axis.title.x = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  )  -> Fx2
+
+
+subsetNacidssRNA2 <- subset_with_more_than[subset_with_more_than$nacid == "ssRNA(-)",]
+
+ggplot(subsetNacidssRNA2, aes(x = CT, y = logll, fill=Abbreviation)) + 
+  #geom_boxplot( alpha = 0.4) +
+  geom_point(aes(colour=Abbreviation, shape=LOD), position = position_jitterdodge(jitter.width = 0.2), size = 2, alpha=0.7) +
+  scale_x_log10()+
+  # theme_ipsum(axis= TRUE,
+  #           grid = FALSE, axis_text_size = 11, 
+  #          axis_title_size = 11,
+  #         axis_col = "black"
+  #        )+ 
+  # theme(
+  #  legend.position = "none",
+  # legend.title=element_blank(),
+  #panel.grid.major = element_blank(),
+  #panel.grid.minor = element_blank(),
+  #axis.text.x = element_text(angle = 90, hjust = 1)
+theme_bw() + 
+  theme(
+    axis.text.x = element_text(angle = 90, size = 11 ),
+    axis.title.x = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  )  -> Fx3
+
+grid.arrange( Fx, Fx2, Fx3, nrow= 1, ncol=3, 
+            widths=c(8, 8, 8), heights = c(1)) -> Fs
+
+Fx
+Fx2
+Fx3
+Fs
+```
+
+
+
+
+##Family over number datapoints
+###organise data
+```{r}
+tmp=as.matrix (table(dat$`Studies by number`, dat$fam))
+meltd2<- melt (tmp)
+```
+
+###plot
+```{r}
+
+#plot in blue
+ggplot(meltd2, aes(x=Var2, y=value))+  geom_bar(stat="identity", aes(x=Var2, y=value, fill=Var1), colour = "black") +
+  labs( y= "number of datapoints",  col="red") +
+  theme_bw() +
+  theme(
+    axis.text.x = element_text(angle = 90) ,
+    legend.position = "none",
+    axis.title.x = element_blank()
+    )-> obj4
+obj4
+
+ggsave("family_datapoints_blue.jpeg", plot = obj4,
+       scale = 1, width = 20, height = 10, units = "cm", dpi = 1200)
+
+###or in grey 
+ggplot(meltd2, aes(x=Var2, y=value))+  geom_bar(stat="identity",  colour = "black", fill = "#808080") + 
+  labs( y= "number of datapoints") +  
+  theme_bw() + 
+  theme(
+    axis.text.x = element_text(angle = 90, size = 12 ),
+        axis.title.x = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+        )-> obj5
+obj5
+
+ggsave("family_datapoints_grey.jpeg", plot = obj5,
+       scale = 1, width = 20, height = 10, units = "cm", dpi = 1200)
+
+```
+
+##Temperature
+```{r}
+table(dat$Temp)
+dat$Temp <- as.numeric(dat$Temp)
+
+
+ggplot(dat, aes(x=Temp)) +
+  geom_histogram(position="identity", alpha=0.5,breaks = seq(0,50,1) , binwidth=50, color="black", fill="grey45") +
+  scale_y_continuous(expand = c(0,0),
+                       limits = c(0,400)) +
+  scale_x_continuous(expand = c(0,0),
+                     limits = c(0,50), 
+                     breaks=seq(0,50,10)) +
+  labs( y= "Number of Data Points", x = "Temperature [°C]") +
+  theme(axis.text.y   = element_text(size=16),
+        axis.text.x   = element_text(size=16),
+        axis.title.y  = element_text(size=16),
+        axis.title.x  = element_text(size=16)) + 
+  theme_ipsum(axis= TRUE,
+              grid = FALSE, axis_text_size = 11, 
+              axis_title_size = 11,
+              axis_col = "black"
+              ) ->obj6
+
+
+ggsave("temperature_distribution.jpeg", plot = obj6,
+       scale = 1, width = 20, height = 10, units = "cm", dpi = 1200)
+
+
+#original R 
+
+###temperature
+par(mfrow = c(1, 1), mar=c(6,5,3,2))
+hist(as.numeric(dat$Temp), seq(0,50,2), 
+     main = "distribution of temperature" , ylab = "amount of data points", xlab = "temperature in ?C",
+     col= c("#3300CC","#3300CC","#3300CC","#3300CC",
+            "#3300FF","#3300FF","#3300FF","#3300FF",
+            "#CC00FF","#CC00FF","#CC00FF","#CC00FF",
+            "#CC00CC","#CC00CC","#CC00CC","#CC00CC",
+            "#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099"
+     ))
+
+###temperature_e
+par(mfrow = c(2, 1), mar=c(6,5,3,2))
+hist(as.numeric(dat.e$Temp), seq(0,50,2), 
+     main = "distribution of temperature enveloped" , ylab = "amount of data points", xlab = "temperature in ?C",
+     col= c("#3300CC","#3300CC","#3300CC","#3300CC",
+            "#3300FF","#3300FF","#3300FF","#3300FF",
+            "#CC00FF","#CC00FF","#CC00FF","#CC00FF",
+            "#CC00CC","#CC00CC","#CC00CC","#CC00CC",
+            "#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099"
+     ))
+###temperature_n
+par( mar=c(6,5,3,2))
+hist(as.numeric(dat.n$Temp), seq(0,50,2), 
+     main = "distribution of temperature nonenveloped" , ylab = "amount of data points", xlab = "temperature ",
+     col= c("#3300CC","#3300CC","#3300CC","#3300CC",
+            "#3300FF","#3300FF","#3300FF","#3300FF",
+            "#CC00FF","#CC00FF","#CC00FF","#CC00FF",
+            "#CC00CC","#CC00CC","#CC00CC","#CC00CC",
+            "#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099"
+     ))
+  
+```
+## Surface materials
+```{r}
+
+tmpMaterial=as.matrix (table(dat$`Studies by number` , dat$material))
+meltM2<- melt (tmpMaterial)
+
+ggplot(meltM2, aes(x=Var2, y=value))+  geom_bar(stat="identity",  colour = "black", fill = "#808080") + 
+  labs( y= "number of datapoints") +
+  theme_ipsum(axis= TRUE,
+              grid = FALSE, axis_text_size = 11, 
+              axis_title_size = 11,
+              axis_col = "black"
+              )+
+  theme(axis.text.x = element_text(angle = 90) )+
+  theme(axis.title.x = element_blank())-> obj7
+
+obj7
+
+ggsave("Surface material.jpeg", plot = obj7,
+       scale = 1, width = 20, height = 10, units = "cm", dpi = 1200)
+
+```
+##nucleic acid type in R
+```{r}
+###nucleic acid type
+
+
+par(mar=c(3,5,2,2), mfrow = c(1, 1))
+barplot(table(dat$nacid), ylim=c(0,500),
+        main="distribution of nucleic acid types",ylab = "amount of data points",
+        col=c ("red","yellow","green", "blue", "purple"))
+par(mfrow = c(1,2))
+barplot(table(dat.e$nacid), ylim=c(0,400),
+        main="distribution of nucleic acid types enveloped viruses",ylab = "amount of data points",
+        col=c ("red", "blue", "purple"))
+barplot(table(dat.n$nacid), ylim=c(0,400),
+        main="distribution of nucleic acid types nonenveloped viruses",ylab = "amount of data points",
+        col=c ("red","yellow","green", "purple"))
+
+
+
+```
+## !!! Genome size 
+```{r}
+par(mfrow = c(1, 1), mar=c(6,5,4,1))
+hist(log (dat$Gsize, 10), breaks = 36, ylim = c(0,250), 
+     main = "distribution of Genome size", xlim= c(0.1,3.2), ylab = "amount of data points", xlab = "Genome size [kilo bases]", xaxt="n",
+     col= "grey30")
+axis(1, at= c(log(1,10),log(2,10),1,log(20,10),2,log(200,10),3), labels= c(1,2,10^1,20^1, 10^2,200, 10^3))
+
+
+par(mar=c(5,5,4,1))
+hist(dat$Gsize, breaks = 50, ylim = c(0,700),
+     main = "distribution of Genome size", ylab = "amount of data points", xlab = "Genome size [kilo bases]",
+     col= "grey30")
+
+#ggplot
+ggplot(dat, aes(x=Gsize) )+
+  geom_histogram(
+    position="identity", 
+    alpha=0.5,breaks = seq(0,1200,50) , 
+    binwidth=10,
+  color="black", 
+  fill="grey45" 
+ ) + 
+  scale_y_continuous(expand = c(0,0),
+                       limits = c(0,175)) +
+  scale_x_continuous(expand = c(0,0),
+                     limits = c(0,1250), 
+                     breaks=seq(0,1200,100)) +
+  labs( y= "number of Data Points", x = "Genome size [kilo bases]") +
+  theme(axis.text.y   = element_text(size=16),
+        axis.text.x   = element_text(size=16),
+        axis.title.y  = element_text(size=16),
+        axis.title.x  = element_text(size=16)) + theme_bw() 
+
+```
+
+##Size
+```{r}
+
+h1 = hist(dat.n$size,plot=FALSE, breaks = seq(0,600,50))
+h2 = hist(dat.e$size,plot=FALSE, breaks = seq(0,600,50))
+data <- rbind(h2$counts, h1$counts) 
+
+colnames(data) <- c(h2$breaks[h1$breaks>0])
+rownames(data) <- c("nonenveloped","enveloped")
+
+
+# Get the stacked barplot
+par(mfrow= c(1,1) ,mar=c(6,5,4,1))
+barplot(data, 
+        col=c(rgb(0,0,1,0.5), 
+              rgb(1,0,0,0.5)) ,
+        border="white", 
+        space=0.04, 
+        font.axis=2,
+        xlab="virus size [nm]", 
+        ylab= "number of data ponts",
+        cex.names = 1.1, cex.axis = 1.1, cex.lab =1.1)
+
+legend("topright", legend=c("enveloped","nonenveloped"), col=c(rgb(0,0,1,0.5), 
+                                                               rgb(1,0,0,0.5)), pt.cex=2, pch=15 , cex=1.5)
+box(which="plot", bty="]")
+```
