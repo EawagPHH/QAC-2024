@@ -117,8 +117,9 @@ for(i in 1:dim(viruses)[1]){
 dat$size <- as.numeric(c(sizefordat))
 dat$size10 <-  as.numeric(c(sizefordat))* 0.01
 dat$nacid <- c(DNAfordat)
-dat$logll <- c(logll)
-dat$Gsize <- c(Gsizefordat)
+dat$logll <- as.numeric(c(logll))
+dat$log <- as.numeric(c(dat$log))
+dat$Gsize <- as.numeric(c(Gsizefordat))
 dat$fam <- c(famfordat)
 ```
 
@@ -762,7 +763,7 @@ ggplot(dat, aes(x=Gsize) )+
 
 ```
 
-##Size
+##Size historgram 
 ```{r}
 
 h1 = hist(dat.n$size,plot=FALSE, breaks = seq(0,600,50))
@@ -789,3 +790,459 @@ legend("topright", legend=c("enveloped","nonenveloped"), col=c(rgb(0,0,1,0.5),
                                                                rgb(1,0,0,0.5)), pt.cex=2, pch=15 , cex=1.5)
 box(which="plot", bty="]")
 ```
+##Size in traditional R
+```{r}
+
+
+par(mfrow = c(1, 2))
+plot(dat.e$CT [dat.e$size < 100], 
+     dat.e$log[dat.e$size < 100], 
+     main= "enveloped viruses", xlab ="CT factor", ylab ="log reduction",
+     pch=19,  cex=0.7, log = "x", xlim=c(0.9,1000000), ylim=c(-1,7),
+     col=ifelse(dat.e$size [dat.e$size < 100] < 100 , "orange", "darkred"))
+points(dat.e$CT [dat.e$size >= 100 & dat.e$size <150], 
+       dat.e$log[dat.e$size >= 100 & dat.e$size <150],
+       pch=19,  cex=0.7,
+       col=ifelse(dat.e$size [dat.e$size >= 100 & dat.e$size <150] >= 100 
+                  & dat.e$size [dat.e$size >= 100 & dat.e$size <150] < 150, "green", "darkred"))
+points(dat.e$CT [dat.e$size >= 150 & dat.e$size <200], 
+       dat.e$log[dat.e$size >= 150 & dat.e$size <200],
+       pch=19,  cex=0.7,
+       col=ifelse(dat.e$size [dat.e$size >= 150 & dat.e$size <200] >= 150 & 
+                    dat.e$size [dat.e$size >= 150 & dat.e$size <200] < 200, "blue", "darkred"))
+points(dat.e$CT [dat.e$size > 200], 
+       dat.e$log[dat.e$size > 200], 
+       pch=19,  cex=0.7, 
+       col=ifelse(dat.e$size [dat.e$size > 200] > 200 , "red", "darkred"))
+legend("topleft", legend=c( "<100 nm", "100-150 nm", "150-200 nm", ">200 nm"), 
+       col = c("orange","green","blue", "red"),
+       pch=c(19 ), cex=0.9, border=NA)
+
+
+plot(dat.n$CT [dat.n$size < 35], 
+     dat.n$log[dat.n$size < 35], 
+     main= "non-enveloped viruses", xlab ="CT factor", ylab ="log reduction",
+     pch=19,  cex=0.7, log = "x", xlim=c(0.9,1000000), ylim=c(-1,7),
+     col=ifelse(dat.n$size [dat.n$size < 35] < 35 , "orange", "darkred"))
+points(dat.n$CT [dat.n$size >= 35 & dat.n$size <70], 
+       dat.n$log[dat.n$size >= 35 & dat.n$size <70],
+       pch=19,  cex=0.7,
+       col=ifelse(dat.n$size [dat.n$size >= 35 & dat.n$size <70] >= 35 
+                  & dat.n$size [dat.n$size >= 35 & dat.n$size <70] < 70, "green", "darkred"))
+points(dat.n$CT [dat.n$size >= 70 & dat.n$size <200], 
+       dat.n$log[dat.n$size >= 70 & dat.n$size <200],
+       pch=19,  cex=0.7,
+       col=ifelse(dat.n$size [dat.n$size >= 100 & dat.n$size <200] >= 100 & 
+                    dat.n$size [dat.n$size >= 100 & dat.n$size <200] < 200, "blue", "darkred"))
+points(dat.n$CT [dat.n$size > 200], 
+       dat.n$log[dat.n$size > 200], 
+       pch=19,  cex=0.7, 
+       col=ifelse(dat.n$size [dat.n$size > 200] > 200 , "red", "darkred"))
+legend("topleft", legend=c( "<35 nm", "35-75 nm", "75-200 nm", ">200 nm"), 
+       col = c("orange","green","blue", "red"),
+       pch=c(19 ), cex=0.9, border=NA)
+
+###########################################
+
+####size non enveloped in 4 frames
+
+par(mfrow = c(2, 2))
+plot(dat.n$CT [dat.n$size < 35], 
+     dat.n$log[dat.n$size < 35], 
+     main= "non-enveloped viruses <35 nm", xlab ="CT factor", ylab ="log reduction value",
+     pch=19,  cex=0.7, log = "x", xlim=c(10,10000000), ylim=c(-1,7),
+     col=ifelse(dat.n$size [dat.n$size < 35] < 35 , "orange", "darkred"),
+     xaxt = "n")
+axis(axis(1, at = c( 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000)))
+plot(dat.n$CT [dat.n$size >= 35 & dat.n$size <70], 
+     dat.n$log[dat.n$size >= 35 & dat.n$size <70],
+     main= "non-enveloped viruses 35-75 nm", xlab ="CT factor", ylab ="log reduction value",
+     pch=19,  cex=0.7, log = "x", xlim=c(10,10000000), ylim=c(-1,7),
+     col=ifelse(dat.n$size [dat.n$size >= 35 & dat.n$size <70] >= 35 
+                & dat.n$size [dat.n$size >= 35 & dat.n$size <70] < 70, "darkgreen", "darkred"),
+     xaxt = "n")
+axis(axis(1, at = c( 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000)))
+plot(dat.n$CT [dat.n$size >= 70 & dat.n$size <200], 
+     dat.n$log[dat.n$size >= 70 & dat.n$size <200], 
+     main= "non-enveloped viruses 75-200 nm", xlab ="CT factor", ylab ="log reduction value",
+     pch=19,  cex=0.7, log = "x", xlim=c(10,10000000), ylim=c(-1,7),
+     col=ifelse(dat.n$size [dat.n$size >= 100 & dat.n$size <200] >= 100 & 
+                  dat.n$size [dat.n$size >= 100 & dat.n$size <200] < 200, "blue", "darkred"),
+     xaxt = "n")
+axis(axis(1, at = c( 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000)))
+plot(dat.n$CT [dat.n$size > 200], 
+     dat.n$log[dat.n$size > 200], 
+     main= "non-enveloped viruses >200 nm", xlab ="CT factor", ylab ="log reduction value",
+     pch=19,  cex=0.7, log = "x", xlim=c(10,10000000), ylim=c(-1,7),
+     col=ifelse(dat.n$size [dat.n$size > 200] > 200 , "red", "darkred"),
+     xaxt = "n")
+axis(axis(1, at = c( 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000)))
+#legend("topleft", legend=c( "<35 nm", "35-75 nm", "75-200 nm", ">200 nm"), 
+#      col = c("orange","green","blue", "red"),
+#     pch=c(19 ), cex=0.8, border=NA)
+
+
+
+######## Size enveloped in 4 frames
+
+par(mfrow = c(2, 2))
+plot(dat.e$CT [dat.e$size < 100], 
+     dat.e$log[dat.e$size < 100], 
+     main= "enveloped viruses < 100 nm", xlab ="CT factor", ylab ="log reduction value",
+     pch=19,  cex=0.7, log = "x", xlim=c(10,1000000), ylim=c(-1,7),
+     col=ifelse(dat.e$size [dat.e$size < 100] < 100 , "orange", "darkred"),
+     xaxt = "n")
+axis(axis(1, at = c( 1, 10, 100, 1000, 10000, 100000, 1000000)))
+plot(dat.e$CT [dat.e$size >= 100 & dat.e$size <150], 
+     dat.e$log[dat.e$size >= 100 & dat.e$size <150],
+     main= "enveloped viruses 100-150 nm", xlab ="CT factor", ylab ="log reduction value",
+     pch=19,  cex=0.7, log = "x", xlim=c(10,1000000), ylim=c(-1,7),
+     col=ifelse(dat.e$size [dat.e$size >= 100 & dat.e$size <150] >= 100 
+                & dat.e$size [dat.e$size >= 100 & dat.e$size <150] < 150, "green", "darkred"),
+     xaxt = "n")
+axis(axis(1, at = c( 1, 10, 100, 1000, 10000, 100000, 1000000)))
+plot(dat.e$CT [dat.e$size >= 150 & dat.e$size <200], 
+     dat.e$log[dat.e$size >= 150 & dat.e$size <200],
+     main= "enveloped viruses 150-200 nm", xlab ="CT factor", ylab ="log reduction value",
+     pch=19,  cex=0.7, log = "x", xlim=c(10,1000000), ylim=c(-1,7),
+     col=ifelse(dat.e$size [dat.e$size >= 150 & dat.e$size <200] >= 150 & 
+                  dat.e$size [dat.e$size >= 150 & dat.e$size <200] < 200, "blue", "darkred"),
+     xaxt = "n")
+axis(axis(1, at = c( 1, 10, 100, 1000, 10000, 100000, 1000000)))
+plot(dat.e$CT [dat.e$size > 200], 
+     dat.e$log[dat.e$size > 200], 
+     main= "enveloped viruses >200 nm", xlab ="CT factor", ylab ="log reduction value",
+     pch=19,  cex=0.7, log = "x", xlim=c(10,1000000), ylim=c(-1,7),
+     col=ifelse(dat.e$size [dat.e$size > 200] > 200 , "red", "darkred"),
+     xaxt = "n")
+axis(axis(1, at = c( 1, 10, 100, 1000, 10000, 100000, 1000000)))
+#legend("topleft", legend=c( "<100 nm", "100-150 nm", "150-200 nm", ">200 nm"), 
+#      col = c("orange","green","blue", "red"),
+#     pch=c(19 ), cex=0.9, border=NA)
+
+
+```
+
+## heatmap fam,strain,numb data points
+```{r}
+
+##new plot 1, Heatmap ggplot with tidy package
+if (!require(tidyverse)) install.packages("tidyverse")
+#install.packages("tidyverse")
+library(ggplot2)
+if (!require(ggnewscale)) install.packages("ggnewscale")
+library(ggnewscale)
+
+if (!require(reshape2)) install.packages("reshape2")
+library(reshape2)
+
+#collect and shape data 
+#sum of points 
+sumdp <- table(dat$fam)
+head(t(sumdp))
+sumdpf <- as.data.frame(sumdp)
+sump = array(sumdpf[,2])
+
+#sum of studies
+tmpfam <-table(dat$`Studies by number` , dat$fam)
+tmpfam[tmpfam > 1] <- 1
+ct <-colSums (tmpfam, na.rm = FALSE, dims = 1)
+cf <-as.data.frame(ct)
+
+#sum of strain
+tmps <-table(dat$Virus, dat$fam)
+tmps[tmps > 1] <- 1
+d1 <-colSums (tmps, na.rm = FALSE, dims = 1)
+d <-as.data.frame(d1)
+sums = array(d[,1])
+
+#create vector with famimilie names 
+cf$f <- c( "Adenoviridae" , "Alloherpesviridae", "Alphaherpesvirinae" ,     "Arteriviridae"     ,  "Asfarviridae"  ,     "Birnaviridae"   ,   "Caliciviridae" ,  "Circoviridae"     , "Coronaviridae"  ,   "Demerecviridae"    ,"Fiersviridae"      , "Flaviviridae" ,    "Hepadnaviridae"  ,      "Hepeviridae"  ,    "Herpesviridae"   ,    "Iridoviridae"   ,    "Microviridae"    ,    "Mimiviridae" ,       "Myoviridae"  ,  "Orthomyxoviridae", "Paramyxoviridae" ,     "Parvoviridae"   ,  "Picornaviridae"   ,   "Pneumoviridae"  ,    "polyomavirus"     ,  "Poxviridae",        "Poxviridae"     ,  "Reoviridae"    ,  "Retroviridae" ,     "Rhabdoviridae"  ,     "Siphoviridae"  ,      "Togaviridae" ,      "Virgaviridae" )
+           
+
+#bind vectors to dataframe 
+cf$s <-c(sums) 
+cf$p <- c(sump)
+cf <- cf[,c(2,1,3,4)]
+#normalise
+#cf$s <- cf$s/sum(cf$s)
+#cf$p <- cf$p/sum(cf$p)
+#cf$ct <- cf$ct/sum(cf$ct)
+
+#reaorder and create tidy data frame 
+cf <- cf[order(cf$p),]
+names(cf)[1:4]<- c("f","Studies","Strains","Data points")
+cfm <- melt(cf, id.vars=c("f"))
+
+#headmap in bw
+ggplot(cfm, aes(x=f, y=variable , fill = value))+
+  scale_x_discrete (limits = c( "Adenoviridae" , "Alloherpesviridae", "Alphaherpesvirinae" ,     "Arteriviridae"     ,  "Asfarviridae"  ,     "Birnaviridae"   ,   "Caliciviridae" ,  "Circoviridae"     , "Coronaviridae"  ,   "Demerecviridae"    ,"Fiersviridae"      , "Flaviviridae" ,    "Hepadnaviridae"  ,      "Hepeviridae"  ,    "Herpesviridae"   ,    "Iridoviridae"   ,    "Microviridae"    ,    "Mimiviridae" ,       "Myoviridae"  ,  "Orthomyxoviridae", "Paramyxoviridae" ,     "Parvoviridae"   ,  "Picornaviridae"   ,   "Pneumoviridae"  ,    "polyomavirus"     ,  "Poxviridae",        "Poxviridae" ,  "Reoviridae"    ,  "Retroviridae" ,     "Rhabdoviridae"  ,     "Siphoviridae"  ,      "Togaviridae" ,      "Virgaviridae" ) )+
+  scale_y_discrete (limits = c("Data points", "Studies", "Strains"))+
+  geom_tile(data = filter(cfm, variable == "Data points"), aes(x=f, y=variable, fill = value),
+            color = "white",lwd =.5,linetype = 1) +
+  scale_fill_gradient2(low = "grey59", mid = "grey25", high = "grey0", midpoint = 80, name = "Data points") +
+  
+  new_scale_fill() +
+  geom_tile(data = filter(cfm, variable == "Strains"), aes(x=f, y=variable, fill = value),
+            color = "white",lwd = .5,linetype = 1) +
+  scale_fill_gradient2(low = "grey59", mid = "grey25", high = "grey0", midpoint = 8, name = "Nr strains") +
+  
+  new_scale_fill() +
+  geom_tile(data = filter(cfm, variable == "Studies"), aes(x=f, y=variable, fill = value),
+            color = "white",lwd = .5,linetype = 1) +
+  scale_fill_gradient2(low = "grey59", mid = "grey25", high = "grey0", midpoint = 8, name = "Nr studies") +
+  xlab(label = "virus families") +
+  theme_bw()+
+  theme(axis.title.y = element_blank(),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, size = 15),
+        axis.text.y = element_text(angle = 0, vjust = 0.5, hjust=1, size = 15),# lables vertical
+        strip.text.y = element_blank(), #remove facet bar on y 
+        legend.position="none")  + 
+  geom_text(aes(label = value), color = "white", size = 5)
+
+
+```
+# ANALYSIS
+
+###single linear regression models per factor 
+```{r}
+# Custom function to calculate SEM
+sem <- function(x) {
+  sd(x) / sqrt(length(x))
+}
+
+
+# size 
+lmSfelog = lm(dat.e$logll ~ log(dat.e$CT,10) +  dat.e$size)
+summary(lmSfelog)
+lmSfnlog = lm(dat.n$logll ~ log(dat.n$CT,10) +   dat.n$size)
+#lmSfnlog = lm(dat.n$logll[dat.n$size<200] ~ dat.n$CT[dat.n$size<200] +dat.n$size[dat.n$size<200])
+summary(lmSfnlog)
+lmSflog = lm(dat$logll ~ log(dat$CT,10) +   dat$size)
+#lmSfnlog = lm(dat.n$logll[dat.n$size<200] ~ dat.n$CT[dat.n$size<200] +dat.n$size[dat.n$size<200])
+summary(lmSflog)
+
+#Temperature
+lmTlog = lm(dat$logll ~ log(dat$CT,10) + as.numeric(dat$Temp))
+lmTlog
+summary(lmTlog)
+
+#carbon
+binsforcarbon <- dat$`carbon load`
+binsforcarbon [(is.na(dat$`carbon load`))] = "n"
+binsforcarbon [(!is.na(dat$`carbon load`))] = "c"
+
+binsforcarbone<-dat.e$`carbon load`
+binsforcarbone [(is.na(dat.e$`carbon load`))] = "n"
+binsforcarbone [(!is.na(dat.e$`carbon load`))] = "c"
+
+binsforcarbonn<-dat.n$`carbon load`
+binsforcarbonn [(is.na(dat.n$`carbon load`))] = "n"
+binsforcarbonn [(!is.na(dat.n$`carbon load`))] = "c"
+
+dat$carbon <- c(binsforcarbon)
+dat.e$carbon <- c(binsforcarbone)
+dat.n$carbon <- c(binsforcarbonn)
+
+c_mean <- c (mean(dat$logll[dat$carbon == "n"]), mean(dat$logll[dat$carbon == "c"]))
+c_sem <- c (sem(dat$logll[dat$carbon == "n"]), sem(dat$logll[dat$carbon == "c"]))
+c_sd <- c (sd(dat$logll[dat$carbon == "n"]), sd(dat$logll[dat$carbon == "c"]))
+
+rm(binsforcarbon)
+rm(binsforcarbone)
+rm(binsforcarbonn)
+
+
+# barplot
+par(mfrow = c(1, 3))
+barx <- barplot(c_mean,
+                names.arg=c("no C","with C"),
+                ylim=c(0,ceiling(max(dat$logll))),
+                xlab='carbonload',
+                ylab='log reduction')
+error.bar(barx, c_mean,c_sem)
+
+###e
+c_meane <- c (mean(dat.e$logll[dat.e$carbon == "n"]), mean(dat.e$logll[dat.e$carbon == "c"]))
+c_seme <- c (sem(dat.e$logll[dat.e$carbon == "n"]), sem(dat.e$logll[dat.e$carbon == "c"]))
+# barplot
+barx <- barplot(c_meane, main="enveloped", 
+                names.arg=c("no C","with C"),
+                ylim=c(0,ceiling(max(dat.e$logll))),
+                xlab='carbonload',
+                ylab='log reduction')
+error.bar(barx, c_meane,c_seme)
+
+##n
+c_meann <- c (mean(dat.n$logll[dat.n$carbon == "n"]), mean(dat.n$logll[dat.n$carbon == "c"]))
+c_semn <- c (sem(dat.n$logll[dat.n$carbon == "n"]), sem(dat.n$logll[dat.n$carbon == "c"]))
+# barplot
+barx <- barplot(c_meann,main="nonenveloped", 
+                names.arg=c("no C","with C"),
+                ylim=c(0,ceiling(max(dat.n$logll))),
+                xlab='carbonload',
+                ylab='log reduction')
+error.bar(barx, c_meann,c_semn)
+
+
+###########SSM 
+
+lmTlog = lm(dat$logll ~ log(dat$CT,10)    )
+summary(lmTlog)
+
+lmTlog = lm(dat$logll ~ log(dat$CT,10)  +dat$Surface   )
+summary(lmTlog)
+
+################### multiple linear regression analysis
+
+
+lmTlog = lm(dat$logll ~ log(dat$CT,10) +dat$size10 + dat$carbon + as.numeric(dat$Temp) +dat$Surface  + dat$Gsize + dat$ssRNAp+dat$ssRNA +dat$dsDNA +dat$dsRNA +dat$ssDNA   )
+summary(lmTlog)
+library(car)
+vif(lmTlog)
+alias(lmTlog) 
+
+
+dat$Surface <-ifelse(dat$Surface == "e", 1,0)
+dat$carbon <- as.numeric(dat$carbon)
+df = data.frame(dat$logll, log(dat$CT,10),as.numeric(dat$size10) , dat$carbon , as.numeric(dat$Temp) ,dat$Surface  , dat$Gsize , dat$ssRNAp ,dat$dsDNA ,dat$dsRNA ,dat$ssDNA )
+cor(df)
+lm(df)
+vif(lm(df))
+alias(lm(df))
+
+ cor(dat$Gsize,dat$size10)
+ cor(dat$ssRNAp, dat$ssRNA)
+ cor(dat$ssRNAp, dat$ssDNA)
+ cor(dat$ssRNAp,dat$dsRNA)
+ cor(dat$ssRNAp,dat$dsDNA)
+ cor(dat$ssRNAp,dat$ssRNAp)
+ cor(dat$ssRNAp,dat$carbon)
+ cor(dat$ssRNAp,dat$Surface)
+
+
+
+lmTlog = lm(dat$logll ~ log(dat$CT,10) +dat$size+ dat$carbon + as.numeric(dat$Temp) +dat$Surface  + dat$Gsize )
+summary(lmTlog)
+library(car)
+vif(lmTlog) #no concern all vif< 5
+lmTlog = lm(dat$logll ~ log(dat$CT,10) +dat$size+ dat$Gsize+ as.numeric(dat$Temp) +  dat$Surface )
+summary(lmTlog)
+lmTlog = lm(dat$logll ~ log(dat$CT,10) +dat$size+  as.numeric(dat$Temp) +  dat$Surface)
+summary(lmTlog)
+lmTlog = lm(dat$logll ~ log(dat$CT,10) +dat$size +  dat$Surface)
+summary(lmTlog)
+lmTlog = lm(dat$logll ~ log(dat$CT,10) + dat$Surface)
+summary(lmTlog)
+lmTlog = lm(dat$logll ~  dat$Surface)
+summary(lmTlog)
+
+lmTlog = lm(dat$logll ~ log(dat$CT,10) +dat$size+ dat$carbon+ as.numeric(dat$Temp) + dat$Gsize )
+summary(lmTlog)
+
+lmTlog = lm(dat$logll ~ log(dat$CT,10) +dat$size+  as.numeric(dat$Temp) + dat$Gsize)
+summary(lmTlog)
+
+lmTlog = lm(dat$logll ~ log(dat$CT,10) +dat$size+ as.numeric(dat$Temp))
+summary(lmTlog)
+
+##e
+lmTlog = lm(dat.e$logll ~ log(dat.e$CT,10) +dat.e$size+ dat.e$carbon+ as.numeric(dat.e$Temp) + dat.e$Gsize)
+summary(lmTlog)
+lmTlog = lm(dat.e$logll ~ log(dat.e$CT,10) +dat.e$size+ dat.e$carbon+  dat.e$Gsize)
+summary(lmTlog)
+lmTlog = lm(dat.e$logll ~ log(dat.e$CT,10) +dat.e$size+  dat.e$Gsize)
+summary(lmTlog)
+lmTlog = lm(dat.e$logll ~ log(dat.e$CT,10) +dat.e$size)
+summary(lmTlog)
+
+###n 
+
+lmTlog = lm(dat.n$logll ~ log(dat.n$CT,10) +dat.n$size+ dat.n$carbon+ as.numeric(dat.n$Temp) + dat.n$Gsize)
+summary(lmTlog)
+lmTlog = lm(dat.n$logll ~ log(dat.n$CT,10) +dat.n$size+ dat.n$carbon+ as.numeric(dat.n$Temp) )
+summary(lmTlog)
+lmTlog = lm(dat.n$logll ~ log(dat.n$CT,10) +dat.n$size+ as.numeric(dat.n$Temp) )
+summary(lmTlog)
+
+#check if temperature bigger 40 matters -see distribution
+lmTlog = lm(dat.n$logll[dat.n$Temp < 40] ~ log(dat.n$CT[dat.n$Temp < 40],10) +dat.n$size[dat.n$Temp < 40]+ as.numeric(dat.n$Temp[dat.n$Temp < 40]) + dat.n$Gsize[dat.n$Temp < 40] + dat.n$carbon [dat.n$Temp < 40])
+summary(lmTlog)
+
+#n        double logarithmic skale, with log genome size 
+lmTlog = lm(log(dat.n$logll,10) ~ log(dat.n$CT,10) +dat.n$size+ dat.n$carbon+ as.numeric(dat.n$Temp) + log(dat.n$Gsize,10))
+summary(lmTlog)
+lmTlog = lm(log(dat.n$logll,10) ~ log(dat.n$CT,10) +dat.n$carbon+ as.numeric(dat.n$Temp) + log(dat.n$Gsize,10))
+summary(lmTlog)
+lmTlog = lm(log(dat.n$logll,10) ~ log(dat.n$CT,10) +as.numeric(dat.n$Temp) + log(dat.n$Gsize,10))
+summary(lmTlog)
+
+
+
+
+
+#correlation Genome size to size 
+
+cor.test(dat$size , dat$Gsize, method= "pearson")
+cor.test(dat$size , dat$Gsize, method= "kendall")
+cor.test(dat$size , dat$Gsize, method= "spearman")
+
+cor.test(dat.n$size , dat.n$Gsize, method= "pearson")
+cor.test(dat.n$size , dat.n$Gsize, method= "kendall")
+cor.test(dat.n$size , dat.n$Gsize, method= "spearman")
+
+cor.test(dat.e$size , dat.e$Gsize, method= "pearson")
+cor.test(dat.e$size , dat.e$Gsize, method= "kendall")
+cor.test(dat.e$size , dat.e$Gsize, method= "spearman")
+
+
+
+#################################bac subset
+
+bac <- subset(dat, (!is.na(dat$BAC)))
+bac <- subset(dat, dat$BAC == "BAC")
+lmbac = lm(bac$logll ~ log(bac$CT,10) +bac$size+ bac$carbon + as.numeric(bac$Temp) +bac$Surface  + bac$Gsize )
+summary(lmbac)
+vif(lmbac)
+#remove Gsize because of correlation
+lmbac = lm(bac$logll ~ log(bac$CT,10) +bac$size+ bac$carbon + as.numeric(bac$Temp) +bac$Surface)
+#remove carbon load because of bios
+lmbac = lm(bac$logll ~ log(bac$CT,10) + as.numeric(bac$Temp) +bac$Surface)
+
+#distibutions bac;
+
+#distribution corbon
+sum(bac$carbon=="c")
+
+c_mean <- c (mean(bac$logll[bac$carbon == "n"]), mean(bac$logll[bac$carbon == "c"]))
+
+# barplot
+par(mfrow = c(1, 3))
+barx <- barplot(c_mean,
+                names.arg=c("no C","with C"),
+                ylim=c(0,ceiling(max(dat$logll))),
+                xlab='carbonloadbac',
+                ylab='log reduction')
+#is to biost
+
+#distribution envelope
+sum(bac$carbon=="n")
+#tempreture
+par(mfrow = c(1, 1), mar=c(6,5,3,2))
+hist(as.numeric(bac$Temp), seq(0,50,2), 
+     main = "distribution of temperature bac" , ylab = "amount of data points", xlab = "temperature in ?C",
+     col= c("#3300CC","#3300CC","#3300CC","#3300CC",
+            "#3300FF","#3300FF","#3300FF","#3300FF",
+            "#CC00FF","#CC00FF","#CC00FF","#CC00FF",
+            "#CC00CC","#CC00CC","#CC00CC","#CC00CC",
+            "#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099"
+     ))
+
+####size distribution 
+
+mean(bac$size)
+sd(bac$size)
+hist(bac$size)
+hist(dat$size)
+```
+
