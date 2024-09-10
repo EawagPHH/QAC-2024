@@ -37,8 +37,8 @@ library(gridExtra)
 
 #get data 
 ```{r}
-dat <- read_excel("18072023_AV_dataset_QAC_deactivation.xlsx",sheet = "Data Points")
-viruses <- read_excel("18072023_AV_dataset_QAC_deactivation.xlsx",sheet = "virus properties")
+dat <- read_excel("20240723_AV_analysis_dataset_QAC_deactivation.xlsx",sheet = "Data Points")
+viruses <- read_excel("20240723_AV_analysis_dataset_QAC_deactivation.xlsx",sheet = "virus properties")
 ```
 
 #manioulate data
@@ -114,8 +114,8 @@ for(i in 1:dim(viruses)[1]){
 ##connect strings to dat
 ```{r}
 # add new variables to the data frame
-dat$size <- c(sizefordat)
-dat$size10 <- 0.01 * c(sizefordat)
+dat$size <- as.numeric(c(sizefordat))
+dat$size10 <-  as.numeric(c(sizefordat))* 0.01
 dat$nacid <- c(DNAfordat)
 dat$logll <- c(logll)
 dat$Gsize <- c(Gsizefordat)
@@ -219,7 +219,7 @@ sd(dat.n$size, na.rm=TRUE)
 ###data manipulation 
 
 ```{r}
-my_subset <- subset(dat, select = c("Abbreviation", "logll","LOD","Surface"))
+my_subset <- subset(dat, select = c("Abbreviation", "logll","log", "LOD","Surface"))
 my_subset$Surface <- as.character(my_subset$Surface)
 
 #my_subset2 <- subset(dat, select = c("VirusName", "logll"))
@@ -322,12 +322,22 @@ F2
 
 
 
-###plot boxplot
+###plot boxplot without LODs
 ```{r}
+library(forcats)
 
-ggplot(my_subset, aes(x = Abbreviation, y = logll, fill=Surface)) + 
+my_subset$log <- as.numeric(my_subset$log )
+
+# Remove rows with missing values in logll
+my_subset <- na.omit(my_subset, cols = "log")
+
+# Reorder Abbreviation based on the mean of logll across all data points
+my_subset$Abbreviation <- fct_reorder(my_subset$Abbreviation, my_subset$log, .fun = mean)
+
+
+ggplot(my_subset, aes(x = Abbreviation, y = log, fill=Surface)) + 
   geom_boxplot( alpha = 0.4) +
-  geom_point(aes(shape=LOD), position = position_jitterdodge(jitter.width = 0.2), size = 2, alpha=0.7) +
+  geom_point(aes(shape=Surface), position = position_jitterdodge(jitter.width = 0.2), size = 2, alpha=0.7) +
   # theme_ipsum(axis= TRUE,
   #           grid = FALSE, axis_text_size = 11, 
   #          axis_title_size = 11,
@@ -348,7 +358,7 @@ theme_bw() +
   )+
   scale_shape_manual(
     values = c(1, 20),
-    labels = c( " LOD ", "no LOD")
+    labels = c( " nonenveloped ", "enveloped")
   ) +
   scale_fill_manual(
     labels = c( " nonenveloped ", "enveloped"),
@@ -403,7 +413,7 @@ ggsave("logANDct_temp.jpeg", plot = p,
 
 
 
-###plot log over CT subset coloured by name 
+###plot log over CT subsets by nacid coloured by name 
 ```{r}
 
 
@@ -437,7 +447,7 @@ theme_bw() +
     axis.title.x = element_blank(),
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank()
-  )  -> Fx
+  )  -> FdsRNA
 
 
 subsetNacidssRNA1 <- subset_with_more_than[subset_with_more_than$nacid == "ssRNA(+)",]
@@ -464,7 +474,7 @@ theme_bw() +
     axis.title.x = element_blank(),
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank()
-  )  -> Fx2
+  )  -> FssRNAp
 
 
 subsetNacidssRNA2 <- subset_with_more_than[subset_with_more_than$nacid == "ssRNA(-)",]
@@ -490,14 +500,14 @@ theme_bw() +
     axis.title.x = element_blank(),
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank()
-  )  -> Fx3
+  )  -> FssRNAm
 
-grid.arrange( Fx, Fx2, Fx3, nrow= 1, ncol=3, 
+grid.arrange( FdsRNA, FssRNAp, FssRNAm, nrow= 1, ncol=3, 
             widths=c(8, 8, 8), heights = c(1)) -> Fs
 
-Fx
-Fx2
-Fx3
+FdsRNA
+FssRNAp
+FssRNAm
 Fs
 ```
 
@@ -609,6 +619,71 @@ hist(as.numeric(dat.n$Temp), seq(0,50,2),
      ))
   
 ```
+
+
+##CT distribution
+```{r}
+table(dat$CT)
+dat$CT <- as.numeric(dat$CT)
+
+
+ggplot(dat, aes(x=CT)) +
+  geom_histogram(position="identity", alpha=0.5, color="black", fill="grey45"
+                    , breaks = seq(0,1e+06,10000) 
+                 ) +
+  scale_y_log10(expand = c(0, 0)) +  # Scale y-axis in log10
+  # scale_y_continuous(expand = c(0,0),
+  #                      limits = c(0,400)) +
+  # scale_x_continuous(expand = c(0,0),
+  #                    limits = c(0,50), 
+  #                    breaks=seq(0,50,10)) +
+  labs( y= "Number of Data Points", x = "CT [mg*min/l]") +
+  theme(axis.text.y   = element_text(size=16),
+        axis.text.x   = element_text(size=16),
+        axis.title.y  = element_text(size=16),
+        axis.title.x  = element_text(size=16)) + 
+  theme_ipsum(axis= TRUE,
+              grid = FALSE, axis_text_size = 11, 
+              axis_title_size = 11,
+              axis_col = "black"
+              ) ->objCT1
+
+objCT1
+
+
+ggsave("CT_distribution_all.jpeg", plot = objCT1,
+       scale = 1, width = 40, height = 20, units = "cm", dpi = 1200)
+
+ggplot(dat, aes(x=CT)) +
+  geom_histogram(position="identity", alpha=0.5, color="black", fill="grey45"
+                 , breaks = seq(0,5e+04,1000) 
+                 ) +
+  scale_y_log10(expand = c(0, 0)) +  # Scale y-axis in log10
+  # scale_y_continuous(expand = c(0,0),
+  #                      limits = c(0,400)) +
+  # scale_x_continuous(expand = c(0,0),
+  #                    limits = c(0,50), 
+  #                    breaks=seq(0,50,10)) +
+  labs( y= "Number of Data Points", x = "CT [mg*min/l]") +
+  theme(axis.text.y   = element_text(size=16),
+        axis.text.x   = element_text(size=16),
+        axis.title.y  = element_text(size=16),
+        axis.title.x  = element_text(size=16)) + 
+  theme_ipsum(axis= TRUE,
+              grid = FALSE, axis_text_size = 11, 
+              axis_title_size = 11,
+              axis_col = "black"
+              ) ->objCT2
+
+objCT2
+
+ggsave("CT_distribution_5e+04.jpeg", plot = objCT2,
+       scale = 1, width = 40, height = 20, units = "cm", dpi = 1200)
+
+
+  
+```
+
 ## Surface materials
 ```{r}
 
