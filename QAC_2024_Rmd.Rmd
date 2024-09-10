@@ -1004,6 +1004,22 @@ ggplot(cfm, aes(x=f, y=variable , fill = value))+
 ```
 # ANALYSIS
 
+
+#thinks to do
+```{r}
+
+#exclude LODs or set boundrys
+#exclude PCR or analysise differences
+#subset liquid and Surface
+#subset e and non maybe?
+#subset CT
+#subset BAC
+
+#make analysis for subsets of families? like families with more than 100 datapoints or so?
+
+
+```
+
 ###single linear regression models per factor 
 ```{r}
 # Custom function to calculate SEM
