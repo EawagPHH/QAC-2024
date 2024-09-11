@@ -41,7 +41,7 @@ dat <- read_excel("20240723_AV_analysis_dataset_QAC_deactivation.xlsx",sheet = "
 viruses <- read_excel("20240723_AV_analysis_dataset_QAC_deactivation.xlsx",sheet = "virus properties")
 ```
 
-#manioulate data
+#manipulate data
 
 ##setting fixed values
 ```{r}
@@ -126,38 +126,6 @@ dat$fam <- c(famfordat)
 
 ```
 
-##create binary data for regression analysis
-```{r}
-#make measurement method and carbon load binary
-dat$measurement <-ifelse(dat$measurement == "c", 1,0)
-dat$Surface <-ifelse(dat$Surface == "e", 1,0)
-
-#create one binary colom for each QAC
-idx <- sort(unique(dat$QAC))
-dummy <- matrix(NA, nrow= nrow(dat), ncol =length(idx))
-colnames(dummy) <- c(idx)
-
-for (j in 1:length(idx)) { 
-  dummy[,j] <- as.integer(dat$QAC == idx[j])
-}
-
-dat <- cbind(dat,dummy)
-
-
-
-#create binary colom for each nacid type
-idx <- sort(unique(dat$nacid))
-dummy <- matrix(NA, nrow= nrow(dat), ncol =length(idx))
-colnames(dummy) <- c(idx)
-
-for (j in 1:length(idx)) { 
-  dummy[,j] <- as.integer(dat$nacid == idx[j])
-}
-
-dat <- cbind(dat,dummy)
-
-```
-
 ##create LOD binary vector
 ```{r}
 make_limit <- function(LOD ){
@@ -168,6 +136,8 @@ make_limit <- function(LOD ){
 dat <- dat %>%
   dplyr::mutate(LOD = make_limit( `LOD/LOQ`
                                        ))
+
+
 ```
 
 ##delete cases without size
@@ -188,8 +158,8 @@ dat <- subset(dat, (!is.na(dat$size)))
 dat.e <- dat[dat$Surface == "1",]
 dat.n <- dat[dat$Surface == "0",] 
 subsetlog <- subset(dat, (!is.na(dat$log)))
-subsetlogLOD <- subset(dat, (!is.na(dat$logLOD)))
-subsetcarbon <- subset(dat, (is.na(dat$matrix)))
+subsetlogLOD <- subset(dat, (!is.na(dat$`LOD/LOQ`)))
+subsetcarbon <- subset(dat, (is.na(dat$`carbon load`)))
 ```
 
 
@@ -1174,39 +1144,29 @@ ggsave("Fheat.jpeg", plot = Fheat,
 
 ```
 
-###single linear regression models per factor 
+
+##create binary data for regression analysis
 ```{r}
-# Custom function to calculate SEM
-sem <- function(x) {
-  sd(x) / sqrt(length(x))
-}
 
+###create binary coloums of subsets
+dat.e <- dat[dat$Surface == "e",]
+dat.n <- dat[dat$Surface == "n",] 
 
-# size 
-lmSfelog = lm(dat.e$logll ~ log(dat.e$CT,10) +  dat.e$size)
-summary(lmSfelog)
-lmSfnlog = lm(dat.n$logll ~ log(dat.n$CT,10) +   dat.n$size)
-#lmSfnlog = lm(dat.n$logll[dat.n$size<200] ~ dat.n$CT[dat.n$size<200] +dat.n$size[dat.n$size<200])
-summary(lmSfnlog)
-lmSflog = lm(dat$logll ~ log(dat$CT,10) +   dat$size)
-#lmSfnlog = lm(dat.n$logll[dat.n$size<200] ~ dat.n$CT[dat.n$size<200] +dat.n$size[dat.n$size<200])
-summary(lmSflog)
+#make measurement method and carbon load binary
+dat$measurement <-ifelse(dat$measurement == "c", 1,0)
+dat$Surface <-ifelse(dat$Surface == "e", 1,0)
 
-#Temperature
-lmTlog = lm(dat$logll ~ log(dat$CT,10) + as.numeric(dat$Temp))
-lmTlog
-summary(lmTlog)
+###carbon
 
-#carbon
-binsforcarbon <- dat$`carbon load`
+binsforcarbon = dat$`carbon load`
 binsforcarbon [(is.na(dat$`carbon load`))] = "n"
 binsforcarbon [(!is.na(dat$`carbon load`))] = "c"
 
-binsforcarbone<-dat.e$`carbon load`
+binsforcarbone = dat.e$`carbon load`
 binsforcarbone [(is.na(dat.e$`carbon load`))] = "n"
 binsforcarbone [(!is.na(dat.e$`carbon load`))] = "c"
 
-binsforcarbonn<-dat.n$`carbon load`
+binsforcarbonn = dat.n$`carbon load`
 binsforcarbonn [(is.na(dat.n$`carbon load`))] = "n"
 binsforcarbonn [(!is.na(dat.n$`carbon load`))] = "c"
 
@@ -1223,50 +1183,60 @@ rm(binsforcarbone)
 rm(binsforcarbonn)
 
 
-# barplot
-par(mfrow = c(1, 3))
-barx <- barplot(c_mean,
-                names.arg=c("no C","with C"),
-                ylim=c(0,ceiling(max(dat$logll))),
-                xlab='carbonload',
-                ylab='log reduction')
-error.bar(barx, c_mean,c_sem)
 
-###e
-c_meane <- c (mean(dat.e$logll[dat.e$carbon == "n"]), mean(dat.e$logll[dat.e$carbon == "c"]))
-c_seme <- c (sem(dat.e$logll[dat.e$carbon == "n"]), sem(dat.e$logll[dat.e$carbon == "c"]))
-# barplot
-barx <- barplot(c_meane, main="enveloped", 
-                names.arg=c("no C","with C"),
-                ylim=c(0,ceiling(max(dat.e$logll))),
-                xlab='carbonload',
-                ylab='log reduction')
-error.bar(barx, c_meane,c_seme)
+#create one binary colom for each QAC
 
-##n
-c_meann <- c (mean(dat.n$logll[dat.n$carbon == "n"]), mean(dat.n$logll[dat.n$carbon == "c"]))
-c_semn <- c (sem(dat.n$logll[dat.n$carbon == "n"]), sem(dat.n$logll[dat.n$carbon == "c"]))
-# barplot
-barx <- barplot(c_meann,main="nonenveloped", 
-                names.arg=c("no C","with C"),
-                ylim=c(0,ceiling(max(dat.n$logll))),
-                xlab='carbonload',
-                ylab='log reduction')
-error.bar(barx, c_meann,c_semn)
+#first bin all QACs with less than 30  datapoints to others 
 
 
-###########SSM 
+# Modify the 'QAC' column in the dataset
+dat <- dat %>%
+  mutate(QAC = ifelse(QAC %in% c("BAC", "BZT", "DDAB", "DDAC", "QACmix"), QAC, "others"))
 
-lmTlog = lm(dat$logll ~ log(dat$CT,10)    )
+
+idx <- sort(unique(dat$QAC))
+dummy <- matrix(NA, nrow= nrow(dat), ncol =length(idx))
+colnames(dummy) <- c(idx)
+
+for (j in 1:length(idx)) { 
+  dummy[,j] <- as.integer(dat$QAC == idx[j])
+}
+
+dat <- cbind(dat,dummy)
+
+
+
+#create binary colom for each nacid type
+idx <- sort(unique(dat$nacid))
+dummy <- matrix(NA, nrow= nrow(dat), ncol =length(idx))
+colnames(dummy) <- c(idx)
+
+for (j in 1:length(idx)) { 
+  dummy[,j] <- as.integer(dat$nacid == idx[j])
+}
+
+dat <- cbind(dat,dummy)
+```
+
+
+
+#####################with all factors
+```{r}
+library(car)
+lmTlog = lm(dat$logll ~ log(dat$CT,10) +dat$size10 + dat$carbon + as.numeric(dat$Temp) +dat$Surface  + dat$Gsize +dat$liquid +dat$measurement +dat$`ssRNA(-)`+ dat$ssDNA +dat$`ssRNA(+)` + dat$dsRNA +  dat$BZT + dat$DDAB + dat$DDAC + dat$MBAT + dat$others + dat$QACmix )
 summary(lmTlog)
 
-lmTlog = lm(dat$logll ~ log(dat$CT,10)  +dat$Surface   )
+#without genomesize and liquid
+lmTlog = lm(dat$logll ~ log(dat$CT,10) +dat$size10 + dat$carbon + as.numeric(dat$Temp) +dat$Surface   +dat$measurement +dat$`ssRNA(-)` + dat$ssDNA +dat$`ssRNA(+)` + dat$dsRNA +  dat$BZT + dat$DDAB + dat$DDAC + dat$MBAT + dat$others + dat$QACmix )
 summary(lmTlog)
 
-################### multiple linear regression analysis
+#without genomesize, carbon load, liquid
+lmTlog = lm(dat$logll ~ log(dat$CT,10) +dat$size10 + as.numeric(dat$Temp) +dat$Surface  +dat$measurement+dat$`ssRNA(-)` + dat$ssDNA +dat$`ssRNA(+)` + dat$dsDNA +  dat$BZT + dat$DDAB + dat$DDAC + dat$MBAT + dat$others + dat$QACmix )
+summary(lmTlog)
 
 
-lmTlog = lm(dat$logll ~ log(dat$CT,10) +dat$size10 + dat$carbon + as.numeric(dat$Temp) +dat$Surface  + dat$Gsize + dat$ssRNAp+dat$ssRNA +dat$dsDNA +dat$dsRNA +dat$ssDNA   )
+
+lmTlog = lm(dat$log ~ log(dat$CT,10) +dat$size10 + dat$carbon + as.numeric(dat$Temp) +dat$Surface  + dat$Gsize + dat$"ssRNA(-)"+dat$"ssRNA(+)" +dat$dsDNA +dat$dsRNA +dat$ssDNA)
 summary(lmTlog)
 library(car)
 vif(lmTlog)
@@ -1275,6 +1245,7 @@ alias(lmTlog)
 
 dat$Surface <-ifelse(dat$Surface == "e", 1,0)
 dat$carbon <- as.numeric(dat$carbon)
+
 df = data.frame(dat$logll, log(dat$CT,10),as.numeric(dat$size10) , dat$carbon , as.numeric(dat$Temp) ,dat$Surface  , dat$Gsize , dat$ssRNAp ,dat$dsDNA ,dat$dsRNA ,dat$ssDNA )
 cor(df)
 lm(df)
@@ -1365,54 +1336,96 @@ cor.test(dat.e$size , dat.e$Gsize, method= "pearson")
 cor.test(dat.e$size , dat.e$Gsize, method= "kendall")
 cor.test(dat.e$size , dat.e$Gsize, method= "spearman")
 
+```
 
 
-#################################bac subset
+#single linear regression models per factor 
+```{r}
+# Custom function to calculate SEM
+sem <- function(x) {
+  sd(x) / sqrt(length(x))
+}
 
-bac <- subset(dat, (!is.na(dat$BAC)))
-bac <- subset(dat, dat$BAC == "BAC")
-lmbac = lm(bac$logll ~ log(bac$CT,10) +bac$size+ bac$carbon + as.numeric(bac$Temp) +bac$Surface  + bac$Gsize )
-summary(lmbac)
-vif(lmbac)
-#remove Gsize because of correlation
-lmbac = lm(bac$logll ~ log(bac$CT,10) +bac$size+ bac$carbon + as.numeric(bac$Temp) +bac$Surface)
-#remove carbon load because of bios
-lmbac = lm(bac$logll ~ log(bac$CT,10) + as.numeric(bac$Temp) +bac$Surface)
 
-#distibutions bac;
+# size 
+lmSfelog = lm(dat.e$logll ~ log(dat.e$CT,10) +  dat.e$size)
+summary(lmSfelog)
+lmSfnlog = lm(dat.n$logll ~ log(dat.n$CT,10) +   dat.n$size)
+#lmSfnlog = lm(dat.n$logll[dat.n$size<200] ~ dat.n$CT[dat.n$size<200] +dat.n$size[dat.n$size<200])
+summary(lmSfnlog)
+lmSflog = lm(dat$logll ~ log(dat$CT,10) +   dat$size)
+#lmSfnlog = lm(dat.n$logll[dat.n$size<200] ~ dat.n$CT[dat.n$size<200] +dat.n$size[dat.n$size<200])
+summary(lmSflog)
 
-#distribution corbon
-sum(bac$carbon=="c")
+#Temperature
+lmTlog = lm(dat$logll ~ log(dat$CT,10) + as.numeric(dat$Temp))
+lmTlog
+summary(lmTlog)
 
-c_mean <- c (mean(bac$logll[bac$carbon == "n"]), mean(bac$logll[bac$carbon == "c"]))
+#carbon
+binsforcarbon <- dat$`carbon load`
+binsforcarbon [(is.na(dat$`carbon load`))] = "n"
+binsforcarbon [(!is.na(dat$`carbon load`))] = "c"
+
+binsforcarbone<-dat.e$`carbon load`
+binsforcarbone [(is.na(dat.e$`carbon load`))] = "n"
+binsforcarbone [(!is.na(dat.e$`carbon load`))] = "c"
+
+binsforcarbonn<-dat.n$`carbon load`
+binsforcarbonn [(is.na(dat.n$`carbon load`))] = "n"
+binsforcarbonn [(!is.na(dat.n$`carbon load`))] = "c"
+
+dat$carbon <- c(binsforcarbon)
+dat.e$carbon <- c(binsforcarbone)
+dat.n$carbon <- c(binsforcarbonn)
+
+c_mean <- c (mean(dat$logll[dat$carbon == "n"]), mean(dat$logll[dat$carbon == "c"]))
+c_sem <- c (sem(dat$logll[dat$carbon == "n"]), sem(dat$logll[dat$carbon == "c"]))
+c_sd <- c (sd(dat$logll[dat$carbon == "n"]), sd(dat$logll[dat$carbon == "c"]))
+
+rm(binsforcarbon)
+rm(binsforcarbone)
+rm(binsforcarbonn)
+
 
 # barplot
 par(mfrow = c(1, 3))
 barx <- barplot(c_mean,
                 names.arg=c("no C","with C"),
                 ylim=c(0,ceiling(max(dat$logll))),
-                xlab='carbonloadbac',
+                xlab='carbonload',
                 ylab='log reduction')
-#is to biost
+error.bar(barx, c_mean,c_sem)
 
-#distribution envelope
-sum(bac$carbon=="n")
-#tempreture
-par(mfrow = c(1, 1), mar=c(6,5,3,2))
-hist(as.numeric(bac$Temp), seq(0,50,2), 
-     main = "distribution of temperature bac" , ylab = "amount of data points", xlab = "temperature in ?C",
-     col= c("#3300CC","#3300CC","#3300CC","#3300CC",
-            "#3300FF","#3300FF","#3300FF","#3300FF",
-            "#CC00FF","#CC00FF","#CC00FF","#CC00FF",
-            "#CC00CC","#CC00CC","#CC00CC","#CC00CC",
-            "#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099"
-     ))
+###e
+c_meane <- c (mean(dat.e$logll[dat.e$carbon == "n"]), mean(dat.e$logll[dat.e$carbon == "c"]))
+c_seme <- c (sem(dat.e$logll[dat.e$carbon == "n"]), sem(dat.e$logll[dat.e$carbon == "c"]))
+# barplot
+barx <- barplot(c_meane, main="enveloped", 
+                names.arg=c("no C","with C"),
+                ylim=c(0,ceiling(max(dat.e$logll))),
+                xlab='carbonload',
+                ylab='log reduction')
+error.bar(barx, c_meane,c_seme)
 
-####size distribution 
+##n
+c_meann <- c (mean(dat.n$logll[dat.n$carbon == "n"]), mean(dat.n$logll[dat.n$carbon == "c"]))
+c_semn <- c (sem(dat.n$logll[dat.n$carbon == "n"]), sem(dat.n$logll[dat.n$carbon == "c"]))
+# barplot
+barx <- barplot(c_meann,main="nonenveloped", 
+                names.arg=c("no C","with C"),
+                ylim=c(0,ceiling(max(dat.n$logll))),
+                xlab='carbonload',
+                ylab='log reduction')
+error.bar(barx, c_meann,c_semn)
 
-mean(bac$size)
-sd(bac$size)
-hist(bac$size)
-hist(dat$size)
+
+###########SSM 
+
+lmTlog = lm(dat$logll ~ log(dat$CT,10)    )
+summary(lmTlog)
+
+lmTlog = lm(dat$logll ~ log(dat$CT,10)  +dat$Surface   )
+summary(lmTlog)
 ```
 
