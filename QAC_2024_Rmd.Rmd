@@ -167,16 +167,6 @@ dat <- dat %>%
                                        ))
 ```
 
-
-##create subsets
-```{r}
-dat.e <- dat[dat$Surface == "1",]
-dat.n <- dat[dat$Surface == "0",] 
-subsetlog <- subset(dat, (!is.na(dat$log)))
-subsetlogLOD <- subset(dat, (!is.na(dat$logLOD)))
-subsetcarbon <- subset(dat, (is.na(dat$matrix)))
-```
-
 ##delete cases without size
 
 ```{r}
@@ -190,6 +180,16 @@ dat[na_indices, ]
 dat <- subset(dat, (!is.na(dat$size)))
 
 ```
+##create subsets
+```{r}
+dat.e <- dat[dat$Surface == "1",]
+dat.n <- dat[dat$Surface == "0",] 
+subsetlog <- subset(dat, (!is.na(dat$log)))
+subsetlogLOD <- subset(dat, (!is.na(dat$logLOD)))
+subsetcarbon <- subset(dat, (is.na(dat$matrix)))
+```
+
+
 
 
 ##clean up
@@ -235,7 +235,18 @@ sd(dat.e$size, na.rm=TRUE)
 mean(dat.n$size, na.rm=TRUE)
 sd(dat.n$size, na.rm=TRUE)
 
+#number of studies included enveloped or nonenveloped data
 
+
+dim(table(dat.e$`Studies by number`))
+dim(table(dat.n$`Studies by number`))
+
+table(dat.e$`Studies by number`)
+table(dat.n$`Studies by number`)
+
+
+# nacid 
+table(dat$nacid)
 
 ```
 #plots
@@ -1022,8 +1033,12 @@ ggplot(cfm, aes(x=f, y=variable , fill = value))+
         axis.text.y = element_text(angle = 0, vjust = 0.5, hjust=1, size = 15),# lables vertical
         strip.text.y = element_blank(), #remove facet bar on y 
         legend.position="none")  + 
-  geom_text(aes(label = value), color = "white", size = 5)
+  geom_text(aes(label = value), color = "white", size = 5) -> Fheat
 
+Fheat
+
+ggsave("Fheat.jpeg", plot = Fheat,
+       scale = 1, width = 40, height = 20, units = "cm", dpi = 1200)
 
 ```
 # ANALYSIS
