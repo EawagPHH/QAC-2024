@@ -128,6 +128,7 @@ dat$fam <- c(famfordat)
 
 ##create LOD binary vector
 ```{r}
+
 make_limit <- function(LOD ){
   dplyr::case_when(LOD > -10 ~ "LOD",
                      TRUE ~ "NO LOD")
@@ -1216,6 +1217,18 @@ for (j in 1:length(idx)) {
 }
 
 dat <- cbind(dat,dummy)
+
+
+#create binary colom for each material  type
+idx <- sort(unique(dat$material))
+dummy <- matrix(NA, nrow= nrow(dat), ncol =length(idx))
+colnames(dummy) <- c(idx)
+
+for (j in 1:length(idx)) { 
+  dummy[,j] <- as.integer(dat$material == idx[j])
+}
+
+dat <- cbind(dat,dummy)
 ```
 
 
@@ -1487,5 +1500,108 @@ summary(lmTlog)
 
 lmTlog = lm(dat$logll ~ log(dat$CT,10)  +dat$Surface   )
 summary(lmTlog)
+```
+
+
+#maschine learning normalisation
+
+```{r}
+# Assuming your data is in a data frame called df
+dat$Temp <- as.numeric(dat$Temp)
+
+numerical_columns <- c("Temp", "size", "Gsize", "C (mg/L)", "time (min)")
+
+# Standardize the numerical columns
+dat[numerical_columns] <- scale(dat[numerical_columns])
+
+# Check if scaling worked
+summary(dat[numerical_columns])
+
+
+
+
+
+```
+
+#random forest 
+```{r}
+# Install and load the package if you haven't already
+install.packages("randomForest")
+library(randomForest)
+
+#subset dataframe to the coloums wanting to investigate 
+
+dat2 <- subset(dat, !is.na(log))
+
+df <- dat2[, c( "log", "Temp", "size", "Gsize", "C (mg/L)", "time (min)",  "Surface" ,  "measurement" , "carbon" , "ssRNA(-)" , "ssDNA" , "ssRNA(+)" , "dsRNA" , "BZT"  , "DDAB"  , "DDAC"  , "others" , "QACmix" , "aluminium"   ,    "ceramic"     ,          "glass"       ,    "hand"       ,     "human skin"    ,  "laminate"   ,   "Latex paint"  ,   "lettuce"  ,  "plastic" ,        "polypropylene" ,  "polystyrene" ,   "rubber"      ,    "stainless steel" ,"strawberry"     , "Tile"       ,     "Wood"   )]
+
+
+# Build the Random Forest model
+set.seed(123)  # For reproducibility
+rf_model <- randomForest(log ~ ., data = df, importance = TRUE)
+
+# View the model
+print(rf_model)
+
+# Plot variable importance
+varImpPlot(rf_model)
+
+```
+#xboost
+```{r}
+# Load required libraries
+install.packages("xgboost")
+install.packages("xgboost")
+# Load required libraries
+library(xgboost)
+library(Matrix)
+
+# Assuming your dataframe is called df
+# Ensure the target variable 'log' is numeric
+target <- as.numeric(df$log)
+
+# Remove the target variable from df
+df_features <- df[, !names(df) %in% 'log']
+
+# Convert categorical variables to numeric using one-hot encoding
+df_features_matrix <- model.matrix(~ . - 1, data = df_features)
+
+# Check the number of rows and ensure consistency
+print(nrow(df_features_matrix))  # Should match length(target)
+
+# Ensure no missing values
+if (any(is.na(df_features_matrix)) || any(is.na(target))) {
+  stop("Data contains missing values")
+}
+
+# Check if lengths match
+if (nrow(df_features_matrix) != length(target)) {
+  stop("Number of rows in feature matrix does not match length of target vector")
+}
+
+# Create xgboost matrix
+dtrain <- xgb.DMatrix(data = df_features_matrix, label = target, missing = NA)
+
+# Set up xgboost parameters
+params <- list(
+  booster = "gbtree",
+  objective = "reg:squarederror",
+  eval_metric = "rmse",
+  eta = 0.1,
+  max_depth = 6,
+  subsample = 0.8,
+  colsample_bytree = 0.8
+)
+
+# Train the xgboost model
+xgb_model <- xgb.train(
+  params = params,
+  data = dtrain,
+  nrounds = 100
+)
+
+# View model details
+print(xgb_model)
+
 ```
 
