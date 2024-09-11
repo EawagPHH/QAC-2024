@@ -1219,47 +1219,71 @@ dat <- cbind(dat,dummy)
 ```
 
 
+##with all factors
 
-#####################with all factors
 ```{r}
 library(car)
-lmTlog = lm(dat$logll ~ log(dat$CT,10) +dat$size10 + dat$carbon + as.numeric(dat$Temp) +dat$Surface  + dat$Gsize +dat$liquid +dat$measurement +dat$`ssRNA(-)`+ dat$ssDNA +dat$`ssRNA(+)` + dat$dsRNA +  dat$BZT + dat$DDAB + dat$DDAC + dat$MBAT + dat$others + dat$QACmix )
+
+# Fit the initial model including all columns
+lmTlog = lm(logll ~ log(CT, 10) + size10 + carbon + as.numeric(Temp) + Surface + Gsize +  measurement + `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC  + others + QACmix, data = dat)
+
+# View the summary of the model
 summary(lmTlog)
 
-#without genomesize and liquid
-lmTlog = lm(dat$logll ~ log(dat$CT,10) +dat$size10 + dat$carbon + as.numeric(dat$Temp) +dat$Surface   +dat$measurement +dat$`ssRNA(-)` + dat$ssDNA +dat$`ssRNA(+)` + dat$dsRNA +  dat$BZT + dat$DDAB + dat$DDAC + dat$MBAT + dat$others + dat$QACmix )
-summary(lmTlog)
-
-#without genomesize, carbon load, liquid
-lmTlog = lm(dat$logll ~ log(dat$CT,10) +dat$size10 + as.numeric(dat$Temp) +dat$Surface  +dat$measurement+dat$`ssRNA(-)` + dat$ssDNA +dat$`ssRNA(+)` + dat$dsDNA +  dat$BZT + dat$DDAB + dat$DDAC + dat$MBAT + dat$others + dat$QACmix )
-summary(lmTlog)
-
-
-
-lmTlog = lm(dat$log ~ log(dat$CT,10) +dat$size10 + dat$carbon + as.numeric(dat$Temp) +dat$Surface  + dat$Gsize + dat$"ssRNA(-)"+dat$"ssRNA(+)" +dat$dsDNA +dat$dsRNA +dat$ssDNA)
-summary(lmTlog)
-library(car)
-vif(lmTlog)
+vif(lmTlog)  #no concern all vif< 5
 alias(lmTlog) 
 
+#test for correlations 
+
+
+df = data.frame(dat$log, log(dat$CT,10),as.numeric(dat$size10) ,  as.numeric(dat$Temp) ,dat$Surface  , as.numeric(dat$Gsize) )
+cor(df)
+lm(df)
+vif(lm(df))
+alias(lm(df))
+
+
+cor.test(dat$size , dat$Gsize, method= "spearman") #spearman for not normal distributed 
+cor.test(dat$size , dat$Surface, method= "pearson") # pearson for one numeric one binary variable 
+
+
+#test correlation for non numerical variables single handed
+ cor(dat$`ssRNA(-)`, dat$`ssRNA(+)`)
+ cor(dat$`ssRNA(-)`, dat$ssDNA)
+ cor(dat$`ssRNA(-)`,dat$dsRNA)
+ cor(dat$`ssRNA(-)`,dat$dsDNA)
+ cor(dat$`ssRNA(-)`,dat$`ssRNA(-)`)
+ cor(dat$`ssRNA(-)`,dat$carbon)
+ cor(dat$`ssRNA(-)`,dat$Surface)
+
+ #exclude Gsize or size due to correlation 
+
+
+ 
+ # Fit the initial model including all columns
+lmTlog = lm(logll ~ log(CT, 10) + size10 + carbon + as.numeric(Temp) + Surface +  measurement + `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC  + others + QACmix, data = dat)
+
+# View the summary of the model
+summary(lmTlog)
+ 
 
 dat$Surface <-ifelse(dat$Surface == "e", 1,0)
 dat$carbon <- as.numeric(dat$carbon)
 
-df = data.frame(dat$logll, log(dat$CT,10),as.numeric(dat$size10) , dat$carbon , as.numeric(dat$Temp) ,dat$Surface  , dat$Gsize , dat$ssRNAp ,dat$dsDNA ,dat$dsRNA ,dat$ssDNA )
+df = data.frame(dat$log, log(dat$CT,10),as.numeric(dat$size10) ,  as.numeric(dat$Temp) ,dat$Surface  , as.numeric(dat$Gsize) )
 cor(df)
 lm(df)
 vif(lm(df))
 alias(lm(df))
 
  cor(dat$Gsize,dat$size10)
- cor(dat$ssRNAp, dat$ssRNA)
- cor(dat$ssRNAp, dat$ssDNA)
- cor(dat$ssRNAp,dat$dsRNA)
- cor(dat$ssRNAp,dat$dsDNA)
- cor(dat$ssRNAp,dat$ssRNAp)
- cor(dat$ssRNAp,dat$carbon)
- cor(dat$ssRNAp,dat$Surface)
+ cor(dat$`ssRNA(-)`, dat$`ssRNA(+)`)
+ cor(dat$`ssRNA(-)`, dat$ssDNA)
+ cor(dat$`ssRNA(-)`,dat$dsRNA)
+ cor(dat$`ssRNA(-)`,dat$dsDNA)
+ cor(dat$`ssRNA(-)`,dat$`ssRNA(-)`)
+ cor(dat$`ssRNA(-)`,dat$carbon)
+ cor(dat$`ssRNA(-)`,dat$Surface)
 
 
 
@@ -1335,6 +1359,42 @@ cor.test(dat.n$size , dat.n$Gsize, method= "spearman")
 cor.test(dat.e$size , dat.e$Gsize, method= "pearson")
 cor.test(dat.e$size , dat.e$Gsize, method= "kendall")
 cor.test(dat.e$size , dat.e$Gsize, method= "spearman")
+
+```
+
+
+##subset 
+
+```{r}
+library(car)
+
+``{r}
+
+#exclude LODs or set boundrys
+#exclude PCR or analysise differences
+#subset liquid and Surface
+#subset e and non maybe?
+#subset CT
+#subset BAC
+
+#make analysis for subsets of families? like families with more than 100 datapoints or so?
+
+subsetLM <-  subset(dat, (!is.na(dat$log)) &
+                      is.na(material) & 
+                      CT < 100000 &
+                      QAC == "BAC" &
+                      measurement == 1 &
+                      Surface == 0
+                        )
+
+
+
+# Fit the initial model including all columns
+lmTlog = lm(logll ~ log(CT, 10) + size10 + carbon + as.numeric(Temp) + Surface +  measurement + `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC + others + QACmix, data = subsetLM)
+
+# View the summary of the model
+summary(lmTlog)
+
 
 ```
 
