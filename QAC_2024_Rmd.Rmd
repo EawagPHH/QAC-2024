@@ -121,6 +121,9 @@ dat$logll <- as.numeric(c(logll))
 dat$log <- as.numeric(c(dat$log))
 dat$Gsize <- as.numeric(c(Gsizefordat))
 dat$fam <- c(famfordat)
+
+
+
 ```
 
 ##create binary data for regression analysis
@@ -191,7 +194,6 @@ subsetcarbon <- subset(dat, (is.na(dat$matrix)))
 
 
 
-
 ##clean up
 ```{r}
 #clean up
@@ -235,6 +237,23 @@ sd(dat.e$size, na.rm=TRUE)
 mean(dat.n$size, na.rm=TRUE)
 sd(dat.n$size, na.rm=TRUE)
 
+filtered_size <- dat[dat$size > 200, ]
+dim(filtered_size)
+
+filtered_size <- dat[dat$size < 50, ]
+dim(filtered_size)
+
+filtered_size <- dat[dat$size >= 50 & dat$size <100, ]
+dim(filtered_size)
+filtered_size <- dat[dat$size >= 100 & dat$size <150, ]
+dim(filtered_size)
+filtered_size <- dat[dat$size >= 150 & dat$size <200, ]
+dim(filtered_size)
+filtered_size <- dat[dat$size >= 200 & dat$size <250, ]
+dim(filtered_size)
+filtered_size <- dat[dat$size > 250, ]
+dim(filtered_size)
+
 #number of studies included enveloped or nonenveloped data
 
 
@@ -247,6 +266,58 @@ table(dat.n$`Studies by number`)
 
 # nacid 
 table(dat$nacid)
+
+#gzize
+table(dat$Gsize)
+
+  # Step 1: Filter for Gzize smaller than 50
+  filtered_viruses <- dat[dat$Gsize < 50, ]
+  
+  # Step 2: Get unique rows based on VirusName
+  unique_viruses <- filtered_viruses[!duplicated(filtered_viruses$VirusName), ]
+  
+  # View the result
+  print(unique_viruses)
+  
+#Tempreture 
+dat$Temp <- as.numeric(dat$Temp)
+  
+dim(dat[dat$Temp >= 20 & dat$Temp <=25, ])
+dim(dat[dat$Temp ==37, ])
+dim(dat[dat$Temp >= 0 & dat$Temp <=5 , ])  
+dim(dat[dat$Temp > 25 & dat$Temp <37 , ]) 
+dim(dat[dat$Temp >37, ])
+
+
+#carbon load 
+
+dim(dat [ !is.na(dat$`carbon load`), ])
+
+filtered_carbon <- dat [ !is.na(dat$`carbon load`), ]
+
+unique_studies <- filtered_carbon[!duplicated(filtered_carbon$`Studies by number`), ]
+print(unique_studies)
+
+
+# surface material
+
+dim(dat [ is.na(dat$material), ]) #datapoints without surface material == in liquid solution
+filtered_material <- dat [ !is.na(dat$material), ]
+
+unique_studies <- filtered_material[!duplicated(filtered_material$`Studies by number`), ]
+print(unique_studies)
+
+
+
+#QAC type 
+
+table(dat$QAC)
+
+filtered_bac <- dat [ dat$QAC == "DDAB", ]
+dim(filtered_bac)
+unique_studies <- filtered_bac[!duplicated(filtered_bac$`Studies by number`), ]
+print(unique_studies)
+
 
 ```
 #plots
@@ -654,6 +725,50 @@ hist(as.numeric(dat.n$Temp), seq(0,50,2),
             "#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099","#CC0099"
      ))
   
+```
+####Carbon load
+```{r}
+
+par(mfrow = c(1, 1))
+grid(nx = NA, ny=7, col="lightgray")##
+par(mar=c(6,5,4,2))
+plot(log ~ CT, data=dat, pch=19, cex=0.5, log="x", 
+     main="distribution of carbon load", xlab="CT value logarithmic [concentracion * time]", ylab="log reduction",
+     col=ifelse(is.na(dat$matrix) , "turquoise3", "tan4"))
+legend("topright", y=6,legend = c( " without carbon load" , " with carbon load"), col= c("turquoise3" , "tan4" ),pch= c(19,19), cex=0.7 )
+
+```
+###  Surface materials
+```{r}
+### Experimental Surface materials
+
+par(mfrow = c(1, 2), mar=c(7,5,2,1))
+barplot(table(dat$material), las=2, 
+        ylab = "amount of data points", 
+        col= "grey40", cex.names = 1.1, cex.axis = 1.1, )
+box(which="plot", bty="]")
+par( mar=c(8,5,2,1))
+tmpmat <- as.matrix (table(dat$`Studies by number`, dat$material))
+tmpmat [tmpmat > 1] <- 1
+barplot(tmpmat, las=2 , cex.names = 1.1, cex.axis = 1.1, 
+        ylab = "amount of studies")
+box(which="plot", bty="]")
+
+
+###plot 2 Surface matierials
+
+tmpMaterial=as.matrix (table(dat$`Studies by number`, dat$material))
+meltM2<- melt (tmpMaterial)
+
+ggplot(meltM2, aes(x=Var2, y=value))+  geom_bar(stat="identity",  colour = "black", fill = "#808080")-> obj1
+obj1 + labs( y= "number of datapoints") -> obj2
+obj2 +   theme_bw() + theme(axis.text.x = element_text(angle = 90) )-> obj3
+obj3 +  theme(axis.title.x = element_blank())-> obj4
+obj4
+
+ggsave("SurfaceMaterial.jpeg", plot = obj4,
+       scale = 1, width = 40, height = 20, units = "cm", dpi = 1200)
+
 ```
 
 
