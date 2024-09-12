@@ -48,16 +48,24 @@ viruses <- read_excel("20240723_AV_analysis_dataset_QAC_deactivation.xlsx",sheet
 dat$Temp[dat$Temp=="RT"] = 22
 dat$CT = dat$`C (mg/L)`* dat$`time (min)`
 
-#####logll Setting 0 and negative LRV Values to 0.1 to be able to calculate with them 
-logll = as.numeric(dat$log)
-logll[ is.na( dat$log ) ] = as.numeric(dat$`LOD/LOQ`[ is.na(dat$log)])
-logll [logll == 0] = 0.1
-logll [logll < 0] = 0.1
+# Set the values to 0.1 where the LOD/LOQ entry starts with "<"
+dat$`LOD/LOQ`[grepl("^<", dat$`LOD/LOQ`)] <- "0.1"
+
+# Remove the ">" and keep the numeric part for entries starting with ">"
+dat$`LOD/LOQ`[grepl("^>", dat$`LOD/LOQ`)] <- gsub("^>", "", dat$`LOD/LOQ`[grepl("^>", dat$`LOD/LOQ`)])
+
+#creating logll from log
+dat$logll <- as.numeric(dat$log)
+
+#take entries from LOD/LOQ and place them into logll
+dat$logll[ is.na( dat$logll ) ] = as.numeric(dat$`LOD/LOQ`[ is.na(dat$log)])
 
 
+#set the rest of the LOD values to 0.1
+dat$logll [dat$logll == 0] = 0.1
+dat$logll [dat$logll < 0] = 0.1
 
-dat.log <- as.numeric(dat$log[! is.na( dat$log ) ])
-dat.logLOD <- as.numeric(dat$`LOD/LOQ`[! is.na( dat$`LOD/LOQ`)])
+
 ```
 
 ##connecting datasets
@@ -1148,6 +1156,11 @@ ggsave("Fheat.jpeg", plot = Fheat,
 
 ##create binary data for regression analysis
 ```{r}
+# Custom function to calculate SEM
+sem <- function(x) {
+  sd(x) / sqrt(length(x))
+}
+
 
 ###create binary coloums of subsets
 dat.e <- dat[dat$Surface == "e",]
@@ -1237,8 +1250,16 @@ dat <- cbind(dat,dummy)
 ```{r}
 library(car)
 
+#lets subset the dataset for our linear regression model
+#avoiding long exposure times, biasing concentrations, cut off 30 min
+#avoiding limit of detections 
+
+subset_LR <-  subset(dat, (!is.na(dat$log)) &
+                     dat$`time (min)` <= 30 
+                      )
+
 # Fit the initial model including all columns
-lmTlog = lm(logll ~ log(CT, 10) + size10 + carbon + as.numeric(Temp) + Surface + Gsize +  measurement + `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC  + others + QACmix, data = dat)
+lmTlog = lm(log ~ log(CT, 10) + size10 + carbon + as.numeric(Temp) + Surface + Gsize +  measurement + `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC  + others + QACmix, data = subset_LR)
 
 # View the summary of the model
 summary(lmTlog)
@@ -1414,10 +1435,6 @@ summary(lmTlog)
 
 #single linear regression models per factor 
 ```{r}
-# Custom function to calculate SEM
-sem <- function(x) {
-  sd(x) / sqrt(length(x))
-}
 
 
 # size 
