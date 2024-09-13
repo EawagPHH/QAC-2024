@@ -125,7 +125,7 @@ for(i in 1:dim(viruses)[1]){
 dat$size <- as.numeric(c(sizefordat))
 dat$size10 <-  as.numeric(c(sizefordat))* 0.01
 dat$nacid <- c(DNAfordat)
-dat$logll <- as.numeric(c(logll))
+dat$logll <- as.numeric(dat$logll)
 dat$log <- as.numeric(c(dat$log))
 dat$Gsize <- as.numeric(c(Gsizefordat))
 dat$fam <- c(famfordat)
@@ -186,14 +186,9 @@ rm(GsizeTMP)
 rm(DNAfordat)
 rm(famfordat)
 rm(Gsizefordat)
-rm(dat.log)
-rm(dat.logLOD)
-rm(logll)
 rm(sizefordat)
 rm(tablenick)
-rm(idx)
-rm(j, StrainTMP)
-rm(dummy)
+
 ```
 #distributions
 ```{r}
@@ -708,13 +703,13 @@ hist(as.numeric(dat.n$Temp), seq(0,50,2),
 ####Carbon load
 ```{r}
 
-par(mfrow = c(1, 1))
-grid(nx = NA, ny=7, col="lightgray")##
-par(mar=c(6,5,4,2))
-plot(log ~ CT, data=dat, pch=19, cex=0.5, log="x", 
-     main="distribution of carbon load", xlab="CT value logarithmic [concentracion * time]", ylab="log reduction",
-     col=ifelse(is.na(dat$matrix) , "turquoise3", "tan4"))
-legend("topright", y=6,legend = c( " without carbon load" , " with carbon load"), col= c("turquoise3" , "tan4" ),pch= c(19,19), cex=0.7 )
+# par(mfrow = c(1, 1))
+# grid(nx = NA, ny=7, col="lightgray")##
+# par(mar=c(6,5,4,2))
+# plot(log ~ CT, data=dat, pch=19, cex=0.5, log="x", 
+#      main="distribution of carbon load", xlab="CT value logarithmic [concentracion * time]", ylab="log reduction",
+#      col=ifelse(is.na(dat$matrix) , "turquoise3", "tan4"))
+# legend("topright", y=6,legend = c( " without carbon load" , " with carbon load"), col= c("turquoise3" , "tan4" ),pch= c(19,19), cex=0.7 )
 
 ```
 ###  Surface materials
@@ -813,6 +808,8 @@ ggsave("CT_distribution_5e+04.jpeg", plot = objCT2,
 
   
 ```
+
+
 
 ## Surface materials
 ```{r}
@@ -1170,6 +1167,7 @@ dat.n <- dat[dat$Surface == "n",]
 dat$measurement <-ifelse(dat$measurement == "c", 1,0)
 dat$Surface <-ifelse(dat$Surface == "e", 1,0)
 
+
 ###carbon
 
 binsforcarbon = dat$`carbon load`
@@ -1196,7 +1194,7 @@ rm(binsforcarbon)
 rm(binsforcarbone)
 rm(binsforcarbonn)
 
-
+dat$carbon <- as.numeric(dat$carbon)
 
 #create one binary colom for each QAC
 
@@ -1244,7 +1242,79 @@ for (j in 1:length(idx)) {
 dat <- cbind(dat,dummy)
 ```
 
+#investigating outliers for linear regression model 
+```{r}
 
+ggplot(dat, aes(x=dat$`time (min)`, y= dat$`C (mg/L)` )) +
+  geom_point( alpha=0.5, color="black", fill="grey45"
+                                 ) +
+  scale_y_log10(expand = c(0, 0)) +
+  scale_x_log10(expand = c(0, 0)) +
+  scale_y_continuous(
+                       limits = c(0,100000)) +
+  scale_x_continuous(
+                     limits = c(0,1000)) +
+  labs( y= "c", x = "t") +
+  theme(axis.text.y   = element_text(size=16),
+        axis.text.x   = element_text(size=16),
+        axis.title.y  = element_text(size=16),
+        axis.title.x  = element_text(size=16)) + 
+  theme_ipsum(axis= TRUE,
+              grid = FALSE, axis_text_size = 11, 
+              axis_title_size = 11,
+              axis_col = "black"
+              ) ->objCT33
+
+objCT33
+
+# 
+# ##cooks distance 
+# model <- lm(log~ dat$`time (min)` * dat$`C (mg/L)`, data = dat)
+# cooksd <- cooks.distance(model)
+# 
+# # Identifying highly influential points
+# influential <- which(cooksd > (4 / length(dat$`time (min)` )))
+# 
+# dat[influential, ]
+# 
+# plot(dat$`C (mg/L)`, dat$`time (min)`, main="Concentration vs Time with Influential Points", col="blue")
+# points(dat[influential, ]$`C (mg/L)`, dat[influential, ]$`t`, col="red", pch=19)
+# 
+# summary(dat[influential, ]$`time (min)`)
+
+
+##mahalanobis distance
+
+# Load necessary library
+library(MASS)
+
+# Define the variables of interest: concentration and time
+variables <- dat[, c("C (mg/L)", "time (min)")]
+
+# Calculate the Mahalanobis distance
+mahal_dist <- mahalanobis(variables, 
+                          colMeans(variables), 
+                          cov(variables))
+
+# Set a threshold for outliers based on the chi-squared distribution
+# With 2 degrees of freedom (since you have two variables: concentration and time)
+threshold <- qchisq(0.975, df = 2)  # 97.5th percentile
+
+# Identify outliers where Mahalanobis distance exceeds the threshold
+outliers <- which(mahal_dist > threshold)
+
+# View the outliers
+dat[outliers, ]
+
+
+plot(dat$`C (mg/L)`, dat$`time (min)`, main="Concentration vs Time with Mahalanobis Outliers", col="blue")
+points(dat[outliers, ]$`C (mg/L)`, dat[outliers, ]$`time (min)`, col="red", pch=19)
+
+
+# Remove the rows corresponding to outliers
+dat_no_outliers <- dat[-outliers, ]
+
+```
 ##with all factors
 
 ```{r}
@@ -1254,8 +1324,7 @@ library(car)
 #avoiding long exposure times, biasing concentrations, cut off 30 min
 #avoiding limit of detections 
 
-subset_LR <-  subset(dat, (!is.na(dat$log)) &
-                     dat$`time (min)` <= 30 
+subset_LR <-  subset(dat_no_outliers, (!is.na(log)) 
                       )
 
 # Fit the initial model including all columns
@@ -1287,39 +1356,18 @@ cor.test(dat$size , dat$Surface, method= "pearson") # pearson for one numeric on
  cor(dat$`ssRNA(-)`,dat$dsRNA)
  cor(dat$`ssRNA(-)`,dat$dsDNA)
  cor(dat$`ssRNA(-)`,dat$`ssRNA(-)`)
- cor(dat$`ssRNA(-)`,dat$carbon)
- cor(dat$`ssRNA(-)`,dat$Surface)
 
- #exclude Gsize or size due to correlation 
-
+ #exclude Gsize from the model or size due to correlation 
 
  
  # Fit the initial model including all columns
-lmTlog = lm(logll ~ log(CT, 10) + size10 + carbon + as.numeric(Temp) + Surface +  measurement + `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC  + others + QACmix, data = dat)
+lmTlog = lm(log ~ log(CT, 10) + size10 + carbon + as.numeric(Temp) + Surface +  measurement + `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC  + others + QACmix, data = subset_LR)
 
 # View the summary of the model
 summary(lmTlog)
  
 
-dat$Surface <-ifelse(dat$Surface == "e", 1,0)
-dat$carbon <- as.numeric(dat$carbon)
-
-df = data.frame(dat$log, log(dat$CT,10),as.numeric(dat$size10) ,  as.numeric(dat$Temp) ,dat$Surface  , as.numeric(dat$Gsize) )
-cor(df)
-lm(df)
-vif(lm(df))
-alias(lm(df))
-
- cor(dat$Gsize,dat$size10)
- cor(dat$`ssRNA(-)`, dat$`ssRNA(+)`)
- cor(dat$`ssRNA(-)`, dat$ssDNA)
- cor(dat$`ssRNA(-)`,dat$dsRNA)
- cor(dat$`ssRNA(-)`,dat$dsDNA)
- cor(dat$`ssRNA(-)`,dat$`ssRNA(-)`)
- cor(dat$`ssRNA(-)`,dat$carbon)
- cor(dat$`ssRNA(-)`,dat$Surface)
-
-
+# start excluding non signficant factors 
 
 lmTlog = lm(dat$logll ~ log(dat$CT,10) +dat$size+ dat$carbon + as.numeric(dat$Temp) +dat$Surface  + dat$Gsize )
 summary(lmTlog)
