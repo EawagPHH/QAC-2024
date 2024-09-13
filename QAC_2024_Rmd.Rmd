@@ -297,6 +297,40 @@ print(unique_studies)
 #plots
 ##Viruses over LOG
 
+#log over ct coloured by time
+```{r}
+dat$time_bins <- cut(dat$`time (min)`, 
+                     breaks = c(-Inf, 1, 5, 10, 30, Inf), 
+                     labels = c("<=1min", "<=5min", "<=10min", "<=30min", ">30min"))
+ggplot(dat.n, aes(x = CT, y = log, fill = time_bins)) + 
+  geom_point(aes(colour = time_bins), 
+             position = position_jitterdodge(jitter.width = 0.2), 
+             size = 2, alpha = 0.7) +
+  scale_x_log10() +
+  theme_bw() + 
+  theme(
+    axis.text.x = element_text(angle = 90, size = 11),
+    axis.title.x = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  ) -> FssRNAm
+FssRNAm
+
+ggplot(dat, aes(x = CT, y = log, fill=dat$`time (min)`)) + 
+  #geom_boxplot( alpha = 0.4) +
+  geom_point(aes(colour=dat$`time (min)`), position = position_jitterdodge(jitter.width = 0.2), size = 2, alpha=0.7) +
+  scale_x_log10()+
+theme_bw() + 
+  theme(
+    axis.text.x = element_text(angle = 90, size = 11 ),
+    axis.title.x = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  )  -> FssRNAm
+FssRNAm
+```
+
+
 ###data manipulation 
 
 ```{r}
@@ -1246,19 +1280,9 @@ dat <- cbind(dat,dummy)
 ```{r}
 
 ggplot(dat, aes(x=dat$`time (min)`, y= dat$`C (mg/L)` )) +
-  geom_point( alpha=0.5, color="black", fill="grey45"
-                                 ) +
-  scale_y_log10(expand = c(0, 0)) +
-  scale_x_log10(expand = c(0, 0)) +
-  scale_y_continuous(
-                       limits = c(0,100000)) +
-  scale_x_continuous(
-                     limits = c(0,1000)) +
-  labs( y= "c", x = "t") +
-  theme(axis.text.y   = element_text(size=16),
-        axis.text.x   = element_text(size=16),
-        axis.title.y  = element_text(size=16),
-        axis.title.x  = element_text(size=16)) + 
+  geom_point(                                  ) +
+  scale_y_log10() +
+  scale_x_log10() +
   theme_ipsum(axis= TRUE,
               grid = FALSE, axis_text_size = 11, 
               axis_title_size = 11,
@@ -1321,14 +1345,16 @@ dat_no_outliers <- dat[-outliers, ]
 library(car)
 
 #lets subset the dataset for our linear regression model
-#avoiding long exposure times, biasing concentrations, cut off 30 min
-#avoiding limit of detections 
+#avoiding long exposure times, biasing concentrations, cut off above 
+#avoiding limit of detections use log instead of logll
+#leave out applications on surfeces
 
-subset_LR <-  subset(dat_no_outliers, (!is.na(log)) 
+subset_LR <-  subset(dat_no_outliers, (!is.na(log)) &
+                       (is.na(material))
                       )
 
 # Fit the initial model including all columns
-lmTlog = lm(log ~ log(CT, 10) + size10 + carbon + as.numeric(Temp) + Surface + Gsize +  measurement + `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC  + others + QACmix, data = subset_LR)
+lmTlog = lm(log~ log(CT, 10) + size10 + carbon + as.numeric(Temp) + Surface +  Gsize +  measurement + `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC  + others + QACmix, data = subset_LR)
 
 # View the summary of the model
 summary(lmTlog)
@@ -1357,20 +1383,35 @@ cor.test(dat$size , dat$Surface, method= "pearson") # pearson for one numeric on
  cor(dat$`ssRNA(-)`,dat$dsDNA)
  cor(dat$`ssRNA(-)`,dat$`ssRNA(-)`)
 
+
  #exclude Gsize from the model or size due to correlation 
 
  
- # Fit the initial model including all columns
+ # model without gnome size
 lmTlog = lm(log ~ log(CT, 10) + size10 + carbon + as.numeric(Temp) + Surface +  measurement + `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC  + others + QACmix, data = subset_LR)
-
 # View the summary of the model
 summary(lmTlog)
- 
+
+#subset excluding meassurements with pcr
+subset_LR <-  subset(dat_no_outliers, (!is.na(log)) &
+                       measurement == 1 &
+                       (is.na(material))
+                      )
 
 # start excluding non signficant factors 
-
-lmTlog = lm(dat$logll ~ log(dat$CT,10) +dat$size+ dat$carbon + as.numeric(dat$Temp) +dat$Surface  + dat$Gsize )
+lmTlog = lm(log ~ log(CT, 10) + size10 + carbon  + Surface +  measurement + `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC  + others + QACmix, data = subset_LR)
 summary(lmTlog)
+
+# start excluding non signficant factors 
+lmTlog = lm(log ~ log(CT, 10) + size10 + as.numeric(Temp)   + Surface +  measurement + `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC  + others + QACmix, data = subset_LR)
+summary(lmTlog)
+
+# start excluding non signficant factors 
+lmTlog = lm(log ~ log(CT, 10) + size10   + Surface +  measurement + `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC  + others + QACmix, data = subset_LR)
+summary(lmTlog)
+
+
+
 library(car)
 vif(lmTlog) #no concern all vif< 5
 lmTlog = lm(dat$logll ~ log(dat$CT,10) +dat$size+ dat$Gsize+ as.numeric(dat$Temp) +  dat$Surface )
