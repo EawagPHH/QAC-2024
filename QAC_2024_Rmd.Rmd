@@ -297,11 +297,13 @@ print(unique_studies)
 #plots
 ##Viruses over LOG
 
-#log over ct coloured by time
+###log over ct coloured by time
 ```{r}
 dat$time_bins <- cut(dat$`time (min)`, 
                      breaks = c(-Inf, 1, 5, 10, 30, Inf), 
                      labels = c("<=1min", "<=5min", "<=10min", "<=30min", ">30min"))
+
+
 
 ggplot(dat, aes(x = CT, y = log, fill = time_bins)) + 
   geom_point(aes(colour = time_bins), 
@@ -329,13 +331,98 @@ theme_bw() +
     panel.grid.minor = element_blank()
   )  -> FssRNAm
 FssRNAm
+
+
+dats <-  subset(dat, (!is.na(dat$log)) &
+                      is.na(material) & 
+                      measurement == 1 &
+                      carbon == 0
+                      )
+
+Corona <- dats[dats$fam == "Coronaviridae",] #e
+Pico <- dats[dats$fam == "Picornaviridae",] #n
+Cali <- dats[dats$fam == "Caliciviridae",] #n
+Adeno <- dats[dats$fam == "Adenoviridae",] #n
+Ortho <- dats[dats$fam == "Orthomyxoviridae",] #e
+
+library(ggplot2)
+library(ggpubr)
+
+# Creating plots for each family
+FCorona <- ggplot(Corona, aes(x = CT, y = logll, colour = Abbreviation)) +  
+  geom_point(aes(), size = 2, alpha=0.7) +
+  scale_x_log10(limits = c(1, 10^6)) +
+  ylim(0, 8)+
+  theme_bw() + 
+  scale_shape_manual(values = c(1, 20), labels = c("LOD", "no LOD")) +
+  theme(axis.text.x = element_text(angle = 90, size = 11 ),
+        axis.title.x = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+FPico <- ggplot(Pico, aes(x = CT, y = logll, colour = Abbreviation)) +  
+  geom_point(aes(), size = 2) +
+  scale_x_log10(limits = c(1, 10^6)) +
+  ylim(0, 8)+
+  theme_bw() + 
+  scale_shape_manual(values = c(1, 20), labels = c("LOD", "no LOD")) +
+  theme(axis.text.x = element_text(angle = 90, size = 11 ),
+        axis.title.x = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+FCali <- ggplot(Cali, aes(x = CT, y = logll, group= Abbreviation, colour = Abbreviation)) + 
+  geom_point(aes(colour= Abbreviation), size = 2) +
+  scale_x_log10(limits = c(1, 10^6)) +
+  ylim(0, 8)+
+  theme_bw() + 
+  scale_shape_manual(values = c(1, 20), labels = c("LOD", "no LOD")) +
+  theme(axis.text.x = element_text(angle = 90, size = 11 ),
+        axis.title.x = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+FAdeno <- ggplot(Adeno, aes(x = CT, y = logll, colour = Abbreviation)) + 
+  geom_point(aes(), size = 2) +
+   scale_x_log10(limits = c(1, 10^6)) +
+  ylim(0, 8)+
+  theme_bw() + 
+  scale_shape_manual(values = c(1, 20), labels = c("LOD", "no LOD")) +
+  theme(axis.text.x = element_text(angle = 90, size = 11 ),
+        axis.title.x = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+FOrtho <- ggplot(Ortho, aes(x = CT, y = logll, colour = Abbreviation)) + 
+  geom_point(aes(), size = 2) +
+  scale_x_log10(limits = c(1, 10^6)) +
+  ylim(0, 8)+
+  theme_bw() + 
+  scale_shape_manual(values = c(1, 20), labels = c("LOD", "no LOD")) +
+  theme(axis.text.x = element_text(angle = 90, size = 11 ),
+        axis.title.x = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+# Arrange the plots in a grid
+grid_plot <- ggarrange(FCorona, FPico, FCali, FAdeno, FOrtho, 
+                       ncol = 2, nrow = 3, 
+                       labels = c("Coronaviridae", "Picornaviridae", "Caliciviridae", "Adenoviridae", "Orthomyxoviridae"))
+
+# Display the grid
+print(grid_plot)
+
+
+ggsave("grid_plotStrains.jpeg", plot = grid_plot,
+       scale = 1, width = 40, height = 40, units = "cm", dpi = 1200)
+
 ```
 
 
 ###data manipulation 
 
 ```{r}
-my_subset <- subset(dat, select = c("Abbreviation", "logll","log", "LOD","Surface"))
+my_subset <- subset(dat, select = c("Abbreviation", "logll","log", "LOD","Surface", "CT_bins"))
 my_subset$Surface <- as.character(my_subset$Surface)
 
 #my_subset2 <- subset(dat, select = c("VirusName", "logll"))
@@ -486,6 +573,47 @@ F3
 ggsave("VirusesOverLog_boxplotM1.jpeg", plot = F3,
        scale = 1, width = 40, height = 20, units = "cm", dpi = 1200)
 
+```
+#CT bin plots
+```{r}
+dat$CT_bins <- cut(dat$CT, 
+                     breaks = c(-Inf, 100,1000, 10000, 100000,1000000,  Inf), 
+                     labels = c("<=100", "<=1000", "<=10000", "<=100000", "<=1000000", ">1000000"))
+
+my_subset <- subset(dat, select = c("Abbreviation", "logll","log", "LOD","Surface", "CT_bins"))
+
+my_subset$Surface <- as.character(my_subset$Surface)
+my_subset$log <- as.numeric(my_subset$log )
+my_subset$log <- as.numeric(my_subset$logll )
+
+# Remove rows with missing values in logll
+my_subset <- na.omit(my_subset, cols = "log")
+
+# Reorder Abbreviation based on the mean of logll across all data points
+my_subset$Abbreviation <- fct_reorder(my_subset$Abbreviation, my_subset$log, .fun = mean)
+
+
+ggplot(my_subset, aes(x = Abbreviation, y = log, fill=CT_bins)) + 
+  geom_boxplot( alpha = 0.4) +
+  geom_point(aes( colour = CT_bins), position = position_jitterdodge(jitter.width = 0.2), size = 0.8, alpha=0.5) +
+ theme_bw() + 
+  theme(
+    axis.text.x = element_text(angle = 90, size = 11 ),
+    axis.title.x = element_blank(),
+    panel.grid.major.y= element_blank(),
+    panel.grid.minor.y = element_blank(), 
+    panel.grid.major.x= element_line(colour = "lightgrey"),
+    panel.grid.minor.x = element_blank()
+  )+
+  scale_shape_manual(
+    values = c(1, 20),
+    labels = c( " nonenveloped ", "enveloped")  )     -> F3
+F3
+
+
+
+ggsave("CT_bins2.jpeg", plot = F3,
+       scale = 1, width = 40, height = 20, units = "cm", dpi = 1200)
 ```
 
 ###plot subgroups log over ct
