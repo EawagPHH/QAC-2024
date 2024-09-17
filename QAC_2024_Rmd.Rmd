@@ -162,10 +162,168 @@ dat[na_indices, ]
 dat <- subset(dat, (!is.na(dat$size)))
 
 ```
-##create subsets
+##create binary data for regression analysis
 ```{r}
+# Custom function to calculate SEM
+sem <- function(x) {
+  sd(x) / sqrt(length(x))
+}
+
+
+###create binary coloums of subsets
 dat.e <- dat[dat$Surface == "e",]
 dat.n <- dat[dat$Surface == "n",] 
+
+
+
+###carbon
+
+binsforcarbon = dat$`carbon load`
+binsforcarbon [(is.na(dat$`carbon load`))] = "n"
+binsforcarbon [(!is.na(dat$`carbon load`))] = "c"
+# 
+# binsforcarbone = dat.e$`carbon load`
+# binsforcarbone [(is.na(dat.e$`carbon load`))] = "n"
+# binsforcarbone [(!is.na(dat.e$`carbon load`))] = "c"
+# 
+# binsforcarbonn = dat.n$`carbon load`
+# binsforcarbonn [(is.na(dat.n$`carbon load`))] = "n"
+# binsforcarbonn [(!is.na(dat.n$`carbon load`))] = "c"
+
+dat$carbon <- c(binsforcarbon)
+# dat.e$carbon <- c(binsforcarbone)
+# dat.n$carbon <- c(binsforcarbonn)
+
+c_mean <- c (mean(dat$logll[dat$carbon == "n"]), mean(dat$logll[dat$carbon == "c"]))
+c_sem <- c (sem(dat$logll[dat$carbon == "n"]), sem(dat$logll[dat$carbon == "c"]))
+c_sd <- c (sd(dat$logll[dat$carbon == "n"]), sd(dat$logll[dat$carbon == "c"]))
+
+rm(binsforcarbon)
+# rm(binsforcarbone)
+# rm(binsforcarbonn)
+
+
+
+#make measurement method and Surface binary
+dat$measurement <-ifelse(dat$measurement == "c", 1,0)
+dat$Surface <-ifelse(dat$Surface == "e", 1,0)
+dat$carbon <-ifelse(dat$carbon == "c", 1,0)
+
+dat$carbon <- as.numeric(dat$carbon)
+
+#create one binary colom for each QAC
+
+#first bin all QACs with less than 30  datapoints to others 
+
+
+# Modify the 'QAC' column in the dataset
+dat <- dat %>%
+  mutate(QAC = ifelse(QAC %in% c("BAC", "BZT", "DDAB", "DDAC", "QACmix"), QAC, "others"))
+
+
+idx <- sort(unique(dat$QAC))
+dummy <- matrix(NA, nrow= nrow(dat), ncol =length(idx))
+colnames(dummy) <- c(idx)
+
+for (j in 1:length(idx)) { 
+  dummy[,j] <- as.integer(dat$QAC == idx[j])
+}
+
+dat <- cbind(dat,dummy)
+
+
+
+#create binary colom for each nacid type
+idx <- sort(unique(dat$nacid))
+dummy <- matrix(NA, nrow= nrow(dat), ncol =length(idx))
+colnames(dummy) <- c(idx)
+
+for (j in 1:length(idx)) { 
+  dummy[,j] <- as.integer(dat$nacid == idx[j])
+}
+
+dat <- cbind(dat,dummy)
+
+
+#create binary colom for each material  type
+idx <- sort(unique(dat$material))
+dummy <- matrix(NA, nrow= nrow(dat), ncol =length(idx))
+colnames(dummy) <- c(idx)
+
+for (j in 1:length(idx)) { 
+  dummy[,j] <- as.integer(dat$material == idx[j])
+}
+
+dat <- cbind(dat,dummy)
+```
+##create bins 
+```{r}
+#Size
+
+dat$size_bins <- cut(dat$size, 
+                     breaks = c(-Inf, 100, 200, Inf), 
+                     labels = c("S1", "S2", "S3"))
+
+ggplot(dat, aes(x=size_bins, group= Surface, colour = Surface) )+
+  geom_bar( aes(colour= Surface, group = Surface, fill = Surface)) +
+  theme_bw() -> F_Tim_1
+  
+ggsave("F_Tim_1.jpeg", plot = F_Tim_1,
+       scale = 1, width = 20, height = 10, units = "cm", dpi = 1200)
+
+
+#Tempreture 
+
+dat$Temp <- as.numeric(dat$Temp)
+
+dat$temp_bins <- cut(dat$Temp, 
+                     breaks = c(-Inf, 15, 25, 35, Inf), 
+                     labels = c("T1", "T2","T3", "T4"))
+
+ggplot(dat, aes(x=temp_bins, group= Surface, colour = Surface) )+
+  geom_bar( aes(colour= Surface, group = Surface, fill = Surface)) +
+  theme_bw() -> F_Tim_3
+F_Tim_3
+  
+ggsave("F_Tim_3.jpeg", plot = F_Tim_3,
+       scale = 1, width = 20, height = 10, units = "cm", dpi = 1200)
+
+
+
+
+#create binary colom for each temp type
+idx <- sort(unique(dat$temp_bins))
+dummy <- matrix(NA, nrow= nrow(dat), ncol =length(idx))
+colnames(dummy) <- c(idx)
+
+for (j in 1:length(idx)) { 
+  dummy[,j] <- as.integer(dat$temp_bins == idx[j])
+}
+
+dat <- cbind(dat,dummy)
+
+
+
+#create binary colom for each size type
+idx <- sort(unique(dat$size_bins))
+dummy <- matrix(NA, nrow= nrow(dat), ncol =length(idx))
+colnames(dummy) <- c(idx)
+
+for (j in 1:length(idx)) { 
+  dummy[,j] <- as.integer(dat$size_bins == idx[j])
+}
+
+dat <- cbind(dat,dummy)
+
+
+```
+
+
+
+##create subsets
+```{r}
+dat.e <- dat[dat$Surface == 1,]
+dat.n <- dat[dat$Surface == 0,] 
 subsetlog <- subset(dat, (!is.na(dat$log)))
 subsetlogLOD <- subset(dat, (!is.na(dat$`LOD/LOQ`)))
 subsetcarbon <- subset(dat, (is.na(dat$`carbon load`)))
@@ -301,6 +459,11 @@ print(unique_studies)
 ###data manipulation 
 
 ```{r}
+
+dat$CT_bins <- cut(dat$CT, 
+                     breaks = c(-Inf, 100,1000, 10000, 100000,1000000,  Inf), 
+                     labels = c("<=100", "<=1000", "<=10000", "<=100000", "<=1000000", ">1000000"))
+
 my_subset <- subset(dat, select = c("Abbreviation", "logll","log", "LOD","Surface", "CT_bins"))
 my_subset$Surface <- as.character(my_subset$Surface)
 
@@ -322,12 +485,6 @@ sorted_median_logll <- with(my_subset, reorder(Abbreviation, logll, median))
 
 # Reorder Abbreviation levels based on sorted median logll values
 my_subset$Abbreviation <- factor(my_subset$Abbreviation, levels = levels(sorted_median_logll))
-
-
-ggplot(my_subset, aes(x = Abbreviation, y = logll)) + 
-  geom_point(size = 2) +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
-
 
 ```
 
@@ -578,11 +735,6 @@ ggsave("grid_plotStrains.jpeg", plot = grid_plot,
 
 ###CT bin plots
 ```{r}
-dat$CT_bins <- cut(dat$CT, 
-                     breaks = c(-Inf, 100,1000, 10000, 100000,1000000,  Inf), 
-                     labels = c("<=100", "<=1000", "<=10000", "<=100000", "<=1000000", ">1000000"))
-
-my_subset <- subset(dat, select = c("Abbreviation", "logll","log", "LOD","Surface", "CT_bins"))
 
 my_subset$Surface <- as.character(my_subset$Surface)
 my_subset$log <- as.numeric(my_subset$log )
@@ -1314,164 +1466,167 @@ ggsave("Fheat.jpeg", plot = Fheat,
 
 ```
 
+#calculating k 
 
-##create binary data for regression analysis
 ```{r}
-# Custom function to calculate SEM
-sem <- function(x) {
-  sd(x) / sqrt(length(x))
-}
+# Load necessary library
+library(dplyr)
 
 
-###create binary coloums of subsets
-dat.e <- dat[dat$Surface == "e",]
-dat.n <- dat[dat$Surface == "n",] 
+subset_k <-  subset(dat, (!is.na(log)) 
+                      )
 
 
-
-###carbon
-
-binsforcarbon = dat$`carbon load`
-binsforcarbon [(is.na(dat$`carbon load`))] = "n"
-binsforcarbon [(!is.na(dat$`carbon load`))] = "c"
-# 
-# binsforcarbone = dat.e$`carbon load`
-# binsforcarbone [(is.na(dat.e$`carbon load`))] = "n"
-# binsforcarbone [(!is.na(dat.e$`carbon load`))] = "c"
-# 
-# binsforcarbonn = dat.n$`carbon load`
-# binsforcarbonn [(is.na(dat.n$`carbon load`))] = "n"
-# binsforcarbonn [(!is.na(dat.n$`carbon load`))] = "c"
-
-dat$carbon <- c(binsforcarbon)
-# dat.e$carbon <- c(binsforcarbone)
-# dat.n$carbon <- c(binsforcarbonn)
-
-c_mean <- c (mean(dat$logll[dat$carbon == "n"]), mean(dat$logll[dat$carbon == "c"]))
-c_sem <- c (sem(dat$logll[dat$carbon == "n"]), sem(dat$logll[dat$carbon == "c"]))
-c_sd <- c (sd(dat$logll[dat$carbon == "n"]), sd(dat$logll[dat$carbon == "c"]))
-
-rm(binsforcarbon)
-# rm(binsforcarbone)
-# rm(binsforcarbonn)
-
-
-
-#make measurement method and Surface binary
-dat$measurement <-ifelse(dat$measurement == "c", 1,0)
-dat$Surface <-ifelse(dat$Surface == "e", 1,0)
-dat$carbon <-ifelse(dat$carbon == "c", 1,0)
-
-dat$carbon <- as.numeric(dat$carbon)
-
-#create one binary colom for each QAC
-
-#first bin all QACs with less than 30  datapoints to others 
-
-
-# Modify the 'QAC' column in the dataset
-dat <- dat %>%
-  mutate(QAC = ifelse(QAC %in% c("BAC", "BZT", "DDAB", "DDAC", "QACmix"), QAC, "others"))
-
-
-idx <- sort(unique(dat$QAC))
-dummy <- matrix(NA, nrow= nrow(dat), ncol =length(idx))
-colnames(dummy) <- c(idx)
-
-for (j in 1:length(idx)) { 
-  dummy[,j] <- as.integer(dat$QAC == idx[j])
-}
-
-dat <- cbind(dat,dummy)
-
-
-
-#create binary colom for each nacid type
-idx <- sort(unique(dat$nacid))
-dummy <- matrix(NA, nrow= nrow(dat), ncol =length(idx))
-colnames(dummy) <- c(idx)
-
-for (j in 1:length(idx)) { 
-  dummy[,j] <- as.integer(dat$nacid == idx[j])
-}
-
-dat <- cbind(dat,dummy)
-
-
-#create binary colom for each material  type
-idx <- sort(unique(dat$material))
-dummy <- matrix(NA, nrow= nrow(dat), ncol =length(idx))
-colnames(dummy) <- c(idx)
-
-for (j in 1:length(idx)) { 
-  dummy[,j] <- as.integer(dat$material == idx[j])
-}
-
-dat <- cbind(dat,dummy)
-```
-##create bins 
-```{r}
-#Size
-#dat$Surface <-ifelse(dat$Surface == 1, "e","n") 
-
-
-dat$size_bins <- cut(dat$size, 
-                     breaks = c(-Inf, 100, 200, Inf), 
-                     labels = c("S1", "S2", "S3"))
-
-ggplot(dat, aes(x=size_bins, group= Surface, colour = Surface) )+
-  geom_bar( aes(colour= Surface, group = Surface, fill = Surface)) +
-  theme_bw() -> F_Tim_1
+# Function to calculate k and residual standard error for each family
+calculate_k_rss <- function(data) {
+  # Apply the model for each family
+  results <- data %>%
+    group_by(fam) %>%
+    do({
+      # Fit a linear model: log reduction ~ CT
+      model <- lm(log ~ CT, data = .)
+      
+      # Extract the coefficient for k (slope)
+      k <- coef(model)["CT"]
+      
+      # Calculate Residual Standard Error (RSS)
+      rss <- sqrt(sum(residuals(model)^2) / df.residual(model))
+      
+      # Return k and rss as a data frame
+      data.frame(k = k, rss = rss)
+    })
   
-ggsave("F_Tim_1.jpeg", plot = F_Tim_1,
-       scale = 1, width = 20, height = 10, units = "cm", dpi = 1200)
+  return(results)
+}
 
+# Apply the function to your dataset 'dat'
+results <- calculate_k_rss(subset_k)
 
-#Tempreture 
+# View the results
+print(results)
 
-
-
-dat$temp_bins <- cut(dat$Temp, 
-                     breaks = c(-Inf, 15, 25, 35, Inf), 
-                     labels = c("T1", "T2","T3", "T4"))
-
-ggplot(dat, aes(x=temp_bins, group= Surface, colour = Surface) )+
-  geom_bar( aes(colour= Surface, group = Surface, fill = Surface)) +
-  theme_bw() -> F_Tim_3
-F_Tim_3
+#assess Model Fit (Goodness-of-Fit)
+calculate_k_rss <- function(data) {
+  results <- data %>%
+    group_by(fam) %>%
+    do({
+      if(nrow(.) > 1) {
+        # Fit a linear model: log reduction ~ CT
+        model <- lm(log ~ CT, data = .)
+        
+        # Extract the coefficient for k (slope)
+        k <- coef(model)["CT"]
+        
+        # Calculate Residual Standard Error (RSS)
+        rss <- sqrt(sum(residuals(model)^2) / df.residual(model))
+        
+        # Calculate R-squared
+        r_squared <- summary(model)$r.squared
+        
+        # Return k, rss, and R-squared as a data frame
+        data.frame(k = k, rss = rss, r_squared = r_squared)
+      } else {
+        # Return NA for families with insufficient data
+        data.frame(k = NA, rss = NA, r_squared = NA)
+      }
+    })
   
-ggsave("F_Tim_3.jpeg", plot = F_Tim_3,
-       scale = 1, width = 20, height = 10, units = "cm", dpi = 1200)
-
-
-
-
-#create binary colom for each temp type
-idx <- sort(unique(dat$temp_bins))
-dummy <- matrix(NA, nrow= nrow(dat), ncol =length(idx))
-colnames(dummy) <- c(idx)
-
-for (j in 1:length(idx)) { 
-  dummy[,j] <- as.integer(dat$temp_bins == idx[j])
+  return(results)
 }
 
-dat <- cbind(dat,dummy)
+# Run the model
+results <- calculate_k_rss(subset_k)
+
+# View the results
+print(results)
+
+#plot residuals 
+# Plot residuals for each family
+library(ggplot2)
+
+# Fit models and extract residuals for each family
+residuals_data <- subset_k %>%
+  group_by(fam) %>%
+  do({
+    if(nrow(.) > 1) {
+      model <- lm(log ~ CT, data = .)
+      residuals <- residuals(model)
+      data.frame(fam = .$fam[1], CT = .$CT, residuals = residuals)
+    } else {
+      data.frame(fam = NA, CT = NA, residuals = NA)
+    }
+  }) %>%
+  na.omit()
+
+# Plot residuals by family
+kplot <- ggplot(residuals_data, aes(x = CT, y = residuals)) +
+  geom_point() +
+  facet_wrap(~fam, scales = "free") +
+  theme_minimal() +
+  labs(title = "Residuals by Family", x = "CT", y = "Residuals")
+
+ggsave("kplot.jpeg", plot = kplot,
+       scale = 1, width = 40, height = 30, units = "cm", dpi = 1200)
+
+#Hypothesis Testing for Homogeneity of Slopes (ANOVA)
+# Fit a model allowing different slopes for each family
+model_anova <- lm(log ~ CT * fam, data = subset_k)
+
+# Perform ANOVA to check for interaction (different slopes)
+anova(model_anova)
 
 
+# Perform hierarchical clustering on k-values
+results_filtered <- results %>% filter(!is.na(k))
+d <- dist(results_filtered$k)
+hclust_model <- hclust(d)
+plot(hclust_model)
 
-#create binary colom for each size type
-idx <- sort(unique(dat$size_bins))
-dummy <- matrix(NA, nrow= nrow(dat), ncol =length(idx))
-colnames(dummy) <- c(idx)
-
-for (j in 1:length(idx)) { 
-  dummy[,j] <- as.integer(dat$size_bins == idx[j])
-}
-
-dat <- cbind(dat,dummy)
 
 
 ```
+make nice cluster pictures 
+```{r}
+install.packages("dendextend")
+
+library(dendextend)
+library(ggplot2)
+
+
+# Assuming `results` contains the calculated k-values and fam column
+results_filtered <- results %>% filter(!is.na(k))  # Filter for valid k-values
+
+# Get distance matrix for k-values
+d <- dist(results_filtered$k)
+
+# Perform hierarchical clustering
+hclust_model <- hclust(d)
+
+# Plot dendrogram with family names as labels
+plot(hclust_model, labels = results_filtered$fam, main = "Dendrogram of Families by k-values", xlab = "Family", sub = "")
+
+
+# Assuming `results_filtered` contains k-values and fam
+# Join with overall dataset to get attributes (like Surface)
+cluster_data <- merge(results_filtered, dat[, c("fam", "Surface", "nacid")], by = "fam")
+
+# Ensure no missing values in the relevant columns
+cluster_data <- cluster_data %>% filter(!is.na(Surface) & !is.na(nacid))
+# Create distance matrix for k-values
+d <- dist(cluster_data$k)
+
+# Perform hierarchical clustering
+hclust_model <- hclust(d)
+
+# Find the number of distinct nacid values
+num_clusters <- length(unique(cluster_data$nacid))
+
+# Convert hclust object to dendrogram
+dend <- as.dendrogram(hclust_model)
+
+
+```
+
 
 
 ##investigating outliers for linear regression model 
@@ -1583,8 +1738,8 @@ lmTlog = lm(log~ log(CT, 10) + size10 + carbon + as.numeric(Temp) + Surface +   
 # View the summary of the model
 summary(lmTlog)
 
-vif(lmTlog)  #no concern all vif< 5
-alias(lmTlog) 
+#vif(lmTlog)  #no concern all vif< 5
+#alias(lmTlog) 
 
 #test for correlations 
 
@@ -1672,17 +1827,17 @@ dat.nl <- subset ( subset_LR, Surface == "0")
 
 
 # Fit the initial model including all columns
-lmTlog = lm(log~ log(CT, 10) + S1 + S2+ S3 + carbon + T1+ T2 +T3+ T4 + Surface +     `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC  + others + QACmix, data = subset_LR)
+lmTlog = lm(log~ log(CT, 10) + S2+ S3 + carbon + T2 +T3+ T4 + Surface +     `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC  + others + QACmix, data = subset_LR)
 
 # View the summary of the model
 summary(lmTlog)
 
 # Fit the initial model including all columns
-lmTlog = lm(log~ log(CT, 10) + S1 + S2+ S3 + carbon + T1+ T2 +T3+ T4 + Surface +     `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC  + others + QACmix, data = dat.el)
+lmTlog = lm(log~ log(CT, 10)  + S2+ S3 + carbon + T2 +T3+ T4 + Surface +     `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC  + others + QACmix, data = dat.el)
 
 # View the summary of the model
 summary(lmTlog)# Fit the initial model including all columns
-lmTlog = lm(log~ log(CT, 10) + S1 + S2+ S3 + carbon + T1+ T2 +T3+ T4 + Surface +     `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC  + others + QACmix, data = dat.nl)
+lmTlog = lm(log~ log(CT, 10)  + S2+ S3 + carbon +  T2 +T3+ T4 + Surface +     `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC  + others + QACmix, data = dat.nl)
 
 # View the summary of the model
 summary(lmTlog)
@@ -1695,7 +1850,6 @@ summary(lmTlog)
 ```{r}
 library(car)
 
-``{r}
 
 #exclude LODs or set boundrys
 #exclude PCR or analysise differences
@@ -1706,21 +1860,23 @@ library(car)
 
 #make analysis for subsets of families? like families with more than 100 datapoints or so?
 
-subsetLM <-  subset(dat, (!is.na(dat$log)) &
+subsetLM <-  subset(dat_no_outliers, (!is.na(dat_no_outliers$log)) &
                       is.na(material) & 
-                      CT < 100000 &
                       QAC == "BAC" &
                       measurement == 1 &
                       Surface == 0
                         )
 
 
+# Fit the initial model including all columns
+lmTloge = lm(logll ~ log(CT, 10) + size10 + carbon + as.numeric(Temp) + Surface +  measurement + `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC + others + QACmix, data = subsetLM)
+
 
 # Fit the initial model including all columns
-lmTlog = lm(logll ~ log(CT, 10) + size10 + carbon + as.numeric(Temp) + Surface +  measurement + `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC + others + QACmix, data = subsetLM)
+lmTlog = lm(log(logll,10) ~ log(CT, 10) + size10 + carbon + as.numeric(Temp) + Surface +  measurement + `ssRNA(-)` + ssDNA + `ssRNA(+)` + dsRNA + BZT + DDAB + DDAC + others + QACmix, data = subsetLM)
 
 # View the summary of the model
-summary(lmTlog)
+summary(lmTloge)
 
 
 ```
