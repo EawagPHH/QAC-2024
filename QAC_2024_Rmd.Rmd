@@ -297,127 +297,6 @@ print(unique_studies)
 #plots
 ##Viruses over LOG
 
-###log over ct coloured by time
-```{r}
-dat$time_bins <- cut(dat$`time (min)`, 
-                     breaks = c(-Inf, 1, 5, 10, 30, Inf), 
-                     labels = c("<=1min", "<=5min", "<=10min", "<=30min", ">30min"))
-
-
-
-ggplot(dat, aes(x = CT, y = log, fill = time_bins)) + 
-  geom_point(aes(colour = time_bins), 
-             position = position_jitterdodge(jitter.width = 0.2), 
-             size = 2, alpha = 0.7) +
-  scale_x_log10() +
-  theme_bw() + 
-  theme(
-    axis.text.x = element_text(angle = 90, size = 11),
-    axis.title.x = element_blank(),
-    panel.grid.major = element_blank(),
-    panel.grid.minor = element_blank()
-  ) -> FssRNAm
-FssRNAm
-
-ggplot(dat, aes(x = CT, y = log, fill=dat$`time (min)`)) + 
-  #geom_boxplot( alpha = 0.4) +
-  geom_point(aes(colour=dat$`time (min)`), position = position_jitterdodge(jitter.width = 0.2), size = 2, alpha=0.7) +
-  scale_x_log10()+
-theme_bw() + 
-  theme(
-    axis.text.x = element_text(angle = 90, size = 11 ),
-    axis.title.x = element_blank(),
-    panel.grid.major = element_blank(),
-    panel.grid.minor = element_blank()
-  )  -> FssRNAm
-FssRNAm
-
-
-dats <-  subset(dat, (!is.na(dat$log)) &
-                      is.na(material) & 
-                      measurement == 1 &
-                      carbon == 0
-                      )
-
-Corona <- dats[dats$fam == "Coronaviridae",] #e
-Pico <- dats[dats$fam == "Picornaviridae",] #n
-Cali <- dats[dats$fam == "Caliciviridae",] #n
-Adeno <- dats[dats$fam == "Adenoviridae",] #n
-Ortho <- dats[dats$fam == "Orthomyxoviridae",] #e
-
-library(ggplot2)
-library(ggpubr)
-
-# Creating plots for each family
-FCorona <- ggplot(Corona, aes(x = CT, y = logll, colour = Abbreviation)) +  
-  geom_point(aes(), size = 2, alpha=0.7) +
-  scale_x_log10(limits = c(1, 10^6)) +
-  ylim(0, 8)+
-  theme_bw() + 
-  scale_shape_manual(values = c(1, 20), labels = c("LOD", "no LOD")) +
-  theme(axis.text.x = element_text(angle = 90, size = 11 ),
-        axis.title.x = element_blank(),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank())
-
-FPico <- ggplot(Pico, aes(x = CT, y = logll, colour = Abbreviation)) +  
-  geom_point(aes(), size = 2) +
-  scale_x_log10(limits = c(1, 10^6)) +
-  ylim(0, 8)+
-  theme_bw() + 
-  scale_shape_manual(values = c(1, 20), labels = c("LOD", "no LOD")) +
-  theme(axis.text.x = element_text(angle = 90, size = 11 ),
-        axis.title.x = element_blank(),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank())
-
-FCali <- ggplot(Cali, aes(x = CT, y = logll, group= Abbreviation, colour = Abbreviation)) + 
-  geom_point(aes(colour= Abbreviation), size = 2) +
-  scale_x_log10(limits = c(1, 10^6)) +
-  ylim(0, 8)+
-  theme_bw() + 
-  scale_shape_manual(values = c(1, 20), labels = c("LOD", "no LOD")) +
-  theme(axis.text.x = element_text(angle = 90, size = 11 ),
-        axis.title.x = element_blank(),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank())
-
-FAdeno <- ggplot(Adeno, aes(x = CT, y = logll, colour = Abbreviation)) + 
-  geom_point(aes(), size = 2) +
-   scale_x_log10(limits = c(1, 10^6)) +
-  ylim(0, 8)+
-  theme_bw() + 
-  scale_shape_manual(values = c(1, 20), labels = c("LOD", "no LOD")) +
-  theme(axis.text.x = element_text(angle = 90, size = 11 ),
-        axis.title.x = element_blank(),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank())
-
-FOrtho <- ggplot(Ortho, aes(x = CT, y = logll, colour = Abbreviation)) + 
-  geom_point(aes(), size = 2) +
-  scale_x_log10(limits = c(1, 10^6)) +
-  ylim(0, 8)+
-  theme_bw() + 
-  scale_shape_manual(values = c(1, 20), labels = c("LOD", "no LOD")) +
-  theme(axis.text.x = element_text(angle = 90, size = 11 ),
-        axis.title.x = element_blank(),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank())
-
-# Arrange the plots in a grid
-grid_plot <- ggarrange(FCorona, FPico, FCali, FAdeno, FOrtho, 
-                       ncol = 2, nrow = 3, 
-                       labels = c("Coronaviridae", "Picornaviridae", "Caliciviridae", "Adenoviridae", "Orthomyxoviridae"))
-
-# Display the grid
-print(grid_plot)
-
-
-ggsave("grid_plotStrains.jpeg", plot = grid_plot,
-       scale = 1, width = 40, height = 40, units = "cm", dpi = 1200)
-
-```
-
 
 ###data manipulation 
 
@@ -574,7 +453,130 @@ ggsave("VirusesOverLog_boxplotM1.jpeg", plot = F3,
        scale = 1, width = 40, height = 20, units = "cm", dpi = 1200)
 
 ```
-#CT bin plots
+##log CT
+###log over ct coloured by time
+```{r}
+dat$time_bins <- cut(dat$`time (min)`, 
+                     breaks = c(-Inf, 1, 5, 10, 30, Inf), 
+                     labels = c("<=1min", "<=5min", "<=10min", "<=30min", ">30min"))
+
+
+
+ggplot(dat, aes(x = CT, y = log, fill = time_bins)) + 
+  geom_point(aes(colour = time_bins), 
+             position = position_jitterdodge(jitter.width = 0.2), 
+             size = 2, alpha = 0.7) +
+  scale_x_log10() +
+  theme_bw() + 
+  theme(
+    axis.text.x = element_text(angle = 90, size = 11),
+    axis.title.x = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  ) -> FssRNAm
+FssRNAm
+
+ggplot(dat, aes(x = CT, y = log, fill=dat$`time (min)`)) + 
+  #geom_boxplot( alpha = 0.4) +
+  geom_point(aes(colour=dat$`time (min)`), position = position_jitterdodge(jitter.width = 0.2), size = 2, alpha=0.7) +
+  scale_x_log10()+
+theme_bw() + 
+  theme(
+    axis.text.x = element_text(angle = 90, size = 11 ),
+    axis.title.x = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  )  -> FssRNAm
+FssRNAm
+```
+###log CT by fam
+```{r}
+dats <-  subset(dat, (!is.na(dat$log)) &
+                      is.na(material) & 
+                      measurement == 1 &
+                      carbon == 0
+                      )
+
+Corona <- dats[dats$fam == "Coronaviridae",] #e
+Pico <- dats[dats$fam == "Picornaviridae",] #n
+Cali <- dats[dats$fam == "Caliciviridae",] #n
+Adeno <- dats[dats$fam == "Adenoviridae",] #n
+Ortho <- dats[dats$fam == "Orthomyxoviridae",] #e
+
+library(ggplot2)
+library(ggpubr)
+
+# Creating plots for each family
+FCorona <- ggplot(Corona, aes(x = CT, y = logll, colour = Abbreviation)) +  
+  geom_point(aes(), size = 2, alpha=0.7) +
+  scale_x_log10(limits = c(1, 10^6)) +
+  ylim(0, 8)+
+  theme_bw() + 
+  scale_shape_manual(values = c(1, 20), labels = c("LOD", "no LOD")) +
+  theme(axis.text.x = element_text(angle = 90, size = 11 ),
+        axis.title.x = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+FPico <- ggplot(Pico, aes(x = CT, y = logll, colour = Abbreviation)) +  
+  geom_point(aes(), size = 2) +
+  scale_x_log10(limits = c(1, 10^6)) +
+  ylim(0, 8)+
+  theme_bw() + 
+  scale_shape_manual(values = c(1, 20), labels = c("LOD", "no LOD")) +
+  theme(axis.text.x = element_text(angle = 90, size = 11 ),
+        axis.title.x = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+FCali <- ggplot(Cali, aes(x = CT, y = logll, group= Abbreviation, colour = Abbreviation)) + 
+  geom_point(aes(colour= Abbreviation), size = 2) +
+  scale_x_log10(limits = c(1, 10^6)) +
+  ylim(0, 8)+
+  theme_bw() + 
+  scale_shape_manual(values = c(1, 20), labels = c("LOD", "no LOD")) +
+  theme(axis.text.x = element_text(angle = 90, size = 11 ),
+        axis.title.x = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+FAdeno <- ggplot(Adeno, aes(x = CT, y = logll, colour = Abbreviation)) + 
+  geom_point(aes(), size = 2) +
+   scale_x_log10(limits = c(1, 10^6)) +
+  ylim(0, 8)+
+  theme_bw() + 
+  scale_shape_manual(values = c(1, 20), labels = c("LOD", "no LOD")) +
+  theme(axis.text.x = element_text(angle = 90, size = 11 ),
+        axis.title.x = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+FOrtho <- ggplot(Ortho, aes(x = CT, y = logll, colour = Abbreviation)) + 
+  geom_point(aes(), size = 2) +
+  scale_x_log10(limits = c(1, 10^6)) +
+  ylim(0, 8)+
+  theme_bw() + 
+  scale_shape_manual(values = c(1, 20), labels = c("LOD", "no LOD")) +
+  theme(axis.text.x = element_text(angle = 90, size = 11 ),
+        axis.title.x = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+# Arrange the plots in a grid
+grid_plot <- ggarrange(FCorona, FPico, FCali, FAdeno, FOrtho, 
+                       ncol = 2, nrow = 3, 
+                       labels = c("Coronaviridae", "Picornaviridae", "Caliciviridae", "Adenoviridae", "Orthomyxoviridae"))
+
+# Display the grid
+print(grid_plot)
+
+
+ggsave("grid_plotStrains.jpeg", plot = grid_plot,
+       scale = 1, width = 40, height = 40, units = "cm", dpi = 1200)
+
+```
+
+###CT bin plots
 ```{r}
 dat$CT_bins <- cut(dat$CT, 
                      breaks = c(-Inf, 100,1000, 10000, 100000,1000000,  Inf), 
@@ -875,7 +877,7 @@ hist(as.numeric(dat.n$Temp), seq(0,50,2),
 # legend("topright", y=6,legend = c( " without carbon load" , " with carbon load"), col= c("turquoise3" , "tan4" ),pch= c(19,19), cex=0.7 )
 
 ```
-###  Surface materials
+##  Surface materials
 ```{r}
 ### Experimental Surface materials
 
@@ -1295,9 +1297,8 @@ ggsave("Fheat.jpeg", plot = Fheat,
        scale = 1, width = 40, height = 20, units = "cm", dpi = 1200)
 
 ```
+
 # ANALYSIS
-
-
 #thinks to do
 ```{r}
 
@@ -1408,7 +1409,7 @@ for (j in 1:length(idx)) {
 
 dat <- cbind(dat,dummy)
 ```
-#create bins 
+##create bins 
 ```{r}
 #Size
 #dat$Surface <-ifelse(dat$Surface == 1, "e","n") 
@@ -1473,7 +1474,7 @@ dat <- cbind(dat,dummy)
 ```
 
 
-#investigating outliers for linear regression model 
+##investigating outliers for linear regression model 
 ```{r}
 
 ggplot(dat, aes(x=dat$`time (min)`, y= dat$`C (mg/L)` )) +
@@ -1547,7 +1548,7 @@ dat.nl <- subset ( dat_no_outliers, Surface == "0")
 
 
 
-##with all factors
+##linear regression with all factors
 ```{r}
 library(car)
 
@@ -1659,7 +1660,7 @@ cor.test(dat.e$size , dat.e$Gsize, method= "kendall")
 cor.test(dat.e$size , dat.e$Gsize, method= "spearman")
 
 ```
-#run model with bins 
+###run model with bins 
 ```{r}
 
 subset_LR <-  subset(dat_no_outliers, (!is.na(log)) )
@@ -1689,7 +1690,7 @@ summary(lmTlog)
 ```
 
 
-##subset 
+###subset 
 
 ```{r}
 library(car)
@@ -1725,192 +1726,192 @@ summary(lmTlog)
 ```
 
 
-#single linear regression models per factor 
-```{r}
+<!-- #single linear regression models per factor  -->
+<!-- ```{r} -->
 
 
-# size 
-lmSfelog = lm(dat.e$logll ~ log(dat.e$CT,10) +  dat.e$size)
-summary(lmSfelog)
-lmSfnlog = lm(dat.n$logll ~ log(dat.n$CT,10) +   dat.n$size)
-#lmSfnlog = lm(dat.n$logll[dat.n$size<200] ~ dat.n$CT[dat.n$size<200] +dat.n$size[dat.n$size<200])
-summary(lmSfnlog)
-lmSflog = lm(dat$logll ~ log(dat$CT,10) +   dat$size)
-#lmSfnlog = lm(dat.n$logll[dat.n$size<200] ~ dat.n$CT[dat.n$size<200] +dat.n$size[dat.n$size<200])
-summary(lmSflog)
+<!-- # size  -->
+<!-- lmSfelog = lm(dat.e$logll ~ log(dat.e$CT,10) +  dat.e$size) -->
+<!-- summary(lmSfelog) -->
+<!-- lmSfnlog = lm(dat.n$logll ~ log(dat.n$CT,10) +   dat.n$size) -->
+<!-- #lmSfnlog = lm(dat.n$logll[dat.n$size<200] ~ dat.n$CT[dat.n$size<200] +dat.n$size[dat.n$size<200]) -->
+<!-- summary(lmSfnlog) -->
+<!-- lmSflog = lm(dat$logll ~ log(dat$CT,10) +   dat$size) -->
+<!-- #lmSfnlog = lm(dat.n$logll[dat.n$size<200] ~ dat.n$CT[dat.n$size<200] +dat.n$size[dat.n$size<200]) -->
+<!-- summary(lmSflog) -->
 
-#Temperature
-lmTlog = lm(dat$logll ~ log(dat$CT,10) + as.numeric(dat$Temp))
-lmTlog
-summary(lmTlog)
+<!-- #Temperature -->
+<!-- lmTlog = lm(dat$logll ~ log(dat$CT,10) + as.numeric(dat$Temp)) -->
+<!-- lmTlog -->
+<!-- summary(lmTlog) -->
 
-#carbon
-binsforcarbon <- dat$`carbon load`
-binsforcarbon [(is.na(dat$`carbon load`))] = "n"
-binsforcarbon [(!is.na(dat$`carbon load`))] = "c"
+<!-- #carbon -->
+<!-- binsforcarbon <- dat$`carbon load` -->
+<!-- binsforcarbon [(is.na(dat$`carbon load`))] = "n" -->
+<!-- binsforcarbon [(!is.na(dat$`carbon load`))] = "c" -->
 
-binsforcarbone<-dat.e$`carbon load`
-binsforcarbone [(is.na(dat.e$`carbon load`))] = "n"
-binsforcarbone [(!is.na(dat.e$`carbon load`))] = "c"
+<!-- binsforcarbone<-dat.e$`carbon load` -->
+<!-- binsforcarbone [(is.na(dat.e$`carbon load`))] = "n" -->
+<!-- binsforcarbone [(!is.na(dat.e$`carbon load`))] = "c" -->
 
-binsforcarbonn<-dat.n$`carbon load`
-binsforcarbonn [(is.na(dat.n$`carbon load`))] = "n"
-binsforcarbonn [(!is.na(dat.n$`carbon load`))] = "c"
+<!-- binsforcarbonn<-dat.n$`carbon load` -->
+<!-- binsforcarbonn [(is.na(dat.n$`carbon load`))] = "n" -->
+<!-- binsforcarbonn [(!is.na(dat.n$`carbon load`))] = "c" -->
 
-dat$carbon <- c(binsforcarbon)
-dat.e$carbon <- c(binsforcarbone)
-dat.n$carbon <- c(binsforcarbonn)
+<!-- dat$carbon <- c(binsforcarbon) -->
+<!-- dat.e$carbon <- c(binsforcarbone) -->
+<!-- dat.n$carbon <- c(binsforcarbonn) -->
 
-c_mean <- c (mean(dat$logll[dat$carbon == "n"]), mean(dat$logll[dat$carbon == "c"]))
-c_sem <- c (sem(dat$logll[dat$carbon == "n"]), sem(dat$logll[dat$carbon == "c"]))
-c_sd <- c (sd(dat$logll[dat$carbon == "n"]), sd(dat$logll[dat$carbon == "c"]))
+<!-- c_mean <- c (mean(dat$logll[dat$carbon == "n"]), mean(dat$logll[dat$carbon == "c"])) -->
+<!-- c_sem <- c (sem(dat$logll[dat$carbon == "n"]), sem(dat$logll[dat$carbon == "c"])) -->
+<!-- c_sd <- c (sd(dat$logll[dat$carbon == "n"]), sd(dat$logll[dat$carbon == "c"])) -->
 
-rm(binsforcarbon)
-rm(binsforcarbone)
-rm(binsforcarbonn)
-
-
-# barplot
-par(mfrow = c(1, 3))
-barx <- barplot(c_mean,
-                names.arg=c("no C","with C"),
-                ylim=c(0,ceiling(max(dat$logll))),
-                xlab='carbonload',
-                ylab='log reduction')
-error.bar(barx, c_mean,c_sem)
-
-###e
-c_meane <- c (mean(dat.e$logll[dat.e$carbon == "n"]), mean(dat.e$logll[dat.e$carbon == "c"]))
-c_seme <- c (sem(dat.e$logll[dat.e$carbon == "n"]), sem(dat.e$logll[dat.e$carbon == "c"]))
-# barplot
-barx <- barplot(c_meane, main="enveloped", 
-                names.arg=c("no C","with C"),
-                ylim=c(0,ceiling(max(dat.e$logll))),
-                xlab='carbonload',
-                ylab='log reduction')
-error.bar(barx, c_meane,c_seme)
-
-##n
-c_meann <- c (mean(dat.n$logll[dat.n$carbon == "n"]), mean(dat.n$logll[dat.n$carbon == "c"]))
-c_semn <- c (sem(dat.n$logll[dat.n$carbon == "n"]), sem(dat.n$logll[dat.n$carbon == "c"]))
-# barplot
-barx <- barplot(c_meann,main="nonenveloped", 
-                names.arg=c("no C","with C"),
-                ylim=c(0,ceiling(max(dat.n$logll))),
-                xlab='carbonload',
-                ylab='log reduction')
-error.bar(barx, c_meann,c_semn)
+<!-- rm(binsforcarbon) -->
+<!-- rm(binsforcarbone) -->
+<!-- rm(binsforcarbonn) -->
 
 
-###########SSM 
+<!-- # barplot -->
+<!-- par(mfrow = c(1, 3)) -->
+<!-- barx <- barplot(c_mean, -->
+<!--                 names.arg=c("no C","with C"), -->
+<!--                 ylim=c(0,ceiling(max(dat$logll))), -->
+<!--                 xlab='carbonload', -->
+<!--                 ylab='log reduction') -->
+<!-- error.bar(barx, c_mean,c_sem) -->
 
-lmTlog = lm(dat$logll ~ log(dat$CT,10)    )
-summary(lmTlog)
+<!-- ###e -->
+<!-- c_meane <- c (mean(dat.e$logll[dat.e$carbon == "n"]), mean(dat.e$logll[dat.e$carbon == "c"])) -->
+<!-- c_seme <- c (sem(dat.e$logll[dat.e$carbon == "n"]), sem(dat.e$logll[dat.e$carbon == "c"])) -->
+<!-- # barplot -->
+<!-- barx <- barplot(c_meane, main="enveloped",  -->
+<!--                 names.arg=c("no C","with C"), -->
+<!--                 ylim=c(0,ceiling(max(dat.e$logll))), -->
+<!--                 xlab='carbonload', -->
+<!--                 ylab='log reduction') -->
+<!-- error.bar(barx, c_meane,c_seme) -->
 
-lmTlog = lm(dat$logll ~ log(dat$CT,10)  +dat$Surface   )
-summary(lmTlog)
-```
+<!-- ##n -->
+<!-- c_meann <- c (mean(dat.n$logll[dat.n$carbon == "n"]), mean(dat.n$logll[dat.n$carbon == "c"])) -->
+<!-- c_semn <- c (sem(dat.n$logll[dat.n$carbon == "n"]), sem(dat.n$logll[dat.n$carbon == "c"])) -->
+<!-- # barplot -->
+<!-- barx <- barplot(c_meann,main="nonenveloped",  -->
+<!--                 names.arg=c("no C","with C"), -->
+<!--                 ylim=c(0,ceiling(max(dat.n$logll))), -->
+<!--                 xlab='carbonload', -->
+<!--                 ylab='log reduction') -->
+<!-- error.bar(barx, c_meann,c_semn) -->
 
 
-#maschine learning normalisation
+<!-- ###########SSM  -->
 
-```{r}
-# Assuming your data is in a data frame called df
-dat$Temp <- as.numeric(dat$Temp)
+<!-- lmTlog = lm(dat$logll ~ log(dat$CT,10)    ) -->
+<!-- summary(lmTlog) -->
 
-numerical_columns <- c("Temp", "size", "Gsize", "C (mg/L)", "time (min)")
-
-# Standardize the numerical columns
-dat[numerical_columns] <- scale(dat[numerical_columns])
-
-# Check if scaling worked
-summary(dat[numerical_columns])
+<!-- lmTlog = lm(dat$logll ~ log(dat$CT,10)  +dat$Surface   ) -->
+<!-- summary(lmTlog) -->
+<!-- ``` -->
 
 
+<!-- #maschine learning normalisation -->
+
+<!-- ```{r} -->
+<!-- # Assuming your data is in a data frame called df -->
+<!-- dat$Temp <- as.numeric(dat$Temp) -->
+
+<!-- numerical_columns <- c("Temp", "size", "Gsize", "C (mg/L)", "time (min)") -->
+
+<!-- # Standardize the numerical columns -->
+<!-- dat[numerical_columns] <- scale(dat[numerical_columns]) -->
+
+<!-- # Check if scaling worked -->
+<!-- summary(dat[numerical_columns]) -->
 
 
 
-```
-
-#random forest 
-```{r}
-# Install and load the package if you haven't already
-install.packages("randomForest")
-library(randomForest)
-
-#subset dataframe to the coloums wanting to investigate 
-
-dat2 <- subset(dat, !is.na(log))
-
-df <- dat2[, c( "log", "Temp", "size", "Gsize", "C (mg/L)", "time (min)",  "Surface" ,  "measurement" , "carbon" , "ssRNA(-)" , "ssDNA" , "ssRNA(+)" , "dsRNA" , "BZT"  , "DDAB"  , "DDAC"  , "others" , "QACmix" , "aluminium"   ,    "ceramic"     ,          "glass"       ,    "hand"       ,     "human skin"    ,  "laminate"   ,   "Latex paint"  ,   "lettuce"  ,  "plastic" ,        "polypropylene" ,  "polystyrene" ,   "rubber"      ,    "stainless steel" ,"strawberry"     , "Tile"       ,     "Wood"   )]
 
 
-# Build the Random Forest model
-set.seed(123)  # For reproducibility
-rf_model <- randomForest(log ~ ., data = df, importance = TRUE)
+<!-- ``` -->
 
-# View the model
-print(rf_model)
+<!-- #random forest  -->
+<!-- ```{r} -->
+<!-- # Install and load the package if you haven't already -->
+<!-- install.packages("randomForest") -->
+<!-- library(randomForest) -->
 
-# Plot variable importance
-varImpPlot(rf_model)
+<!-- #subset dataframe to the coloums wanting to investigate  -->
 
-```
-#xboost
-```{r}
-# Load required libraries
-install.packages("xgboost")
-install.packages("xgboost")
-# Load required libraries
-library(xgboost)
-library(Matrix)
+<!-- dat2 <- subset(dat, !is.na(log)) -->
 
-# Assuming your dataframe is called df
-# Ensure the target variable 'log' is numeric
-target <- as.numeric(df$log)
+<!-- df <- dat2[, c( "log", "Temp", "size", "Gsize", "C (mg/L)", "time (min)",  "Surface" ,  "measurement" , "carbon" , "ssRNA(-)" , "ssDNA" , "ssRNA(+)" , "dsRNA" , "BZT"  , "DDAB"  , "DDAC"  , "others" , "QACmix" , "aluminium"   ,    "ceramic"     ,          "glass"       ,    "hand"       ,     "human skin"    ,  "laminate"   ,   "Latex paint"  ,   "lettuce"  ,  "plastic" ,        "polypropylene" ,  "polystyrene" ,   "rubber"      ,    "stainless steel" ,"strawberry"     , "Tile"       ,     "Wood"   )] -->
 
-# Remove the target variable from df
-df_features <- df[, !names(df) %in% 'log']
 
-# Convert categorical variables to numeric using one-hot encoding
-df_features_matrix <- model.matrix(~ . - 1, data = df_features)
+<!-- # Build the Random Forest model -->
+<!-- set.seed(123)  # For reproducibility -->
+<!-- rf_model <- randomForest(log ~ ., data = df, importance = TRUE) -->
 
-# Check the number of rows and ensure consistency
-print(nrow(df_features_matrix))  # Should match length(target)
+<!-- # View the model -->
+<!-- print(rf_model) -->
 
-# Ensure no missing values
-if (any(is.na(df_features_matrix)) || any(is.na(target))) {
-  stop("Data contains missing values")
-}
+<!-- # Plot variable importance -->
+<!-- varImpPlot(rf_model) -->
 
-# Check if lengths match
-if (nrow(df_features_matrix) != length(target)) {
-  stop("Number of rows in feature matrix does not match length of target vector")
-}
+<!-- ``` -->
+<!-- #xboost -->
+<!-- ```{r} -->
+<!-- # Load required libraries -->
+<!-- install.packages("xgboost") -->
+<!-- install.packages("xgboost") -->
+<!-- # Load required libraries -->
+<!-- library(xgboost) -->
+<!-- library(Matrix) -->
 
-# Create xgboost matrix
-dtrain <- xgb.DMatrix(data = df_features_matrix, label = target, missing = NA)
+<!-- # Assuming your dataframe is called df -->
+<!-- # Ensure the target variable 'log' is numeric -->
+<!-- target <- as.numeric(df$log) -->
 
-# Set up xgboost parameters
-params <- list(
-  booster = "gbtree",
-  objective = "reg:squarederror",
-  eval_metric = "rmse",
-  eta = 0.1,
-  max_depth = 6,
-  subsample = 0.8,
-  colsample_bytree = 0.8
-)
+<!-- # Remove the target variable from df -->
+<!-- df_features <- df[, !names(df) %in% 'log'] -->
 
-# Train the xgboost model
-xgb_model <- xgb.train(
-  params = params,
-  data = dtrain,
-  nrounds = 100
-)
+<!-- # Convert categorical variables to numeric using one-hot encoding -->
+<!-- df_features_matrix <- model.matrix(~ . - 1, data = df_features) -->
 
-# View model details
-print(xgb_model)
+<!-- # Check the number of rows and ensure consistency -->
+<!-- print(nrow(df_features_matrix))  # Should match length(target) -->
 
-```
+<!-- # Ensure no missing values -->
+<!-- if (any(is.na(df_features_matrix)) || any(is.na(target))) { -->
+<!--   stop("Data contains missing values") -->
+<!-- } -->
+
+<!-- # Check if lengths match -->
+<!-- if (nrow(df_features_matrix) != length(target)) { -->
+<!--   stop("Number of rows in feature matrix does not match length of target vector") -->
+<!-- } -->
+
+<!-- # Create xgboost matrix -->
+<!-- dtrain <- xgb.DMatrix(data = df_features_matrix, label = target, missing = NA) -->
+
+<!-- # Set up xgboost parameters -->
+<!-- params <- list( -->
+<!--   booster = "gbtree", -->
+<!--   objective = "reg:squarederror", -->
+<!--   eval_metric = "rmse", -->
+<!--   eta = 0.1, -->
+<!--   max_depth = 6, -->
+<!--   subsample = 0.8, -->
+<!--   colsample_bytree = 0.8 -->
+<!-- ) -->
+
+<!-- # Train the xgboost model -->
+<!-- xgb_model <- xgb.train( -->
+<!--   params = params, -->
+<!--   data = dtrain, -->
+<!--   nrounds = 100 -->
+<!-- ) -->
+
+<!-- # View model details -->
+<!-- print(xgb_model) -->
+
+<!-- ``` -->
 
