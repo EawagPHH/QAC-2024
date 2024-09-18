@@ -1472,10 +1472,33 @@ ggsave("Fheat.jpeg", plot = Fheat,
 # Load necessary library
 library(dplyr)
 
+dat_no_outliers$StN <- as.factor(dat_no_outliers$`Studies by number`)
 
-subset_k <-  subset(dat, (!is.na(log)) 
-                      )
+subset_k <-  subset(dat_no_outliers, (!is.na(log)) &
+                      is.na(material)  
+                       )
 
+
+# Create a scatter plot with lines for each family (facet by fam)
+all <- ggplot(subset_k, aes(x = CT, y = log, colour = QAC)) +
+  geom_point() +                        # Add points
+  geom_smooth(method = "lm", se = FALSE) +  # Optionally add a linear regression line (without confidence interval)
+  facet_wrap(~ fam, scales = "free") +   # Facet by family and allow free scales for each plot
+  theme_minimal() +                      # Use a clean theme
+  labs(title = "Log Reduction vs CT for Each Family",
+       x = "Concentration x Time (CT)",
+       y = "Log Reduction") +
+  theme(
+    #legend.position = "none",
+    strip.text = element_text(size = 10),   # Adjust size of facet labels
+    axis.text = element_text(size = 8),     # Adjust size of axis text
+    axis.title = element_text(size = 12),   # Adjust size of axis titles
+    plot.title = element_text(size = 14, hjust = 0.5)  # Center the plot title
+  )
+
+all
+ggsave("all_surface_by_NA.jpeg", plot = all,
+       scale = 1, width = 40, height = 30, units = "cm", dpi = 1200)
 
 # Function to calculate k and residual standard error for each family
 calculate_k_rss <- function(data) {
