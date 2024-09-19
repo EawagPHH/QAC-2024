@@ -1466,6 +1466,71 @@ ggsave("Fheat.jpeg", plot = Fheat,
 
 ```
 
+##investigating outliers for linear regression model 
+```{r}
+
+ggplot(dat, aes(x=dat$`time (min)`, y= dat$`C (mg/L)` )) +
+  geom_point(                                  ) +
+  scale_y_log10() +
+  scale_x_log10() +
+  theme_ipsum(axis= TRUE,
+              grid = FALSE, axis_text_size = 11, 
+              axis_title_size = 11,
+              axis_col = "black"
+              ) ->objCT33
+
+objCT33
+
+# 
+# ##cooks distance 
+# model <- lm(log~ dat$`time (min)` * dat$`C (mg/L)`, data = dat)
+# cooksd <- cooks.distance(model)
+# 
+# # Identifying highly influential points
+# influential <- which(cooksd > (4 / length(dat$`time (min)` )))
+# 
+# dat[influential, ]
+# 
+# plot(dat$`C (mg/L)`, dat$`time (min)`, main="Concentration vs Time with Influential Points", col="blue")
+# points(dat[influential, ]$`C (mg/L)`, dat[influential, ]$`t`, col="red", pch=19)
+# 
+# summary(dat[influential, ]$`time (min)`)
+
+
+##mahalanobis distance
+
+# Load necessary library
+library(MASS)
+
+# Define the variables of interest: concentration and time
+variables <- dat[, c("C (mg/L)", "time (min)")]
+
+# Calculate the Mahalanobis distance
+mahal_dist <- mahalanobis(variables, 
+                          colMeans(variables), 
+                          cov(variables))
+
+# Set a threshold for outliers based on the chi-squared distribution
+# With 2 degrees of freedom (since you have two variables: concentration and time)
+threshold <- qchisq(0.975, df = 2)  # 97.5th percentile
+
+# Identify outliers where Mahalanobis distance exceeds the threshold
+outliers <- which(mahal_dist > threshold)
+
+# View the outliers
+dat[outliers, ]
+
+
+plot(dat$`C (mg/L)`, dat$`time (min)`, main="Concentration vs Time with Mahalanobis Outliers", col="blue")
+points(dat[outliers, ]$`C (mg/L)`, dat[outliers, ]$`time (min)`, col="red", pch=19)
+
+
+# Remove the rows corresponding to outliers
+dat_no_outliers <- dat[-outliers, ]
+
+
+```
+
 #calculating k 
 
 ```{r}
@@ -1473,9 +1538,15 @@ ggsave("Fheat.jpeg", plot = Fheat,
 library(dplyr)
 
 dat_no_outliers$StN <- as.factor(dat_no_outliers$`Studies by number`)
+dat_no_outliers$time <- dat_no_outliers$`time (min)`
+
 
 subset_k <-  subset(dat_no_outliers, (!is.na(log)) &
-                      is.na(material)  
+                      is.na(material)  &
+                      QAC == "BAC"&
+                      Temp > 15 &
+                      time < 45
+                    
                        )
 
 
@@ -1608,7 +1679,9 @@ plot(hclust_model)
 
 
 ```
-make nice cluster pictures 
+
+
+##make nice cluster pictures 
 ```{r}
 install.packages("dendextend")
 
@@ -1650,72 +1723,323 @@ dend <- as.dendrogram(hclust_model)
 
 ```
 
+##calculating CT correlations RSV
 
-
-##investigating outliers for linear regression model 
 ```{r}
+# Load necessary package
+library(dplyr)
 
-ggplot(dat, aes(x=dat$`time (min)`, y= dat$`C (mg/L)` )) +
-  geom_point(                                  ) +
-  scale_y_log10() +
-  scale_x_log10() +
-  theme_ipsum(axis= TRUE,
-              grid = FALSE, axis_text_size = 11, 
-              axis_title_size = 11,
-              axis_col = "black"
-              ) ->objCT33
+# Function to convert percentage inactivation to log reduction
+percentage_to_log_reduction <- function(inactivation) {
+  if(inactivation == 100) {
+    return(Inf)  # Infinite log reduction if inactivation is 100%
+  } else if(inactivation == 0) {
+    return(0)  # No log reduction if inactivation is 0%
+  } else {
+    return(log10(100 / (100 - inactivation)))
+  }
+}
 
-objCT33
+# Create data for RSV (inactivation percentages)
+rsv_data <- data.frame(
+  Concentration = c(0.00025, 0.0005, 0.00125, 0.0025, 0.005, 0.0125, 0.025, 0.05),
+  Inactivation_5_min = c(0, 0, 10, 32, 50, 67, 82, 97),
+  Inactivation_10_min = c(15, 20, 30, 50, 70, 95, 100, 100),
+  Inactivation_20_min = c(25, 35, 50, 65, 85, 100, 100, 100),
+  Inactivation_30_min = c(70, 75, 85, 90, 95, 96, 98, 99),
+  Inactivation_40_min = c(75, 80, 91, 95, 97, 98, 100, 100),
+  Inactivation_60_min = c(97, 98, 99, 100, 100, 100, 100, 100)
+)
 
-# 
-# ##cooks distance 
-# model <- lm(log~ dat$`time (min)` * dat$`C (mg/L)`, data = dat)
-# cooksd <- cooks.distance(model)
-# 
-# # Identifying highly influential points
-# influential <- which(cooksd > (4 / length(dat$`time (min)` )))
-# 
-# dat[influential, ]
-# 
-# plot(dat$`C (mg/L)`, dat$`time (min)`, main="Concentration vs Time with Influential Points", col="blue")
-# points(dat[influential, ]$`C (mg/L)`, dat[influential, ]$`t`, col="red", pch=19)
-# 
-# summary(dat[influential, ]$`time (min)`)
+# Convert percentages to log reductions
+rsv_data <- rsv_data %>%
+  mutate(
+    Log_Reduction_5_min = sapply(Inactivation_5_min, percentage_to_log_reduction),
+    Log_Reduction_10_min = sapply(Inactivation_10_min, percentage_to_log_reduction),
+    Log_Reduction_20_min = sapply(Inactivation_20_min, percentage_to_log_reduction),
+    Log_Reduction_30_min = sapply(Inactivation_30_min, percentage_to_log_reduction),
+    Log_Reduction_40_min = sapply(Inactivation_40_min, percentage_to_log_reduction),
+    Log_Reduction_60_min = sapply(Inactivation_60_min, percentage_to_log_reduction)
+  )
 
-
-##mahalanobis distance
-
-# Load necessary library
-library(MASS)
-
-# Define the variables of interest: concentration and time
-variables <- dat[, c("C (mg/L)", "time (min)")]
-
-# Calculate the Mahalanobis distance
-mahal_dist <- mahalanobis(variables, 
-                          colMeans(variables), 
-                          cov(variables))
-
-# Set a threshold for outliers based on the chi-squared distribution
-# With 2 degrees of freedom (since you have two variables: concentration and time)
-threshold <- qchisq(0.975, df = 2)  # 97.5th percentile
-
-# Identify outliers where Mahalanobis distance exceeds the threshold
-outliers <- which(mahal_dist > threshold)
-
-# View the outliers
-dat[outliers, ]
+# View the dataframe with log reductions for RSV
+print(rsv_data)
 
 
-plot(dat$`C (mg/L)`, dat$`time (min)`, main="Concentration vs Time with Mahalanobis Outliers", col="blue")
-points(dat[outliers, ]$`C (mg/L)`, dat[outliers, ]$`time (min)`, col="red", pch=19)
+# Load necessary packages
+library(ggplot2)
+library(tidyr)
+
+# Reshape the data for plotting (long format)
+rsv_data_long <- rsv_data %>%
+  dplyr::select(Concentration, starts_with("Log_Reduction")) %>%
+  pivot_longer(cols = starts_with("Log_Reduction"),
+               names_to = "Time",
+               values_to = "Log_Reduction")
+
+# Clean the 'Time' column to remove the prefix and keep only the minute values
+rsv_data_long$Time <- gsub("Log_Reduction_|_min", "", rsv_data_long$Time)
+rsv_data_long$Time <- as.numeric(rsv_data_long$Time)
+
+rsv_data_long$CT <- rsv_data_long$Concentration * rsv_data_long$Time 
 
 
-# Remove the rows corresponding to outliers
-dat_no_outliers <- dat[-outliers, ]
+
+# Plot the data
+ggplot(rsv_data_long, aes(x = Concentration, y = Log_Reduction, color = factor(Time))) +
+  geom_line(size = 1.2) + 
+  geom_point(size = 3) +
+  scale_x_log10() +  # Log scale for the x-axis (Concentration)
+  labs(
+    title = "Log Reduction of RSV Over Concentration for Different Time Points",
+    x = "Concentration (%)",
+    y = "Log Reduction",
+    color = "Time (min)"
+  ) +
+  theme_minimal() +
+  theme(text = element_text(size = 14))
+
+
+# Plot Log Reduction vs Concentration * Time
+ggplot(rsv_data_long, aes(x = CT, y = Log_Reduction, colour = Time)) +
+  geom_line(size = 1.2) + 
+  geom_point(size = 3) +
+# scale_x_log10() + 
+  labs(
+    title = "Log Reduction of RSV Over Concentration * Time",
+    x = "Concentration * Time",
+    y = "Log Reduction"
+  ) +
+  xlim(0 , 0.5) +
+  theme_minimal() +
+  theme(text = element_text(size = 14))
+
+```
+#calculating ct for the other viruses 
+
+```{r}
+# Create data for each virus (inactivation percentages)
+virus_data <- data.frame(
+  Virus = rep(c("RSV", "HSV-2", "CMV"), each = 8),
+  Concentration = rep(c(0.00025, 0.0005, 0.00125, 0.0025, 0.005, 0.0125, 0.025, 0.05), 3),
+  
+  # Inactivation data for each virus at various time points
+  Inactivation_5_min = c(
+    0, 0, 10, 32, 50, 67, 82, 97,  # RSV
+    0, 0, 20, 50, 90, 95, 100, 100,  # HSV-2
+    0, 10, 30, 60, 90, 100, 100, 100  # CMV
+  ),
+  
+  Inactivation_10_min = c(
+    15, 20, 30, 50, 70, 95, 100, 100,  # RSV
+    20, 40, 60, 95, 100, 100, 100, 100,  # HSV-2
+    23, 42, 70, 97, 100, 100, 100, 100  # CMV
+  ),
+  
+  Inactivation_20_min = c(
+    25, 35, 50, 65, 85, 100, 100, 100,  # RSV
+    65, 82, 95, 99, 100, 100, 100, 100,  # HSV-2
+    70, 75, 85, 97, 100, 100, 100, 100  # CMV
+  ),
+  
+  Inactivation_30_min = c(
+    70, 75, 85, 90, 95, 96, 98, 99,  # RSV
+    75, 88, 97, 100, 100, 100, 100, 100,  # HSV-2
+    85, 90, 95, 99, 100, 100, 100, 100  # CMV
+  ),
+  
+  Inactivation_40_min = c(
+    75, 80, 91, 95, 97, 98, 100, 100,  # RSV
+    90, 95, 97, 100, 100, 100, 100, 100,  # HSV-2
+    95, 97, 99, 100, 100, 100, 100, 100  # CMV
+  ),
+  
+  Inactivation_60_min = c(
+    97, 98, 99, 100, 100, 100, 100, 100,  # RSV
+    97, 98, 100, 100, 100, 100, 100, 100,  # HSV-2
+    99, 100, 100, 100, 100, 100, 100, 100  # CMV
+  )
+)
+
+
+# Convert inactivation percentages to log reductions for all viruses
+virus_data <- virus_data %>%
+  mutate(
+    Log_Reduction_5_min = sapply(Inactivation_5_min, percentage_to_log_reduction),
+    Log_Reduction_10_min = sapply(Inactivation_10_min, percentage_to_log_reduction),
+    Log_Reduction_20_min = sapply(Inactivation_20_min, percentage_to_log_reduction),
+    Log_Reduction_30_min = sapply(Inactivation_30_min, percentage_to_log_reduction),
+    Log_Reduction_40_min = sapply(Inactivation_40_min, percentage_to_log_reduction),
+    Log_Reduction_60_min = sapply(Inactivation_60_min, percentage_to_log_reduction)
+  )
+
+# Reshape the data for plotting (long format)
+virus_data_long <- virus_data %>%
+  dplyr::select(Virus, Concentration, starts_with("Log_Reduction")) %>%
+  pivot_longer(cols = starts_with("Log_Reduction"),
+               names_to = "Time",
+               values_to = "Log_Reduction")
+
+# Clean the 'Time' column to remove the prefix and keep only the minute values
+virus_data_long$Time <- gsub("Log_Reduction_|_min", "", virus_data_long$Time)
+virus_data_long$Time <- as.numeric(virus_data_long$Time)
+
+virus_data_long$CT <- virus_data_long$Time * virus_data_long$Concentration
+
+# Plot the data with separate lines for each virus and time set
+ggplot(virus_data_long, aes(x = Concentration, y = Log_Reduction, color = Virus, linetype = factor(Time))) +
+  geom_line(size = 1.2) + 
+  geom_point(size = 3) +
+  scale_x_log10() +  # Log scale for the x-axis (Concentration)
+  labs(
+    title = "Log Reduction Over Concentration for Different Viruses",
+    x = "Concentration (%)",
+    y = "Log Reduction",
+    color = "Virus",
+    linetype = "Time (min)"
+  ) +
+  theme_minimal() +
+  theme(text = element_text(size = 14))
+
+# Plot the data with separate lines for each virus and time set
+
+ggplot(virus_data_long, aes(x = CT, y = Log_Reduction, color = Time)) +
+  geom_line(size = 1.2) + 
+  geom_point(size = 3) +
+  #scale_x_log10() +  # Log scale for the x-axis (Concentration)
+  labs(
+    title = "Log Reduction Over Concentration * Time for Different Viruses",
+    x = "Concentration * Time (CT)",
+    y = "Log Reduction",
+    color = "Virus"
+  ) +
+  xlim(0, 0.5) +  # Set the x-axis limit
+  facet_wrap(~ Virus, scales = "free_y") +  # Create a separate plot for each virus
+  theme_minimal() +
+  theme(text = element_text(size = 14))
 
 
 ```
+```{r}
+# Create data for each virus (including ADV, ENV, BKV)
+virus_data <- data.frame(
+  Virus = rep(c("RSV", "HSV-2", "CMV", "ADV", "ENV", "BKV"), each = 8),
+  Concentration = rep(c(0.00025, 0.0005, 0.00125, 0.0025, 0.005, 0.0125, 0.025, 0.05), 6),
+  
+  # Inactivation data for each virus at various time points
+  Inactivation_5_min = c(
+    0, 0, 10, 32, 50, 67, 82, 97,  # RSV
+    0, 0, 20, 50, 90, 95, 100, 100,  # HSV-2
+    0, 10, 30, 60, 90, 100, 100, 100,  # CMV
+    0, 5, 15, 35, 55, 75, 90, 100,  # ADV
+    0, 10, 25, 50, 70, 85, 95, 100,  # ENV
+    0, 8, 18, 40, 60, 80, 95, 100  # BKV
+  ),
+  
+  Inactivation_10_min = c(
+    15, 20, 30, 50, 70, 95, 100, 100,  # RSV
+    20, 40, 60, 95, 100, 100, 100, 100,  # HSV-2
+    23, 42, 70, 97, 100, 100, 100, 100,  # CMV
+    10, 20, 35, 60, 80, 95, 100, 100,  # ADV
+    15, 30, 50, 70, 90, 100, 100, 100,  # ENV
+    12, 25, 45, 65, 85, 100, 100, 100  # BKV
+  ),
+  
+  Inactivation_20_min = c(
+    25, 35, 50, 65, 85, 100, 100, 100,  # RSV
+    65, 82, 95, 99, 100, 100, 100, 100,  # HSV-2
+    70, 75, 85, 97, 100, 100, 100, 100,  # CMV
+    25, 40, 60, 80, 95, 100, 100, 100,  # ADV
+    30, 50, 70, 90, 100, 100, 100, 100,  # ENV
+    20, 40, 65, 85, 100, 100, 100, 100  # BKV
+  ),
+  
+  Inactivation_30_min = c(
+    70, 75, 85, 90, 95, 96, 98, 99,  # RSV
+    75, 88, 97, 100, 100, 100, 100, 100,  # HSV-2
+    85, 90, 95, 99, 100, 100, 100, 100,  # CMV
+    60, 75, 90, 100, 100, 100, 100, 100,  # ADV
+    70, 85, 100, 100, 100, 100, 100, 100,  # ENV
+    60, 80, 100, 100, 100, 100, 100, 100  # BKV
+  ),
+  
+  Inactivation_40_min = c(
+    75, 80, 91, 95, 97, 98, 100, 100,  # RSV
+    90, 95, 97, 100, 100, 100, 100, 100,  # HSV-2
+    95, 97, 99, 100, 100, 100, 100, 100,  # CMV
+    70, 85, 95, 100, 100, 100, 100, 100,  # ADV
+    80, 95, 100, 100, 100, 100, 100, 100,  # ENV
+    75, 90, 100, 100, 100, 100, 100, 100  # BKV
+  ),
+  
+  Inactivation_60_min = c(
+    97, 98, 99, 100, 100, 100, 100, 100,  # RSV
+    97, 98, 100, 100, 100, 100, 100, 100,  # HSV-2
+    99, 100, 100, 100, 100, 100, 100, 100,  # CMV
+    85, 95, 100, 100, 100, 100, 100, 100,  # ADV
+    90, 100, 100, 100, 100, 100, 100, 100,  # ENV
+    85, 100, 100, 100, 100, 100, 100, 100  # BKV
+  )
+)
+
+# Convert inactivation percentages to log reductions for all viruses
+virus_data <- virus_data %>%
+  mutate(
+    Log_Reduction_5_min = sapply(Inactivation_5_min, percentage_to_log_reduction),
+    Log_Reduction_10_min = sapply(Inactivation_10_min, percentage_to_log_reduction),
+    Log_Reduction_20_min = sapply(Inactivation_20_min, percentage_to_log_reduction),
+    Log_Reduction_30_min = sapply(Inactivation_30_min, percentage_to_log_reduction),
+    Log_Reduction_40_min = sapply(Inactivation_40_min, percentage_to_log_reduction),
+    Log_Reduction_60_min = sapply(Inactivation_60_min, percentage_to_log_reduction)
+  )
+
+# Reshape the data for plotting (long format)
+virus_data_long <- virus_data %>%
+  dplyr::select(Virus, Concentration, starts_with("Log_Reduction")) %>%
+  pivot_longer(cols = starts_with("Log_Reduction"),
+               names_to = "Time",
+               values_to = "Log_Reduction")
+
+# Clean the 'Time' column to remove the prefix and keep only the minute values
+virus_data_long$Time <- gsub("Log_Reduction_|_min", "", virus_data_long$Time)
+virus_data_long$Time <- as.numeric(virus_data_long$Time)
+
+virus_data_long$CT <- virus_data_long$Time * virus_data_long$Concentration
+
+# Plot the data with separate lines for each virus and time set
+ggplot(virus_data_long, aes(x = Concentration, y = Log_Reduction, color = Virus, linetype = factor(Time))) +
+  geom_line(size = 1.2) + 
+  geom_point(size = 3) +
+  scale_x_log10() +  # Log scale for the x-axis (Concentration)
+  labs(
+    title = "Log Reduction Over Concentration for Different Viruses",
+    x = "Concentration (%)",
+    y = "Log Reduction",
+    color = "Virus",
+    linetype = "Time (min)"
+  ) +
+  theme_minimal() +
+  theme(text = element_text(size = 14))
+
+# Plot the data with separate lines for each virus and time set
+
+ggplot(virus_data_long, aes(x = CT, y = Log_Reduction, color = factor(Time))) +
+  geom_line(size = 1.2) + 
+  geom_point(size = 3) +
+  #scale_x_log10() +  # Log scale for the x-axis (Concentration)
+  labs(
+    title = "Log Reduction Over Concentration * Time for Different Viruses",
+    x = "Concentration * Time (CT)",
+    y = "Log Reduction",
+    color = "conc"
+  ) +
+  xlim(0, 0.2) +  # Set the x-axis limit
+  facet_wrap(~ Virus, scales = "free_y") +  # Create a separate plot for each virus
+  theme_minimal() +
+  theme(text = element_text(size = 14))
+
+```
+
 
 ##create subsets
 ```{r}
