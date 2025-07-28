@@ -2026,7 +2026,7 @@ ggplot(virus_data_long, aes(x = Concentration, y = Log_Reduction, color = Virus,
 ggplot(virus_data_long, aes(x = CT, y = Log_Reduction, color = factor(Time))) +
   geom_line(size = 1.2) + 
   geom_point(size = 3) +
-  #scale_x_log10() +  # Log scale for the x-axis (Concentration)
+  scale_x_log10() +  # Log scale for the x-axis (Concentration)
   labs(
     title = "Log Reduction Over Concentration * Time for Different Viruses",
     x = "Concentration * Time (CT)",
@@ -2038,6 +2038,56 @@ ggplot(virus_data_long, aes(x = CT, y = Log_Reduction, color = factor(Time))) +
   theme_minimal() +
   theme(text = element_text(size = 14))
 
+
+virus_data_long$Log_Reduction[virus_data_long$Log_Reduction == "Inf" ] = NA
+
+ggplot(virus_data_long, aes(x = Concentration, y = Log_Reduction, color = factor(Time), linetype = factor(Time))) +
+  geom_line(size = 1.2) + 
+  geom_point(size = 3) +
+  scale_x_log10() +  # Log scale for the x-axis (Concentration)
+  labs(
+    title = "Log Reduction Over Concentration for Different Viruses",
+    x = "Concentration (%)",
+    y = "Log Reduction",
+    color = "time",
+    linetype = "Time (min)"
+  ) +
+    facet_wrap(~ Virus, scales = "free_y") + 
+  theme_minimal() +
+  theme(text = element_text(size = 14))
+
+```
+#filtering dataset
+```{r}
+#filtering the datasets
+                      )
+# Rename the column
+names(dat)[names(dat) == "C (mg/L)"] <- "conc"
+names(dat)[names(dat) == "time (min)"] <- "time"
+
+
+subset_viruses <- subset(dat, (!is.na(log) & QAC == "BAC" & (is.na(material)) & measurement == 1 ) )
+
+
+subset_viruses <- subset_viruses %>%
+  group_by(VirusName) %>%
+  filter(n() > 4) %>%
+  ungroup()
+
+ggplot(subset_viruses, aes(x = conc, y = log, color = factor(time))) +
+    geom_line(size = 1.2) + 
+    geom_point(size = 3) +
+    scale_x_log10() +  # Log scale for the x-axis (Concentration)
+  scale_y_continuous(limits = c(0, 5.6)) +
+    labs(
+        title = "Log Reduction Over Concentration for Different Viruses",
+        x = "Concentration (%)",
+        y = "Log Reduction",
+        color = "Time (min)"
+    ) +
+    facet_wrap(~ VirusName, scales = "fixed") + 
+    theme_minimal() +
+    theme(text = element_text(size = 14))
 ```
 
 
